@@ -76,7 +76,6 @@ public class HomeController {
 			HttpSession session = request.getSession();
 
 			session.setAttribute("user", logResUser.getUser());
-			session.setAttribute("hubId", logResUser.getUser().getUserId());
 
 			System.err.println("logResUser " + logResUser.toString());
 
@@ -108,6 +107,28 @@ public class HomeController {
 		}
 
 		return model;
+	}
+
+	@RequestMapping(value = "/invalidLogin", method = RequestMethod.GET)
+	public ModelAndView invalidLogin(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("login");
+		try {
+
+			model.addObject("errorMessage", "Invalid Login Details");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		System.out.println("User Logout");
+
+		session.invalidate();
+		return "redirect:/";
 	}
 
 }

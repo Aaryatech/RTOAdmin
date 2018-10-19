@@ -48,6 +48,11 @@
 					</ul></li>
 
 
+				<li class="menu-item-has-children dropdown"><a
+					href="${pageContext.request.contextPath}/editMyProfile/1"> <i
+						class="menu-icon fa fa-table"></i> My Profile
+				</a></li>
+
 
 
 				<%-- 	
@@ -63,13 +68,7 @@
 					aria-expanded="true"> <i class="menu-icon fa fa-table"></i> <spring:message
 							code="label.userProfile" /> --%>
 				</a>
-				<%-- 	<ul class="sub-menu children dropdown-menu ">
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
-							href="${pageContext.request.contextPath}/editHubUser/1"><spring:message
-									code="label.userProfile" /></a></li>
-
-
-					</ul> --%>
+				<%-- 	 --%>
 			</ul>
 
 		</div>

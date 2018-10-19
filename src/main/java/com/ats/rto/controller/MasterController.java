@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Controller;
@@ -387,6 +388,28 @@ public class MasterController {
 		}
 
 		return "redirect:/showAddWorkType";
+	}
+
+	@RequestMapping(value = "/editMyProfile/{userId}", method = RequestMethod.GET)
+	public ModelAndView editMyProfile(@PathVariable int userId, HttpServletRequest request,
+			HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("/editProfile");
+		try {
+			HttpSession session = request.getSession();
+			User login = (User) session.getAttribute("user");
+			System.out.println("Login" + login.toString());
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("userId", login.getUserId());
+			User editUser = rest.postForObject(Constants.url + "/getUserByUserId", map, User.class);
+			model.addObject("editUser", editUser);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
 	}
 
 }
