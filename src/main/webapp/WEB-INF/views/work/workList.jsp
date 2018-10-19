@@ -104,55 +104,72 @@
 							<strong class="card-title">User List</strong>
 						</div>
 						<div class="card-body">
-							<table id="bootstrap-data-table"
-								class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th>Sr No</th>
-										<th>Enq No</th>
-										<th>Date</th>
-										<th>Cust Name</th>
-										<th>Cust Mobile No</th>
-										<th>Work Type Name</th>
-
-										<!-- <th>Action</th> -->
-									</tr>
-								</thead>
-								<tbody>
-
-									<c:forEach items="${workList}" var="workList" varStatus="count">
+							<form
+								action="${pageContext.request.contextPath}/updateStatusAndCost"
+								method="post">
+								<table id="bootstrap-data-table"
+									class="table table-striped table-bordered">
+									<thead>
 										<tr>
+											<th class="check"><input type="checkbox" name="selAll"
+												id="selAll" /> All</th>
+											<th>Sr No</th>
+											<th>Enq No</th>
+											<th>Date</th>
+											<th>Cust Name</th>
+											<th>Cust Mobile No</th>
+											<th>Work Type Name</th>
+											<th>Work Cost</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
 
-											<td><c:out value="${count.index+1}" /></td>
-											<td><c:out value="${workList.workId}" /></td>
+										<c:forEach items="${workList}" var="workList"
+											varStatus="count">
+											<tr>
+												<td><input type="checkbox" name="sendWorkIds"
+													id="sendWorkIds" value="${workList.workId}" /></td>
+												<td><c:out value="${count.index+1}" /></td>
+												<td><c:out value="${workList.workId}" /></td>
 
-											<td><c:out value="${workList.date1}" /></td>
+												<td><c:out value="${workList.date1}" /></td>
 
-											<td><c:out value="${workList.custName}" /></td>
+												<td><c:out value="${workList.custName}" /></td>
 
-											<td><c:out value="${workList.custMobile}" /></td>
-											<td><c:out value="${workList.workTypeName}" /></td>
-											<%-- <td>
-												<div class="fa-hover col-lg-3 col-md-6">
-													<a
-														href="${pageContext.request.contextPath}/editUser/${userList.userId}"><i
-														class="fa fa-edit"></i> <span class="text-muted"></span></a>
-												</div>
+												<td><c:out value="${workList.custMobile}" /></td>
+												<td><c:out value="${workList.workTypeName}" /></td>
 
-												<div class="fa-hover col-lg-3 col-md-6">
+												<td align="right"><input class="form-control"
+													id="workCost${workList.workId}" placeholder="Cost"
+													type="text" name="workCost${workList.workId}" value="0" /></td>
+												<td>
+													<div class="fa-hover col-lg-3 col-md-6">
+														<a
+															href="${pageContext.request.contextPath}/editWorkList/${workList.workId}"><i
+															class="fa fa-edit"></i> <span class="text-muted"></span></a>
+													</div> <%-- <div class="fa-hover col-lg-3 col-md-6">
 													<a
 														href="${pageContext.request.contextPath}/deleteUser/${userList.userId}"
 														onClick="return confirm('Are you sure want to delete this record');"><i
 														class="fa fa-trash-o"></i></a>
-												</div>
-											</td>
- --%>
-										</tr>
-									</c:forEach>
+												</div> --%>
+												</td>
+											</tr>
+										</c:forEach>
 
-								</tbody>
+									</tbody>
 
-							</table>
+								</table>
+								<div class="col-lg-12" align="center">
+
+
+									<button type="submit" class="btn btn-primary"
+										style="align-content: center; width: 226px; margin-left: 80px;">
+										Submit</button>
+								</div>
+
+							</form>
 						</div>
 					</div>
 				</div>
@@ -212,7 +229,22 @@
 	</script>
 
 
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$('#bootstrap-data-table-export').DataTable();
 
+							$("#selAll")
+									.click(
+											function() {
+												$(
+														'#bootstrap-data-table tbody input[type="checkbox"]')
+														.prop('checked',
+																this.checked);
+											});
+						});
+	</script>
 
 </body>
 </html>
