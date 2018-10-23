@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!doctype html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Work List</title>
+<title>Update Payment</title>
 
 
 <link rel="apple-touch-icon"
@@ -101,11 +100,11 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">User List</strong>
+							<strong class="card-title">Work List</strong>
 						</div>
 						<div class="card-body">
 							<form
-								action="${pageContext.request.contextPath}/updateStatusAndCost"
+								action="${pageContext.request.contextPath}/updatePaymentAndStatus"
 								method="post">
 								<table id="bootstrap-data-table"
 									class="table table-striped table-bordered">
@@ -120,6 +119,7 @@
 											<th>Mob No</th>
 											<th>Work Type Name</th>
 											<th>Work Cost</th>
+											<th>Payment</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -143,7 +143,11 @@
 												<td align="right"><input class="form-control"
 													id="workCost${workList.workId}" placeholder="Cost"
 													type="text" name="workCost${workList.workId}"
-													value="${workList.workCost}" /></td>
+													value="${workList.workCost}" readonly /></td>
+
+												<td align="right"><input class="form-control"
+													id="exInt1${workList.workId}" placeholder="Cost"
+													type="text" name="exInt1${workList.workId}" value="0" /></td>
 												<td>
 													<div class="fa-hover col-lg-3 col-md-6">
 														<a

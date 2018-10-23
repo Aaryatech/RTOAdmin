@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Work List</title>
+<title>User Allocation</title>
 
 
 <link rel="apple-touch-icon"
@@ -73,111 +73,129 @@
 
 			<div class="row">
 
-				<%-- <div class="col-xs-12 col-sm-12">
+				<div class="col-xs-12 col-sm-12">
 					<div class="card">
-						<div class="card-header">
-							<strong> Add New User</strong>
-						</div>
-						<div class="card-body card-block">
-							<form action="${pageContext.request.contextPath}/insertUser"
-								method="post">
+						<form action="${pageContext.request.contextPath}/updateStatus"
+							method="post">
+							<div class="card-body card-block">
 
 
 
 
-								<div class="col-lg-12" align="center">
+
+								<div class="row">
+									<div class="col-md-2">Select Work Type</div>
+									<div class="col-md-3">
+										<select id="userId" name="userId" class="standardSelect"
+											tabindex="1">
+											<option value=""></option>
+
+											<c:forEach items="${userList}" var="userList">
 
 
-									<button type="submit" class="btn btn-primary"
-										style="align-content: center; width: 226px; margin-left: 80px;">Submit
+												<option value="${userList.userId}">${userList.userName}
+												</option>
 
-									</button>
+
+											</c:forEach>
+										</select>
+
+									</div>
 								</div>
-							</form>
-						</div>
-					</div>
-				</div> --%>
+							</div>
 
-				<div class="col-md-12">
-					<div class="card">
-						<div class="card-header">
-							<strong class="card-title">User List</strong>
-						</div>
-						<div class="card-body">
-							<form
-								action="${pageContext.request.contextPath}/updateStatusAndCost"
-								method="post">
-								<table id="bootstrap-data-table"
-									class="table table-striped table-bordered">
-									<thead>
-										<tr>
-											<th class="check"><input type="checkbox" name="selAll"
-												id="selAll" /> All</th>
-											<th>Sr No</th>
-											<th>Enq No</th>
-											<th>Date</th>
-											<th>Cust Name</th>
-											<th>Mob No</th>
-											<th>Work Type Name</th>
-											<th>Work Cost</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tbody>
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-header">
+										<strong class="card-title">Work List</strong>
+									</div>
+									<div class="card-body">
+										<table id="bootstrap-data-table"
+											class="table table-striped table-bordered">
+											<thead>
+												<tr>
+													<th class="check"><input type="checkbox" name="selAll"
+														id="selAll" /> All</th>
+													<th>Sr No</th>
+													<th>Enq No</th>
+													<th>Date</th>
+													<th>Cust Name</th>
+													<th>Mob No</th>
+													<th>Work Type Name</th>
+													<th>Work Cost</th>
+													<th>Payment Done</th>
+													<th>Remaining Amt</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
 
-										<c:forEach items="${workList}" var="workList"
-											varStatus="count">
-											<tr>
-												<td><input type="checkbox" name="sendWorkIds"
-													id="sendWorkIds" value="${workList.workId}" /></td>
-												<td><c:out value="${count.index+1}" /></td>
-												<td><c:out value="${workList.workId}" /></td>
+												<c:forEach items="${workList}" var="workList"
+													varStatus="count">
+													<tr>
+														<td><input type="checkbox" name="sendWorkIds"
+															id="sendWorkIds" value="${workList.workId}" /></td>
+														<td><c:out value="${count.index+1}" /></td>
+														<td><c:out value="${workList.workId}" /></td>
 
-												<td><c:out value="${workList.date1}" /></td>
+														<td><c:out value="${workList.date1}" /></td>
 
-												<td><c:out value="${workList.custName}" /></td>
+														<td><c:out value="${workList.custName}" /></td>
 
-												<td><c:out value="${workList.custMobile}" /></td>
-												<td><c:out value="${workList.workTypeName}" /></td>
+														<td><c:out value="${workList.custMobile}" /></td>
+														<td><c:out value="${workList.workTypeName}" /></td>
 
-												<td align="right"><input class="form-control"
-													id="workCost${workList.workId}" placeholder="Cost"
-													type="text" name="workCost${workList.workId}"
-													value="${workList.workCost}" /></td>
-												<td>
-													<div class="fa-hover col-lg-3 col-md-6">
-														<a
-															href="${pageContext.request.contextPath}/editWorkList/${workList.workId}"><i
-															class="fa fa-edit"></i> <span class="text-muted"></span></a>
-													</div> <%-- <div class="fa-hover col-lg-3 col-md-6">
+														<td align="right"><input class="form-control"
+															id="workCost${workList.workId}" placeholder="Cost"
+															type="text" name="workCost${workList.workId}"
+															value="${workList.workCost}" /></td>
+														<td align="right"><input class="form-control"
+															id="workCost${workList.workId}" placeholder="Cost"
+															type="text" name="workCost${workList.workId}"
+															value="${workList.workCost}" /></td>
+														<td align="right"><input class="form-control"
+															id="workCost${workList.workId}" placeholder="Cost"
+															type="text" name="workCost${workList.workId}"
+															value="${workList.workCost}" /></td>
+
+
+														<td>
+															<div class="fa-hover col-lg-3 col-md-6">
+																<a
+																	href="${pageContext.request.contextPath}/editWorkList/${workList.workId}"><i
+																	class="fa fa-edit"></i> <span class="text-muted"></span></a>
+															</div> <%-- <div class="fa-hover col-lg-3 col-md-6">
 													<a
 														href="${pageContext.request.contextPath}/deleteUser/${userList.userId}"
 														onClick="return confirm('Are you sure want to delete this record');"><i
 														class="fa fa-trash-o"></i></a>
 												</div> --%>
-												</td>
-											</tr>
-										</c:forEach>
+														</td>
+													</tr>
+												</c:forEach>
 
-									</tbody>
+											</tbody>
 
-								</table>
-								<div class="col-lg-12" align="center">
+										</table>
+										<div class="col-lg-12" align="center">
 
 
-									<button type="submit" class="btn btn-primary"
-										style="align-content: center; width: 226px; margin-left: 80px;">
-										Submit</button>
+											<button type="submit" class="btn btn-primary"
+												style="align-content: center; width: 226px; margin-left: 80px;">
+												Submit</button>
+										</div>
+									</div>
 								</div>
-
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
-				</div>
 
+				</div>
 			</div>
+
 		</div>
-		<!-- .animated -->
+	</div>
+	<!-- .animated -->
 	</div>
 	<!-- .content -->
 

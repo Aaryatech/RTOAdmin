@@ -73,135 +73,97 @@
 						<div class="card-header">
 							<strong class="card-title">Work List</strong>
 						</div>
-						<div class="form-group"></div>
-						<%-- <div class="form-group">
-							<div class="col-lg-4">
-								<div>
-									<div class="input-group" style="align-items: center;">
+						<div class="card-body card-block">
+
+							<form
+								action="${pageContext.request.contextPath}/updateStatusAndCostHeaderDetail"
+								method="post">
+								<div class="form-group"></div>
+
+
+								<div class="form-group"></div>
+								<div class="form-group">
+
+									<div class="col-lg-4">
+
+										<div>
+											<div class="input-group" style="align-items: center;">
+												Cust Name &nbsp; <input class="form-control"
+													name="prevPendingCrateBal" id="prevPendingCrateBal"
+													value="${getWork.custName}" type="text" disabled /> <span
+													class="error" aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-lg-4">
+
+										<div>
+											<div class="input-group" style="align-items: center;">
+												Cust Contact No &nbsp; <input class="form-control"
+													name="cratesIssued" id="cratesIssued" type="text"
+													value="${getWork.custMobile}" disabled /> <span
+													class="error" aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4">
+
+										<div>
+											<div class="input-group" style="align-items: center;">
+												Work Type Name &nbsp; <input class="form-control"
+													id="workCost${workList.workId}"
+													name="workCost${workList.workId}"
+													value="${getWork.workTypeName}" type="text" disabled /> <span
+													class="error" aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								&nbsp;
+								<div class="form-group"></div>
+								<div class="form-group">
+									<div class="col-lg-4">
+
+										<div>
+											<div class="input-group" style="align-items: center;">
+												Work Cost &nbsp; <input class="form-control"
+													value="${getWork.workCost}" id="workCost" name="workCost"
+													type="text" /> <span class="error" aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+
+									<input type="hidden" value="${getWork.workId}"
+										name="sendWorkId" id="sendWorkId">
+
+									<div class="col-lg-4">
+
+										<div>
 
 
 
-										&nbsp; <input class="form-control" name="orderDate"
-											id="orderDate" value="${orderHeader.orderDate}" type="text"
-											disabled />
+											<div class="input-group" style="align-items: center;">
+												Vehicle No &nbsp; <input class="form-control"
+													name="orderTotal" value="${getWork.vehicalNo}"
+													id="orderTotal" type="text" disabled /> <span
+													class="error" aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
 
+									<div class="col-lg-4" align="right">
+
+
+										<button type="submit" class="btn btn-primary"
+											style="align-content: center; width: 226px; margin-left: 80px;">
+											Submit</button>
 									</div>
 								</div>
-							</div>
-
-							<div class="col-lg-4">
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.orderTotal" />
-										&nbsp; <input class="form-control" name="orderTotal"
-											id="orderTotal" value="${orderHeader.orderTotal}" type="text"
-											disabled />
-
-									</div>
-								</div>
-							</div>
-
+							</form>
 						</div>
 
- --%>
-
-						<div class="form-group"></div>
-						<div class="form-group">
-
-							<div class="col-lg-4">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										Cust Name &nbsp; <input class="form-control"
-											name="prevPendingCrateBal" id="prevPendingCrateBal"
-											value="${getWork.custName}" type="text"
-											disabled /> <span class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-4">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										Cust Contact No &nbsp; <input class="form-control"
-											name="cratesIssued" id="cratesIssued" type="text"
-											value="${getWork.custMobile}" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										Work Type Name &nbsp; <input class="form-control"
-											name="cratesReceived" value="${getWork.workTypeName}"
-											id="cratesReceived" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-							
-						</div>
-						<div class="form-group"></div>
-						<div class="form-group">
-							<div class="col-lg-3">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										Work Cost &nbsp; <input class="form-control"
-											name="prevPendingAmt" value="${getWork.workCost}"
-											id="prevPendingAmt" type="text" disabled /> <span
-											class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-
-							<%-- <div class="col-lg-3">
-
-								<div>
-
-
-
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.orderTotal" />
-										&nbsp; <input class="form-control" name="orderTotal"
-											value="${orderHeader.orderTotal}" id="orderTotal" type="text"
-											disabled /> <span class="error" aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3">
-
-								<div>
-
-
-
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.amtReceived" />
-										&nbsp; <input class="form-control" name="amtReceived"
-											id="amtReceived" value="${orderHeader.amtReceived}"
-											type="text" disabled /> <span class="error"
-											aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3">
-
-								<div>
-									<div class="input-group" style="align-items: center;">
-										<spring:message code="label.amountBalanced" />
-										&nbsp; <input class="form-control" name="amountBalanced"
-											id="amountBalanced"
-											value="${orderHeader.prevPendingAmt+orderHeader.orderTotal-orderHeader.amtReceived}"
-											type="text" disabled /> <span class="error"
-											aria-live="polite"></span>
-									</div>
-								</div>
-							</div>
-
- --%>						</div>
 
 						<div class="card-body">
 							<table id="bootstrap-data-table"
@@ -210,6 +172,7 @@
 								<thead>
 									<tr>
 										<th>Sr No</th>
+										<th>Date</th>
 										<th>Work Id</th>
 										<th>Description</th>
 
@@ -217,13 +180,14 @@
 								</thead>
 								<tbody>
 
-									<c:forEach items="${workDetail}" var="workDetail"
+									<c:forEach items="${workdetail}" var="workdetail"
 										varStatus="count">
 										<tr>
 
 											<td><c:out value="${count.index+1}" /></td>
-													<td align="right"><c:out value="${workDetail.workId}" /></td>
-											<td align="right"><c:out value="${workDetail.workDesc}" /></td>
+											<td><c:out value="${workdetail.date}" /></td>
+											<td><c:out value="${workdetail.workId}" /></td>
+											<td><c:out value="${workdetail.workDesc}" /></td>
 
 										</tr>
 									</c:forEach>
@@ -232,6 +196,7 @@
 
 							</table>
 						</div>
+
 					</div>
 				</div>
 

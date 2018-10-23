@@ -27,6 +27,7 @@ public class WorkController {
 
 	RestTemplate rest = new RestTemplate();
 	List<GetWork> workList = null;
+	List<User> userList = null;
 
 	@RequestMapping(value = "/showWorkList", method = RequestMethod.GET)
 	public ModelAndView showWorkList(HttpServletRequest request, HttpServletResponse response) {
@@ -111,4 +112,256 @@ public class WorkController {
 		return model;
 	}
 
+	@RequestMapping(value = "/updateStatusAndCostHeaderDetail", method = RequestMethod.POST)
+	public String updateStatusAndCostHeaderDetail(HttpServletRequest request, HttpServletResponse response) {
+
+		try {
+
+			String sendWorkId = request.getParameter("sendWorkId");
+
+			String workCost = request.getParameter("workCost");
+
+			System.err.println("work ids " + sendWorkId.toString());
+
+			List<UpdateStatus> upList = new ArrayList<UpdateStatus>();
+
+			UpdateStatus up = new UpdateStatus();
+			up.setWorkId(Integer.parseInt(sendWorkId));
+			up.setWorkCost(Float.parseFloat(workCost));
+			up.setStatus(2);
+			upList.add(up);
+			System.out.println("up" + up.toString());
+
+			System.out.println("updateList" + upList.toString());
+
+			Info errMsg = rest.postForObject(Constants.url + "updateWorkHeaderStatusAndCost", upList, Info.class);
+			System.out.println("errMsg" + errMsg);
+
+		} catch (Exception e) {
+			System.err.println("err ord updt " + e.getMessage());
+
+			e.printStackTrace();
+
+		}
+
+		return "redirect:/showWorkList";
+	}
+
+	@RequestMapping(value = "/showUpdatePayment", method = RequestMethod.GET)
+	public ModelAndView showUpdatePayment(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("work/updatePayment");
+		try {
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("status", 2);
+
+			GetWork[] workListArray = rest.postForObject(Constants.url + "/getWorkHeaderByStatus", map,
+					GetWork[].class);
+			workList = new ArrayList<GetWork>(Arrays.asList(workListArray));
+			model.addObject("workList", workList);
+
+		} catch (Exception e) {
+
+			System.err.println("Exception in showing Error Message Page " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return model;
+
+	}
+
+	@RequestMapping(value = "/updatePaymentAndStatus", method = RequestMethod.POST)
+	public String updatePaymentAndStatus(HttpServletRequest request, HttpServletResponse response) {
+
+		try {
+
+			String[] sendWorkIds = request.getParameterValues("sendWorkIds");
+
+			System.err.println("work ids " + sendWorkIds.toString());
+
+			System.err.println("work ids 0 " + sendWorkIds[0]);
+
+			List<UpdateStatus> upList = new ArrayList<UpdateStatus>();
+
+			for (int i = 0; i < sendWorkIds.length; i++) {
+
+				UpdateStatus up = new UpdateStatus();
+
+				float a = Float.parseFloat(request.getParameter("workCost" + sendWorkIds[i]));
+				float b = Float.parseFloat(request.getParameter("exInt1" + sendWorkIds[i]));
+
+				float c = a - b;
+
+				int workCost1;
+				workCost1 = (int) c;
+
+				up.setWorkId(Integer.parseInt(sendWorkIds[i]));
+				up.setExInt1(Integer.parseInt(request.getParameter("exInt1" + up.getWorkId())));
+				up.setExInt2(workCost1);
+
+				up.setStatus(3);
+				upList.add(up);
+				System.out.println("up" + up.toString());
+
+			}
+			System.out.println("updateList" + upList.toString());
+
+			Info errMsg = rest.postForObject(Constants.url + "updateWorkPayment", upList, Info.class);
+			System.out.println("errMsg" + errMsg);
+
+		} catch (Exception e) {
+			System.err.println("err ord updt " + e.getMessage());
+
+			e.printStackTrace();
+
+		}
+
+		return "redirect:/showUpdatePayment";
+	}
+
+	@RequestMapping(value = "/showUserAllocation", method = RequestMethod.GET)
+	public ModelAndView showUserAllocation(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("work/userAllocation");
+		try {
+
+			User[] userListArray = rest.getForObject(Constants.url + "/getAllUserList", User[].class);
+			userList = new ArrayList<User>(Arrays.asList(userListArray));
+			model.addObject("userList", userList);
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("status", 3);
+
+			GetWork[] workListArray = rest.postForObject(Constants.url + "/getWorkHeaderByStatus", map,
+					GetWork[].class);
+			workList = new ArrayList<GetWork>(Arrays.asList(workListArray));
+			model.addObject("workList", workList);
+
+		} catch (Exception e) {
+
+			System.err.println("Exception in showing Error Message Page " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return model;
+
+	}
+
+	@RequestMapping(value = "/showDocInOffice", method = RequestMethod.GET)
+	public ModelAndView showDocInOffice(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("work/docInOffice");
+		try {
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("status", 4);
+
+			GetWork[] workListArray = rest.postForObject(Constants.url + "/getWorkHeaderByStatus", map,
+					GetWork[].class);
+			workList = new ArrayList<GetWork>(Arrays.asList(workListArray));
+			model.addObject("workList", workList);
+
+		} catch (Exception e) {
+
+			System.err.println("Exception in showing Error Message Page " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return model;
+
+	}
+
+	@RequestMapping(value = "/showDocSubmitAtRto", method = RequestMethod.GET)
+	public ModelAndView showDocSubmitAtRto(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("work/docSubmitAtRto");
+		try {
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("status", 5);
+
+			GetWork[] workListArray = rest.postForObject(Constants.url + "/getWorkHeaderByStatus", map,
+					GetWork[].class);
+			workList = new ArrayList<GetWork>(Arrays.asList(workListArray));
+			model.addObject("workList", workList);
+
+		} catch (Exception e) {
+
+			System.err.println("Exception in showing Error Message Page " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return model;
+
+	}
+
+	@RequestMapping(value = "/showActualDocToCust", method = RequestMethod.GET)
+	public ModelAndView showActualDocToCust(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("work/actualDocToCust");
+		try {
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("status", 6);
+
+			GetWork[] workListArray = rest.postForObject(Constants.url + "/getWorkHeaderByStatus", map,
+					GetWork[].class);
+			workList = new ArrayList<GetWork>(Arrays.asList(workListArray));
+			model.addObject("workList", workList);
+
+		} catch (Exception e) {
+
+			System.err.println("Exception in showing Error Message Page " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return model;
+
+	}
+
+	@RequestMapping(value = "/updateWorkStatus", method = RequestMethod.POST)
+	public String updateWorkStatus(HttpServletRequest request, HttpServletResponse response) {
+		int status = Integer.parseInt(request.getParameter("status"));
+		try {
+
+			String[] sendWorkIds = request.getParameterValues("sendWorkIds");
+
+			StringBuilder sb = new StringBuilder();
+
+			for (int i = 0; i < sendWorkIds.length; i++) {
+				sb = sb.append(sendWorkIds[i] + ",");
+
+			}
+			String items = sb.toString();
+			items = items.substring(0, items.length() - 1);
+
+			System.err.println("work ids " + sendWorkIds.toString());
+
+			System.err.println("work ids 0 " + sendWorkIds[0]);
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("workIdList", items);
+			map.add("status", status);
+
+			Info errMsg = rest.postForObject(Constants.url + "updateWorkStatus", map, Info.class);
+			System.out.println("errMsg" + errMsg);
+
+		} catch (Exception e) {
+			System.err.println("err ord updt " + e.getMessage());
+
+			e.printStackTrace();
+
+		}
+		if (status == 5) {
+			return "redirect:/showDocInOffice";
+		} else if (status == 6) {
+			return "redirect:/showDocSubmitAtRto";
+		} else if (status == 7) {
+			return "redirect:/showActualDocToCust";
+
+		}
+
+		return "redirect:/showDocInOffice";
+	}
 }

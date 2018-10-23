@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Work List</title>
+<title>Actual Document to Cust</title>
 
 
 <link rel="apple-touch-icon"
@@ -101,11 +101,11 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">User List</strong>
+							<strong class="card-title">Work List</strong>
 						</div>
 						<div class="card-body">
 							<form
-								action="${pageContext.request.contextPath}/updateStatusAndCost"
+								action="${pageContext.request.contextPath}/updateWorkStatus"
 								method="post">
 								<table id="bootstrap-data-table"
 									class="table table-striped table-bordered">
@@ -120,6 +120,8 @@
 											<th>Mob No</th>
 											<th>Work Type Name</th>
 											<th>Work Cost</th>
+											<th>Payment Done</th>
+											<th>Remaining Amt</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -143,7 +145,18 @@
 												<td align="right"><input class="form-control"
 													id="workCost${workList.workId}" placeholder="Cost"
 													type="text" name="workCost${workList.workId}"
-													value="${workList.workCost}" /></td>
+													value="${workList.workCost}" readonly /></td>
+												<td align="right"><input class="form-control"
+													id="workCost${workList.workId}" placeholder="Cost"
+													type="text" name="workCost${workList.workId}"
+													value="${workList.exInt1}" readonly /></td>
+												<td align="right"><input class="form-control"
+													id="workCost${workList.workId}" placeholder="Cost"
+													type="text" name="workCost${workList.workId}"
+													value="${workList.exInt2}" readonly /> <input
+													type="hidden" name="status" id="status" value="7"></td>
+
+
 												<td>
 													<div class="fa-hover col-lg-3 col-md-6">
 														<a
