@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class VpsImageUpload {
 
-	public static final String CAT_FOLDER = "/home/lenovo/uploads/";
+	public static final String CAT_FOLDER = "/home/aaryate1/tomcat.aaryatechindia.in/tomcat-8.0.18/webapps/rtodocupload/";
 	
 	public static final String ITEM_FOLDER = "/home/ats-11/item/";
 	//public static final String ITEM_FOLDER = "D:/akshay/image/";
@@ -43,19 +43,24 @@ public class VpsImageUpload {
 
 	
 
-	public void saveUploadedFiles(List<MultipartFile> files, int imageType, String imageName) throws IOException {
+	public void saveUploadedFiles(MultipartFile file, int imageType, String imageName) throws IOException {
 
-		for (MultipartFile file : files) {
-
-			if (file.isEmpty()) {
-
-				continue;
-
-			}
+		/*for (MultipartFile file : files) {
+*/
+			
 
 			Path path = Paths.get(CAT_FOLDER + imageName);
 
 			byte[] bytes = file.getBytes();
+			
+			if (imageType == 0) {
+				System.out.println("Inside Image Type =1");
+
+				path = Paths.get(CAT_FOLDER + imageName);
+
+				System.out.println("Path= " + path.toString());
+
+			}
 
 			if (imageType == 1) {
 				System.out.println("Inside Image Type =1");
@@ -98,6 +103,6 @@ public class VpsImageUpload {
 
 		}
 
-	}
+	
 
 }

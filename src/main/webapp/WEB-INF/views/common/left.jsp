@@ -42,6 +42,10 @@
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showAddWorkHeader">Add
 								Work</a></li>
+								
+								<li class="active"><i class="fa fa-puzzle-piece"></i><a
+							href="${pageContext.request.contextPath}/showWorkHeadList"> View Added
+								Work</a></li>
 
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showWorkList">Work
