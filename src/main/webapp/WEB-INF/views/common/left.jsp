@@ -38,14 +38,22 @@
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showAddWorkType">Add
 								WorkType</a></li>
+					</ul></li>
+
+				<li class="menu-item-has-children dropdown"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="true"> <i class="menu-icon fa fa-table"></i>
+						Work
+				</a>
+					<ul class="sub-menu children dropdown-menu ">
 
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showAddWorkHeader">Add
 								Work</a></li>
-								
-								<li class="active"><i class="fa fa-puzzle-piece"></i><a
-							href="${pageContext.request.contextPath}/showWorkHeadList"> View Added
-								Work</a></li>
+
+						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+							href="${pageContext.request.contextPath}/showWorkHeadList">
+								View Added Work</a></li>
 
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showWorkList">Work

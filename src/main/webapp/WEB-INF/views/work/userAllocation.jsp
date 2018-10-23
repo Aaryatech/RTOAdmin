@@ -79,7 +79,7 @@
 						</div>
 						<form
 							action="${pageContext.request.contextPath}/updateStatusAndUserId"
-							method="post">
+							id="work_form" method="post">
 							<div class="card-body card-block">
 
 
@@ -176,6 +176,7 @@
 
 
 										<button type="submit" class="btn btn-primary"
+											onclick="valthisform()"
 											style="align-content: center; width: 226px; margin-left: 80px;">
 											Submit</button>
 									</div>
@@ -260,6 +261,26 @@
 																this.checked);
 											});
 						});
+	</script>
+
+	<script type="text/javascript">
+		function valthisform() {
+			var checkboxs = document.getElementsByName("sendWorkIds");
+			var okay = false;
+			for (var i = 0, l = checkboxs.length; i < l; i++) {
+				if (checkboxs[i].checked) {
+					okay = true;
+					break;
+				}
+			}
+			if (okay) {
+
+				var form = document.getElementById("work_form");
+
+				form.submit();
+			} else
+				alert("Please check a checkbox");
+		}
 	</script>
 	<script>
 		jQuery(document).ready(function() {
