@@ -105,7 +105,7 @@
 						</div>
 						<div class="card-body">
 							<form
-								action="${pageContext.request.contextPath}/updateWorkStatus"
+								action="${pageContext.request.contextPath}/updateWorkStatus" id="work_form"
 								method="post">
 								<table id="bootstrap-data-table"
 									class="table table-striped table-bordered">
@@ -176,7 +176,7 @@
 								<div class="col-lg-12" align="center">
 
 
-									<button type="submit" class="btn btn-primary"
+									<button type="submit" class="btn btn-primary" onclick="valthisform()"
 										style="align-content: center; width: 226px; margin-left: 80px;">
 										Submit</button>
 								</div>
@@ -256,6 +256,25 @@
 																this.checked);
 											});
 						});
+	</script>
+	<script type="text/javascript">
+		function valthisform() {
+			var checkboxs = document.getElementsByName("sendWorkIds");
+			var okay = false;
+			for (var i = 0, l = checkboxs.length; i < l; i++) {
+				if (checkboxs[i].checked) {
+					okay = true;
+					break;
+				}
+			}
+			if (okay) {
+
+				var form = document.getElementById("work_form");
+
+				form.submit();
+			} else
+				alert("Please check a checkbox");
+		}
 	</script>
 
 </body>
