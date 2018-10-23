@@ -70,25 +70,26 @@
 
 	<div class="content mt-3">
 		<div class="animated fadeIn">
-
 			<div class="row">
 
-				<div class="col-xs-12 col-sm-12">
+				<div class="col-md-12">
 					<div class="card">
-						<form action="${pageContext.request.contextPath}/updateStatus"
+						<div class="card-header">
+							<strong class="card-title">User Allocation</strong>
+						</div>
+						<form
+							action="${pageContext.request.contextPath}/updateStatusAndUserId"
 							method="post">
 							<div class="card-body card-block">
 
 
-
-
-
-								<div class="row">
-									<div class="col-md-2">Select Work Type</div>
-									<div class="col-md-3">
+								<div class="form-group"></div>
+								<div class="form-group">
+									<div class="col-md-2">Select User</div>
+									<div class="col-md-4" align="center">
 										<select id="userId" name="userId" class="standardSelect"
 											tabindex="1">
-											<option value=""></option>
+											<option value="">Select User</option>
 
 											<c:forEach items="${userList}" var="userList">
 
@@ -103,90 +104,84 @@
 									</div>
 								</div>
 							</div>
+							&nbsp;
 
 							<div class="col-md-12">
-								<div class="card">
-									<div class="card-header">
-										<strong class="card-title">Work List</strong>
-									</div>
-									<div class="card-body">
-										<table id="bootstrap-data-table"
-											class="table table-striped table-bordered">
-											<thead>
+
+
+								<div class="card-body">
+									<table id="bootstrap-data-table"
+										class="table table-striped table-bordered">
+										<thead>
+											<tr>
+												<th class="check"><input type="checkbox" name="selAll"
+													id="selAll" /> All</th>
+												<th>Sr No</th>
+												<th>Enq No</th>
+												<th>Date</th>
+												<th>Cust Name</th>
+												<th>Mob No</th>
+												<th>Work Type Name</th>
+												<th>Work Cost</th>
+												<th>Payment Done</th>
+												<th>Remaining Amt</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+
+											<c:forEach items="${workList}" var="workList"
+												varStatus="count">
 												<tr>
-													<th class="check"><input type="checkbox" name="selAll"
-														id="selAll" /> All</th>
-													<th>Sr No</th>
-													<th>Enq No</th>
-													<th>Date</th>
-													<th>Cust Name</th>
-													<th>Mob No</th>
-													<th>Work Type Name</th>
-													<th>Work Cost</th>
-													<th>Payment Done</th>
-													<th>Remaining Amt</th>
-													<th>Action</th>
+													<td><input type="checkbox" name="sendWorkIds"
+														id="sendWorkIds" value="${workList.workId}" /></td>
+													<td><c:out value="${count.index+1}" /></td>
+													<td><c:out value="${workList.workId}" /></td>
+
+													<td><c:out value="${workList.date1}" /></td>
+
+													<td><c:out value="${workList.custName}" /></td>
+
+													<td><c:out value="${workList.custMobile}" /></td>
+													<td><c:out value="${workList.workTypeName}" /></td>
+
+													<td align="right"><input class="form-control"
+														id="workCost${workList.workId}" placeholder="Cost"
+														type="text" name="workCost${workList.workId}"
+														value="${workList.workCost}" readonly /></td>
+													<td align="right"><input class="form-control"
+														id="exInt1${workList.workId}" placeholder="Cost"
+														type="text" name="exInt1${workList.workId}"
+														value="${workList.exInt1}" readonly /></td>
+													<td align="right"><input class="form-control"
+														id="exInt2${workList.workId}" placeholder="Cost"
+														type="text" name="exInt2${workList.workId}"
+														value="${workList.exInt2}" readonly /></td>
+
+
+													<td>
+														<div class="fa-hover col-lg-3 col-md-6">
+															<a
+																href="${pageContext.request.contextPath}/editWorkDetail/${workList.workId}"><i
+																class="fa fa-edit"></i> <span class="text-muted"></span></a>
+														</div>
+													</td>
 												</tr>
-											</thead>
-											<tbody>
+											</c:forEach>
 
-												<c:forEach items="${workList}" var="workList"
-													varStatus="count">
-													<tr>
-														<td><input type="checkbox" name="sendWorkIds"
-															id="sendWorkIds" value="${workList.workId}" /></td>
-														<td><c:out value="${count.index+1}" /></td>
-														<td><c:out value="${workList.workId}" /></td>
+										</tbody>
 
-														<td><c:out value="${workList.date1}" /></td>
-
-														<td><c:out value="${workList.custName}" /></td>
-
-														<td><c:out value="${workList.custMobile}" /></td>
-														<td><c:out value="${workList.workTypeName}" /></td>
-
-														<td align="right"><input class="form-control"
-															id="workCost${workList.workId}" placeholder="Cost"
-															type="text" name="workCost${workList.workId}"
-															value="${workList.workCost}" /></td>
-														<td align="right"><input class="form-control"
-															id="workCost${workList.workId}" placeholder="Cost"
-															type="text" name="workCost${workList.workId}"
-															value="${workList.workCost}" /></td>
-														<td align="right"><input class="form-control"
-															id="workCost${workList.workId}" placeholder="Cost"
-															type="text" name="workCost${workList.workId}"
-															value="${workList.workCost}" /></td>
+									</table>
+									<div class="col-lg-12" align="center">
 
 
-														<td>
-															<div class="fa-hover col-lg-3 col-md-6">
-																<a
-																	href="${pageContext.request.contextPath}/editWorkList/${workList.workId}"><i
-																	class="fa fa-edit"></i> <span class="text-muted"></span></a>
-															</div> <%-- <div class="fa-hover col-lg-3 col-md-6">
-													<a
-														href="${pageContext.request.contextPath}/deleteUser/${userList.userId}"
-														onClick="return confirm('Are you sure want to delete this record');"><i
-														class="fa fa-trash-o"></i></a>
-												</div> --%>
-														</td>
-													</tr>
-												</c:forEach>
-
-											</tbody>
-
-										</table>
-										<div class="col-lg-12" align="center">
-
-
-											<button type="submit" class="btn btn-primary"
-												style="align-content: center; width: 226px; margin-left: 80px;">
-												Submit</button>
-										</div>
+										<button type="submit" class="btn btn-primary"
+											style="align-content: center; width: 226px; margin-left: 80px;">
+											Submit</button>
 									</div>
 								</div>
 							</div>
+
 						</form>
 					</div>
 
@@ -194,15 +189,13 @@
 			</div>
 
 		</div>
-	</div>
-	<!-- .animated -->
+		<!-- .animated -->
 	</div>
 	<!-- .content -->
 
 	<!-- Footer -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	<!-- Footer -->
-
 
 
 	<script
@@ -213,6 +206,7 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/plugins.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
+
 
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables.min.js"></script>
@@ -236,6 +230,9 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.colVis.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables-init.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/chosen/chosen.jquery.min.js"></script>
 
 
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -263,6 +260,15 @@
 																this.checked);
 											});
 						});
+	</script>
+	<script>
+		jQuery(document).ready(function() {
+			jQuery(".standardSelect").chosen({
+				disable_search_threshold : 2,
+				no_results_text : "Oops, nothing found!",
+				width : "100%"
+			});
+		});
 	</script>
 
 </body>

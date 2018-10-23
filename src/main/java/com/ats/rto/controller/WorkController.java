@@ -248,6 +248,45 @@ public class WorkController {
 
 	}
 
+	@RequestMapping(value = "/updateStatusAndUserId", method = RequestMethod.POST)
+	public String updateStatusAndUserId(HttpServletRequest request, HttpServletResponse response) {
+
+		try {
+			String userId = request.getParameter("userId");
+
+			String[] sendWorkIds = request.getParameterValues("sendWorkIds");
+
+			StringBuilder sb = new StringBuilder();
+
+			for (int i = 0; i < sendWorkIds.length; i++) {
+				sb = sb.append(sendWorkIds[i] + ",");
+
+			}
+			String items = sb.toString();
+			items = items.substring(0, items.length() - 1);
+
+			System.err.println("work ids " + sendWorkIds.toString());
+
+			System.err.println("work ids 0 " + sendWorkIds[0]);
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("workIdList", items);
+			map.add("status", 4);
+			map.add("userId", userId);
+
+			Info errMsg = rest.postForObject(Constants.url + "updateWorkStatusAndUserId", map, Info.class);
+			System.out.println("errMsg" + errMsg);
+
+		} catch (Exception e) {
+			System.err.println("err ord updt " + e.getMessage());
+
+			e.printStackTrace();
+
+		}
+		return "redirect:/showUserAllocation";
+
+	}
+
 	@RequestMapping(value = "/showDocInOffice", method = RequestMethod.GET)
 	public ModelAndView showDocInOffice(HttpServletRequest request, HttpServletResponse response) {
 
@@ -364,4 +403,89 @@ public class WorkController {
 
 		return "redirect:/showDocInOffice";
 	}
+
+	@RequestMapping(value = "/editWorkDetail/{workId}", method = RequestMethod.GET)
+	public ModelAndView editWorkDetail(@PathVariable int workId, HttpServletRequest request,
+			HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("work/workDetail");
+		try {
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("workId", workId);
+			GetWork getWork = rest.postForObject(Constants.url + "/getWorkHeaderByWorkId", map, GetWork.class);
+			model.addObject("getWork", getWork);
+			model.addObject("workdetail", getWork.getWorkDetailList());
+			System.out.println("list" + getWork.getWorkDetailList());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+
+	@RequestMapping(value = "/editWorkPaymentDetail/{workId}", method = RequestMethod.GET)
+	public ModelAndView editWorkPaymentDetail(@PathVariable int workId, HttpServletRequest request,
+			HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("work/upPaymentDetail");
+		try {
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("workId", workId);
+			GetWork getWork = rest.postForObject(Constants.url + "/getWorkHeaderByWorkId", map, GetWork.class);
+			model.addObject("getWork", getWork);
+			model.addObject("workdetail", getWork.getWorkDetailList());
+			System.out.println("list" + getWork.getWorkDetailList());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+
+	@RequestMapping(value = "/updateDetailPaymentAndStatus", method = RequestMethod.POST)
+	public String updateDetailPaymentAndStatus(HttpServletRequest request, HttpServletResponse response) {
+
+		try {
+
+			String sendWorkId = request.getParameter("sendWorkId");
+
+			List<UpdateStatus> upList = new ArrayList<UpdateStatus>();
+
+			UpdateStatus up = new UpdateStatus();
+
+			float a = Float.parseFloat(request.getParameter("workCost"));
+			float b = Float.parseFloat(request.getParameter("exInt1"));
+
+			float c = a - b;
+
+			int workCost1;
+			workCost1 = (int) c;
+
+			up.setWorkId(Integer.parseInt(sendWorkId));
+			up.setExInt1(Integer.parseInt(request.getParameter("exInt1")));
+			up.setExInt2(workCost1);
+
+			up.setStatus(3);
+			upList.add(up);
+			System.out.println("up" + up.toString());
+
+			System.out.println("updateList" + upList.toString());
+
+			Info errMsg = rest.postForObject(Constants.url + "updateWorkPayment", upList, Info.class);
+			System.out.println("errMsg" + errMsg);
+
+		} catch (Exception e) {
+			System.err.println("err ord updt " + e.getMessage());
+
+			e.printStackTrace();
+
+		}
+
+		return "redirect:/showUpdatePayment";
+	}
+
 }

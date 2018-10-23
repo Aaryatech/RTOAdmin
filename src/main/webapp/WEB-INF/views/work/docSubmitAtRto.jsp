@@ -145,20 +145,20 @@
 												<td align="right"><input class="form-control"
 													id="workCost${workList.workId}" placeholder="Cost"
 													type="text" name="workCost${workList.workId}"
-													value="${workList.workCost}" /></td>
+													value="${workList.workCost}" readonly /></td>
 												<td align="right"><input class="form-control"
 													id="workCost${workList.workId}" placeholder="Cost"
 													type="text" name="workCost${workList.workId}"
-													value="${workList.exInt1}" /></td>
+													value="${workList.exInt1}" readonly /></td>
 												<td align="right"><input class="form-control"
 													id="workCost${workList.workId}" placeholder="Cost"
 													type="text" name="workCost${workList.workId}"
-													value="${workList.exInt2}" /> <input type="hidden"
-													name="status" id="status" value="6"></td>
+													value="${workList.exInt2}" readonly /> <input
+													type="hidden" name="status" id="status" value="6"></td>
 												<td>
 													<div class="fa-hover col-lg-3 col-md-6">
 														<a
-															href="${pageContext.request.contextPath}/editWorkList/${workList.workId}"><i
+															href="${pageContext.request.contextPath}/editWorkDetail/${workList.workId}"><i
 															class="fa fa-edit"></i> <span class="text-muted"></span></a>
 													</div> <%-- <div class="fa-hover col-lg-3 col-md-6">
 													<a
