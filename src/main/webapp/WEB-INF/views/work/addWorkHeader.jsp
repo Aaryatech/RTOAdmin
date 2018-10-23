@@ -90,19 +90,50 @@
 									<div class="col-md-3">
 										<select id="workTypeId" name="workTypeId"  onchange="callSel()"
 											class="standardSelect" tabindex="1">
-											<option value="0">Select Work Type</option>
+											<c:if test="${editWorkType>0}">
+											
+											<option disabled value="0">Select Work Type</option>
+											</c:if>
+											
+											<c:if test="${editWorkType==0}">
+											
+											<option  value="0">Select Work Type</option>
+											</c:if>
+											
+											
+											
 
-											<c:forEach items="${workList}" var="workList">
+									<c:choose>
+									
+									<c:when test="${editWorkType>0}">
+
+										<c:forEach items="${workList}" var="workList">
 											<c:choose>
-											<c:when test="${getWork.workTypeTd==workList.wType}">
-											<option selected value="${workList.wType}">${workList.workTypeName}</option>
-											</c:when>
-										<c:otherwise>
-										<option  value="${workList.wType}">${workList.workTypeName}</option>
-										</c:otherwise>
+											
+													<c:when test="${getWork.workTypeTd==workList.wType}">
+														<option selected value="${workList.wType}">${workList.workTypeName}</option>
+													</c:when>
+											
+												<c:otherwise>
+													<option disabled="disabled" value="${workList.wType}">${workList.workTypeName}</option>
+												</c:otherwise>
+											
 											</c:choose>
 
+										</c:forEach>
+									</c:when>
+
+								<c:otherwise>
+
+
+											<c:forEach items="${workList}" var="workList">
+										
+										<option  value="${workList.wType}">${workList.workTypeName}</option>
+										
 											</c:forEach>
+											</c:otherwise>
+											
+											</c:choose>
 										</select>
 
 									</div>
@@ -182,17 +213,17 @@
 								<div class="row">
 
 									<div class="col-md-2">Aadhaar Card</div>
-									<div class="col-md-4">
+									<div class="col-md-10">
 										<input type="hidden" name="prev_ac" id='prev_ac' value="${getWork.adharCard}"> <input
-											type='file' id="ac" name="doc[]" value="" required="required"/>
+											type='file' id="ac" name="doc[]" value="" required="required"/> <c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.adharCard}"  style="align-content: flex-end;">Aadhar Card</a></c:if>
 									</div>
 									
-									<c:if test="${editWorkType>0}">
+									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
 									<a href="${docUrl}${getWork.adharCard}"  style="align-content: flex-end;">File</a>
 									</div>
-									</c:if>
+									</c:if> --%>
 
 								
 
@@ -201,30 +232,30 @@
 								<div class="row" id="rc_book_div" style="display: none;">
 
 									<div class="col-md-2">RC Book</div>
-									<div class="col-md-4">
+									<div class="col-md-10">
 										<input type="hidden" name="prev_rc" id='prev_rc' value="${getWork.rcbook}"> <input
-											type='file' id="rc_book" name="doc[]" value="" />
+											type='file' id="rc_book" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.rcbook}"  style="align-content: flex-end;">RC Book</a></c:if>
 									</div>
-									<c:if test="${editWorkType>0}">
+									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
 									<a href="${docUrl}${getWork.rcbook}"  style="align-content: flex-end;">File</a>
 									</div>
-									</c:if>
+									</c:if> --%>
 								</div>
 								<div class="form-group"></div>
 								<div class="row" id="puc_div" style="display: none;">
 									<div class="col-md-2">PUC</div>
-									<div class="col-md-4">
+									<div class="col-md-10">
 										<input type="hidden" name="prev_puc" id=prev_puc value="${getWork.puc}"> <input
-											type='file' id="puc" name="doc[]" value="" />
+											type='file' id="puc" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.puc}"  style="align-content: flex-end;">PUC</a></c:if>
 									</div>
-									<c:if test="${editWorkType>0}">
+									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
 									<a href="${docUrl}${getWork.puc}"  style="align-content: flex-end;">File</a>
 									</div>
-									</c:if>
+									</c:if> --%>
 
 								</div>
 								<div class="form-group"></div>
@@ -232,63 +263,63 @@
 								<div class="row" id="ins1_div" style="display: none;">
 
 									<div class="col-md-2">Insurance 1</div>
-									<div class="col-md-4">
+									<div class="col-md-10">
 										<input type="hidden" name="prev_ins1" id='prev_ins1' value="${getWork.insurance}"> <input
-											type='file' id="ins1" name="doc[]" value="" />
+											type='file' id="ins1" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.insurance}"  style="align-content: flex-end;">Insurance 1</a></c:if>
 									</div>
-									<c:if test="${editWorkType>0}">
+									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
 									<a href="${docUrl}${getWork.insurance}"  style="align-content: flex-end;">File</a>
 									</div>
-									</c:if>
+									</c:if> --%>
 								</div>
 								<div class="form-group"></div>
 								<div class="row" id="ins2_div" style="display: none;">
 
 									<div class="col-md-2">Insurance 2</div>
-									<div class="col-md-4">
+									<div class="col-md-10">
 										<input type="hidden" name="prev_ins2" id=prev_ins2 value="${getWork.insurance1}"> <input
-											type='file' id="ins2" name="doc[]" value="" />
+											type='file' id="ins2" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.insurance1}"  style="align-content: flex-end;">Insurance 2</a></c:if>
 									</div>
-									<c:if test="${editWorkType>0}">
+									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
 									<a href="${docUrl}${getWork.insurance1}"  style="align-content: flex-end;">File</a>
 									</div>
-									</c:if>
+									</c:if> --%>
 
 								</div>
 								<div class="form-group"></div>
 								<div class="row" id="add_pf_div" style="display: none;">
 
 									<div class="col-md-2">Address Proof</div>
-									<div class="col-md-4">
+									<div class="col-md-10">
 										<input type="hidden" name="prev_add_proof" id='prev_add_proof' value="${getWork.addProof}">
-										<input type='file' id="add_proof" name="doc[]" value="" />
+										<input type='file' id="add_proof" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.addProof}"  style="align-content: flex-end;">Address Proof</a></c:if>
 									</div>
-									<c:if test="${editWorkType>0}">
+								<%-- 	<c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
 									<a href="${docUrl}${getWork.addProof}"  style="align-content: flex-end;">File</a>
 									</div>
 									</c:if>
-								</div>
+								 --%></div>
 								<div class="form-group"></div>
 
 								<div class="row" id="bank_noc_div" style="display: none;">
 
 									<div class="col-md-2">Bank NOC</div>
-									<div class="col-md-4">
+									<div class="col-md-10">
 										<input type="hidden" name="prev_bank_noc" id='prev_bank_noc' value="${getWork.bankDocument}">
-										<input type='file' id="bank_noc" name="doc[]" value="" />
+										<input type='file' id="bank_noc" name="doc[]" value="" />	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;">Bank NOC</a>
 									</div>
-									<c:if test="${editWorkType>0}">
+									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
 									<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;">File</a>
 									</div>
-									</c:if>
+									</c:if> --%>
 
 
 								</div>
@@ -297,52 +328,52 @@
 								<div class="row" id="bank_letter_div" style="display: none;">
 
 									<div class="col-md-2">Bank Letter</div>
-									<div class="col-md-4">
+									<div class="col-md-10">
 										<input type="hidden" name="prev_bank_letter" id='prev_bank_letter' value="${getWork.bankDocument}">
-										<input type='file' id="bank_letter" name="doc[]" value="" />
+										<input type='file' id="bank_letter" name="doc[]" value="" />	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;">Bank Letter</a>
 									</div>
 									
-									<c:if test="${editWorkType>0}">
+									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
 									<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;">File</a>
 									</div>
-									</c:if>
+									</c:if> --%>
 									
 								</div>
 								<div class="form-group"></div>
 								<div class="row" id="form_17_div" style="display: none;">
 
 									<div class="col-md-2">Form No 17</div>
-									<div class="col-md-4">
+									<div class="col-md-10">
 										<input type="hidden" name="prev_form_no17" id='prev_form_no17' value="${getWork.bankDocument1}">
-										<input type='file' id="form_no17" name="doc[]" value="" />
+										<input type='file' id="form_no17" name="doc[]" value="" /><a href="${docUrl}${getWork.bankDocument1}"  style="align-content: flex-end;">Form No. 17</a>
 									</div>
-									
+								<%-- 	
 									<c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
 									<a href="${docUrl}${getWork.bankDocument1}"  style="align-content: flex-end;">File</a>
 									</div>
 									</c:if>
-
+ --%>
 								</div>
 
 								<div class="form-group"></div>
 								<div class="row" id="orig_lic_div" style="display: none;">
 
 									<div class="col-md-2">Original License</div>
-									<div class="col-md-4">
+									<div class="col-md-10">
 										<input type="hidden" name="prev_orig_lic" id='prev_orig_lic' value="${getWork.orignalLicence}">
-										<input type='file' id="orig_lic" name="doc[]" value="" />
+										<input type='file' id="orig_lic" name="doc[]" value="" /><a href="${docUrl}${getWork.orignalLicence}"  style="align-content: flex-end;">Original License</a>
 									</div>
 									
-									<c:if test="${editWorkType>0}">
+									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
 									<a href="${docUrl}${getWork.orignalLicence}"  style="align-content: flex-end;">File</a>
 									</div>
-									</c:if>
+									</c:if> --%>
 								</div>
 
 																<div class="form-group"></div>
@@ -608,7 +639,26 @@ else if(workType==5){
 function onLoadCall() {
 	//alert("onload Call")
 	var workType=${getWork.workTypeTd};
+	//$('#workTypeId').prop('readoly', true);
+	 //document.getElementById("pets").options[2].disabled = true;
 	
+	document.getElementById('workTypeId').disabled = true;
+	document.getElementById('ac').style.color = 'white';
+	
+	document.getElementById('imgInp').style.color = 'white';
+	document.getElementById('imgInp1').style.color = 'white';
+	
+	document.getElementById('rc_book').style.color = 'white';
+	document.getElementById('puc').style.color = 'white';
+	document.getElementById('ins1').style.color = 'white';
+	document.getElementById('ins2').style.color = 'white';
+	document.getElementById('add_proof').style.color = 'white';
+	document.getElementById('bank_noc').style.color = 'white';
+	document.getElementById('bank_letter').style.color = 'white';
+	document.getElementById('form_no17').style.color = 'white';
+	document.getElementById('orig_lic').style.color = 'white';
+	
+
 	document.getElementById("ac").required = false;
 	if(workType==1){
 		//alert("In work Type  " +workType);
@@ -686,6 +736,69 @@ else if(workType==5){
 
 }
 
+</script>
+
+<script type="text/javascript">
+  $(function() {
+   
+    	// document.getElementById('ac').style.color = 'black';
+    	 var workType=${getWork.workTypeTd};
+    	 if(workType!=null){
+    	  $('#ac').change(function(){
+    		  document.getElementById('ac').style.color = 'black';
+    	  });
+    	  
+    	  $('#imgInp').change(function(){
+    		  document.getElementById('imgInp').style.color = 'black';
+    	  });
+    	  
+    	  $('#imgInp1').change(function(){
+    		  document.getElementById('imgInp1').style.color = 'black';
+    	  });
+    	  
+    	  $('#rc_book').change(function(){
+    		  document.getElementById('rc_book').style.color = 'black';
+    	  });
+    	  
+    	  $('#puc').change(function(){
+    		  document.getElementById('puc').style.color = 'black';
+    	  });
+    	  
+    	  $('#ins1').change(function(){
+    		  document.getElementById('ins1').style.color = 'black';
+    	  });
+    	  
+    	  $('#ins2').change(function(){
+    		  document.getElementById('ins2').style.color = 'black';
+    	  });
+    	  
+    	  $('#add_proof').change(function(){
+    		  document.getElementById('add_proof').style.color = 'black';
+    	  });
+    	  
+    	  $('#bank_noc').change(function(){
+    		  document.getElementById('bank_noc').style.color = 'black';
+    	  });
+    	  
+    	  
+    	  $('#bank_letter').change(function(){
+    		  document.getElementById('bank_letter').style.color = 'black';
+    	  });
+    	  
+    	  
+    	  $('#form_no17').change(function(){
+    		  document.getElementById('form_no17').style.color = 'black';
+    	  });
+    	  
+    	  $('#orig_lic').change(function(){
+    		  document.getElementById('orig_lic').style.color = 'black';
+    	  });
+    	  
+    	  
+    	 }//end Of if
+    	 
+     
+  });
 </script>
 <!-- 	<script type="text/javascript">
 $(document).ready(function() { 
