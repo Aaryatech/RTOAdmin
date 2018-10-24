@@ -89,7 +89,7 @@
 									<div class="col-md-2">Select Work Type</div>
 									<div class="col-md-3">
 										<select id="workTypeId" name="workTypeId"  onchange="callSel()"
-											class="standardSelect" tabindex="1">
+											class="standardSelect" tabindex="1" required>
 											<c:if test="${editWorkType>0}">
 											
 											<option disabled value="0">Select Work Type</option>
@@ -142,8 +142,7 @@
 									<div class="col-md-3">
 										<select id="cust_id" name="cust_id" class="standardSelect"
 											tabindex="1">
-											<option value=""></option>
-
+											
 
 											<c:forEach items="${custList}" var="cust">
 												<c:choose>
@@ -185,9 +184,9 @@
 
 									</div>
 									<div class="col-md-4">
-										<input type='file' id="imgInp" name="imgInp" value="" /> <img
-											id="image1" name="image1" src="${docUrl}${getWork.photo}" alt=""
-											style="height: 50px; width: 50px;" /> <span class="error"
+										<input type='file' id="imgInp" name="imgInp" value="" /><div class="form-group"></div> <img
+											id="image1" name="image1" src="${docUrl}${getWork.photo}" 
+											style="height: 70px; width: 70px;" /> <span class="error"
 											aria-live="polite"></span>
 
 									</div>
@@ -199,9 +198,9 @@
 									</div>
 
 									<div class="col-md-4">
-										<input type='file' id="imgInp1" name="imgInp1" value="" /> <img
-											id="image2" name="image2" src="${docUrl}${getWork.photo1}" alt=""
-											style="height: 50px; width: 50px;" /> <span class="error"
+										<input type='file' id="imgInp1" name="imgInp1" value="" /><div class="form-group"></div> <img
+											id="image2" name="image2" src="${docUrl}${getWork.photo1}"
+											style="height: 70px;width: 70px;"/> <span class="error"
 											aria-live="polite"></span>
 
 									</div>
@@ -537,7 +536,7 @@
 	</script>
 
 	<script type="text/javascript">
-		function readURL(input) {
+		function readURL2(input) {
 			if (input.files && input.files[0]) {
 				var reader = new FileReader();
 
@@ -550,7 +549,7 @@
 		}
 
 		$("#imgInp1").change(function() {
-			readURL(this);
+			readURL2(this);
 		});
 	</script>
 
