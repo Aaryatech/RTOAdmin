@@ -71,14 +71,9 @@
 	<!-- Left Panel -->
 
 
-	<%-- <!-- Header-->
+	 <!-- Header-->
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
-	<!-- Header--> --%>
-
-
-
-
-
+	<!-- Header--> 
 
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-2.1.4.min.js"></script>
