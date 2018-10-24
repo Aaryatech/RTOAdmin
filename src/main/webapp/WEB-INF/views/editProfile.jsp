@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Add New User</title>
+<title>Edit My Profile</title>
 
 
 <link rel="apple-touch-icon"
@@ -62,9 +62,9 @@
 	<!-- Left Panel -->
 
 
-	<%-- <!-- Header-->
+	<!-- Header-->
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
-	<!-- Header--> --%>
+	<!-- Header-->
 
 
 
@@ -76,7 +76,7 @@
 				<div class="col-xs-12 col-sm-12">
 					<div class="card">
 						<div class="card-header">
-							<strong> Add New User</strong>
+							<strong> Edit My Profile</strong>
 						</div>
 						<div class="card-body card-block">
 							<form action="${pageContext.request.contextPath}/insertUser"

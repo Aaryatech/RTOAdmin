@@ -114,16 +114,16 @@
 									class="table table-striped table-bordered">
 									<thead>
 										<tr>
-											<th class="check"><input type="checkbox" name="selAll"
+											<th width="5%" class="check"><input type="checkbox" name="selAll"
 												id="selAll" /> All</th>
-											<th>Sr No</th>
-											<th>Enq No</th>
-											<th>Date</th>
-											<th>Cust Name</th>
-											<th class="col-lg-1">Mob No</th>
-											<th>Work Type Name</th>
-											<th>Work Cost</th>
-											<th class="col-lg-1">Action</th>
+											<th width="5%">Sr No</th>
+											<th width="5%">Enq No</th>
+											<th width="10%">Date</th>
+											<th width="15%">Cust Name</th>
+											<th width="10%">Mob No</th>
+											<th width="30%">Work Type Name</th>
+											<th width="15%">Work Cost</th>
+											<th width="5%">Action</th>
 										</tr>
 									</thead>
 									<tbody>
