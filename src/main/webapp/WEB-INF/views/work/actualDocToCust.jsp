@@ -38,6 +38,8 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/lib/datatable/dataTables.bootstrap.min.css">
 
 
 
@@ -101,7 +103,7 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">Work List</strong>
+							<strong class="card-title">Actual Document to Customer</strong>
 						</div>
 						<div class="card-body">
 							<form

@@ -44,6 +44,8 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/lib/datatable/dataTables.bootstrap.min.css">
 
 
 
@@ -56,9 +58,10 @@
 	<!-- Left Panel -->
 
 
-	<!-- Header-->
+		<!-- Header-->
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
 	<!-- Header-->
+
 
 	<div class="content mt-3">
 		<div class="animated fadeIn">
@@ -71,7 +74,7 @@
 
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">Work Detail</strong>
+							<strong class="card-title">Update Payment Detail</strong>
 						</div>
 						<div class="card-body card-block">
 

@@ -35,9 +35,9 @@
 							href="${pageContext.request.contextPath}/showAddCustomer">Add
 								Customer</a></li>
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<%-- <li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showAddWorkType">Add
-								WorkType</a></li>
+								WorkType</a></li> --%>
 					</ul></li>
 
 				<li class="menu-item-has-children dropdown"><a href="#"
@@ -55,9 +55,23 @@
 							href="${pageContext.request.contextPath}/showWorkHeadList">
 								View Added Work</a></li>
 
+
+
+
+					</ul></li>
+
+
+				<li class="menu-item-has-children dropdown"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="true"> <i class="menu-icon fa fa-table"></i>
+						Update Status Work
+				</a>
+					<ul class="sub-menu children dropdown-menu ">
+
+
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
-							href="${pageContext.request.contextPath}/showWorkList">Work
-								List</a></li>
+							href="${pageContext.request.contextPath}/showWorkList">Add
+								Work Cost</a></li>
 
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showUpdatePayment">Update
@@ -69,18 +83,40 @@
 
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showDocInOffice">
-								Document In Office</a></li>
+								Document Submit to Office</a></li>
 
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showDocSubmitAtRto">
-								Document Submit At RTO</a></li>
+								Document Submit to RTO</a></li>
 
 						<li class="active"><i class="fa fa-puzzle-piece"></i><a
 							href="${pageContext.request.contextPath}/showActualDocToCust">
-								Handover Actual doc to Cust</a></li>
+								Document Handover</a></li>
 
 
 
+					</ul></li>
+
+
+
+				<li class="menu-item-has-children dropdown"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="true"> <i class="menu-icon fa fa-table"></i>
+						Reports
+				</a>
+					<ul class="sub-menu children dropdown-menu ">
+						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+							href="${pageContext.request.contextPath}/showReportStatuswise">Enquirywise
+								Report </a></li>
+
+
+						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+							href="${pageContext.request.contextPath}/showReportWorktypewise">Worktypewise
+								Report</a></li>
+
+						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+							href="${pageContext.request.contextPath}/showReportUserwise">Userwise
+								Report</a></li>
 					</ul></li>
 
 

@@ -39,6 +39,8 @@
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
 
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/lib/datatable/dataTables.bootstrap.min.css">
 
 
 </head>
@@ -157,7 +159,8 @@
 
 
 										<input type="text" id="dateOfBirth" name="dateOfBirth"
-											value="${editUser.custDob}" />
+											value="${editUser.custDob}" required
+											oninvalid="setCustomValidity('Please Select Date ')" onchange="try{setCustomValidity('')}catch(e){}" />
 
 									</div>
 
@@ -201,12 +204,12 @@
 								class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th>Sr No</th>
-										<th>Customer Name</th>
-										<th>Contact No</th>
-										<th>Customer Email</th>
-										<th>Date of Birth</th>
-										<th>Action</th>
+										<th width="5%">Sr No</th>
+										<th  width="25%">Customer Name</th>
+										<th  width="20%">Contact No</th>
+										<th width="25%">Customer Email</th>
+										<th  width="15%">Date of Birth</th>
+										<th width="10%">Action</th>
 									</tr>
 								</thead>
 								<tbody>

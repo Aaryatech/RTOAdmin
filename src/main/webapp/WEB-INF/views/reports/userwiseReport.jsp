@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Enquiry wise Report</title>
+<title>User wise Report</title>
 <meta name="description" content="Sufee Admin - HTML5 Admin Template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -57,16 +57,15 @@
 </head>
 <body>
 
-	<c:url var="getEnqByDate" value="/getEnqByDate"></c:url>
+	<c:url var="getUserByDate" value="/getUserByDate"></c:url>
 	<!-- Left Panel -->
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
 	<!-- Left Panel -->
 
 
-	 <!-- Header-->
+	<!-- Header-->
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
 	<!-- Header-->
-	
 
 	<div class="content mt-3">
 		<div class="animated fadeIn">
@@ -94,24 +93,23 @@
 							</div>
 
 						</div>
-						<input type="hidden" id="langSelected" name="langSelected" />
 
 						<div class="form-group"></div>
 						<div class="form-group">
 
-							<div class="col-md-2">Select Work Type</div>
+							<div class="col-md-2">Select User</div>
 
 
 							<div class="col-md-3">
 
-								<select id="workTypeId" name="workTypeId" class="standardSelect"
+								<select id="userId" name="userId" class="standardSelect"
 									tabindex="1">
 
 
-									<c:forEach items="${workList}" var="workList">
+									<c:forEach items="${userList}" var="userList">
 										<option value="0">All</option>
 
-										<option value="${workList.workTypeId}">${workList.workTypeName}
+										<option value="${userList.userId}">${userList.userName}
 										</option>
 
 
@@ -119,28 +117,7 @@
 								</select>
 
 							</div>
-							<div class="form-group">
 
-								<div class="col-md-2">Select Status</div>
-
-								<div class="col-md-3">
-
-									<select id="status" name="status" class="standardSelect"
-										tabindex="1">
-
-
-										<c:forEach items="${taskList}" var="taskList">
-
-											<option value="0">All</option>
-											<option value="${taskList.taskId}">${taskList.taskDesc}
-											</option>
-
-
-										</c:forEach>
-									</select>
-								</div>
-
-							</div>
 
 							<div class="col-md-2">
 
@@ -157,7 +134,7 @@
 
 						<div class="card">
 							<div class="card-header">
-								<strong class="card-title">Enqwise Report</strong>
+								<strong class="card-title">Userwise Report</strong>
 							</div>
 
 
@@ -172,6 +149,8 @@
 											<th>Customer Name</th>
 											<th>Mobile no</th>
 											<th>Work Type Name</th>
+											<th>Payment Done</th>
+											<th>Remaining Amt</th>
 
 
 										</tr>
@@ -268,16 +247,14 @@
 
 			var fromDate = $("#fromDate").val();
 			var toDate = $("#toDate").val();
-			var workTypeId = $("#workTypeId").val();
-			var status = $("#status").val();
+			var userId = $("#userId").val();
 
-			$.getJSON('${getEnqByDate}',
+			$.getJSON('${getUserByDate}',
 
 			{
 				fromDate : fromDate,
 				toDate : toDate,
-				workTypeId : workTypeId,
-				status : status,
+				userId : userId,
 
 				ajax : 'true'
 
@@ -297,7 +274,8 @@
 				$.each(data, function(i, v) {
 					dataTable.row.add(
 							[ i + 1, v.date1, v.custName, v.custMobile,
-									v.workTypeName ]).draw();
+									v.workTypeName, v.exInt1, v.exInt2 ])
+							.draw();
 				});
 
 			});
@@ -314,16 +292,16 @@
 		});
 	</script>
 
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#bootstrap-data-table1').DataTable({
 				columnDefs : [ {
-					targets : [ 2, 3 ],
+					targets : [ 5, 6 ],
 					className : "right"
 				}, ]
 			});
 		});
-	</script> -->
+	</script>
 
 
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -355,7 +333,7 @@
 			var fromDate = document.getElementById("fromDate").value;
 			var toDate = document.getElementById("toDate").value;
 
-			window.open('${pageContext.request.contextPath}/showEnqwisePdf/'
+			window.open('${pageContext.request.contextPath}/showUserwisePdf/'
 					+ fromDate + '/' + toDate);
 			document.getElementById("expExcel").disabled = true;
 

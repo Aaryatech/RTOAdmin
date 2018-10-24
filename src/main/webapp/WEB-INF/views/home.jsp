@@ -71,9 +71,9 @@
 	<!-- Left Panel -->
 
 
-	<!-- Header-->
+	<%-- <!-- Header-->
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
-	<!-- Header-->
+	<!-- Header--> --%>
 
 
 

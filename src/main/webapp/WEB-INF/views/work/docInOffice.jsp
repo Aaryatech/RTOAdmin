@@ -38,6 +38,8 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/lib/datatable/dataTables.bootstrap.min.css">
 
 
 
@@ -101,12 +103,12 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">Work List</strong>
+							<strong class="card-title">Document In Office</strong>
 						</div>
 						<div class="card-body">
 							<form
-								action="${pageContext.request.contextPath}/updateWorkStatus" id="work_form"
-								method="post">
+								action="${pageContext.request.contextPath}/updateWorkStatus"
+								id="work_form" method="post">
 								<table id="bootstrap-data-table"
 									class="table table-striped table-bordered">
 									<thead>
@@ -176,7 +178,8 @@
 								<div class="col-lg-12" align="center">
 
 
-									<button type="submit" class="btn btn-primary" onclick="valthisform()"
+									<button type="submit" class="btn btn-primary"
+										onclick="valthisform()"
 										style="align-content: center; width: 226px; margin-left: 80px;">
 										Submit</button>
 								</div>

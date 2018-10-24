@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Work List</title>
+<title>Add Work Cost</title>
 
 
 <link rel="apple-touch-icon"
@@ -38,6 +38,8 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/lib/datatable/dataTables.bootstrap.min.css">
 
 
 
@@ -65,6 +67,7 @@
 	<!-- Header-->
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
 	<!-- Header-->
+
 
 
 
@@ -101,7 +104,7 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">User List</strong>
+							<strong class="card-title">Add Work Cost</strong>
 						</div>
 						<div class="card-body">
 							<form
@@ -117,10 +120,10 @@
 											<th>Enq No</th>
 											<th>Date</th>
 											<th>Cust Name</th>
-											<th>Mob No</th>
+											<th class="col-lg-1">Mob No</th>
 											<th>Work Type Name</th>
 											<th>Work Cost</th>
-											<th>Action</th>
+											<th class="col-lg-1">Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -250,7 +253,7 @@
 				alert("Please check a checkbox");
 		}
 	</script>
-	
+
 	<script type="text/javascript">
 		$(document)
 				.ready(

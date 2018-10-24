@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Enquiry wise Report</title>
+<title>Work Type wise Report</title>
 <meta name="description" content="Sufee Admin - HTML5 Admin Template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -57,16 +57,15 @@
 </head>
 <body>
 
-	<c:url var="getEnqByDate" value="/getEnqByDate"></c:url>
+	<c:url var="getWorkTypeByDate" value="/getWorkTypeByDate"></c:url>
 	<!-- Left Panel -->
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
 	<!-- Left Panel -->
 
 
-	 <!-- Header-->
+	<!-- Header-->
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
 	<!-- Header-->
-	
 
 	<div class="content mt-3">
 		<div class="animated fadeIn">
@@ -117,28 +116,6 @@
 
 									</c:forEach>
 								</select>
-
-							</div>
-							<div class="form-group">
-
-								<div class="col-md-2">Select Status</div>
-
-								<div class="col-md-3">
-
-									<select id="status" name="status" class="standardSelect"
-										tabindex="1">
-
-
-										<c:forEach items="${taskList}" var="taskList">
-
-											<option value="0">All</option>
-											<option value="${taskList.taskId}">${taskList.taskDesc}
-											</option>
-
-
-										</c:forEach>
-									</select>
-								</div>
 
 							</div>
 
@@ -269,15 +246,13 @@
 			var fromDate = $("#fromDate").val();
 			var toDate = $("#toDate").val();
 			var workTypeId = $("#workTypeId").val();
-			var status = $("#status").val();
 
-			$.getJSON('${getEnqByDate}',
+			$.getJSON('${getWorkTypeByDate}',
 
 			{
 				fromDate : fromDate,
 				toDate : toDate,
 				workTypeId : workTypeId,
-				status : status,
 
 				ajax : 'true'
 
@@ -323,8 +298,8 @@
 				}, ]
 			});
 		});
-	</script> -->
-
+	</script>
+ -->
 
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
@@ -355,8 +330,9 @@
 			var fromDate = document.getElementById("fromDate").value;
 			var toDate = document.getElementById("toDate").value;
 
-			window.open('${pageContext.request.contextPath}/showEnqwisePdf/'
-					+ fromDate + '/' + toDate);
+			window
+					.open('${pageContext.request.contextPath}/showWorkTypewisePdf/'
+							+ fromDate + '/' + toDate);
 			document.getElementById("expExcel").disabled = true;
 
 		}

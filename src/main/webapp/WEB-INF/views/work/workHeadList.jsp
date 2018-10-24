@@ -38,7 +38,8 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
-
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/lib/datatable/dataTables.bootstrap.min.css">
 
 
 </head>
@@ -62,9 +63,10 @@
 	<!-- Left Panel -->
 
 
-	<!-- Header-->
+		<!-- Header-->
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
 	<!-- Header-->
+
 
 
 
@@ -101,7 +103,7 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">User List</strong>
+							<strong class="card-title">Work List</strong>
 						</div>
 						<div class="card-body">
 							<form
@@ -111,14 +113,14 @@
 									class="table table-striped table-bordered">
 									<thead>
 										<tr>
-											
+
 											<th>Sr No</th>
 											<th>Enq No</th>
 											<th>Date</th>
 											<th>Cust Name</th>
 											<th>Cust Mobile No</th>
 											<th>Work Type Name</th>
-										
+
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -127,7 +129,7 @@
 										<c:forEach items="${workList}" var="workList"
 											varStatus="count">
 											<tr>
-												
+
 												<td><c:out value="${count.index+1}" /></td>
 												<td><c:out value="${workList.workId}" /></td>
 
@@ -138,7 +140,7 @@
 												<td><c:out value="${workList.custMobile}" /></td>
 												<td><c:out value="${workList.workTypeName}" /></td>
 
-												
+
 												<td>
 													<div class="fa-hover col-lg-3 col-md-6">
 														<a

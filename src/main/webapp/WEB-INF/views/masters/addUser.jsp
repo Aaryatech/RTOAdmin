@@ -34,10 +34,14 @@
 	href="${pageContext.request.contextPath}/resources/assets/css/lib/chosen/chosen.min.css">
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/lib/datatable/dataTables.bootstrap.min.css">
 
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/lib/datatable/dataTables.bootstrap.min.css">
 
 
 
@@ -61,10 +65,10 @@
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
 	<!-- Left Panel -->
 
-
+ 
 	<!-- Header-->
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
-	<!-- Header-->
+	<!-- Header--> 
 
 
 
@@ -152,20 +156,13 @@
 								<div class="row">
 									<div class="col-md-2">Date of Birth</div>
 									<div class="col-md-4">
-
-
-
-
 										<input type="text" id="dateOfBirth" name="dateOfBirth"
-											value="${editUser.userDob}" />
-
+											value="${editUser.userDob}" required
+											oninvalid="setCustomValidity('Please Select Date ')"
+											onchange="try{setCustomValidity('')}catch(e){}" />
 									</div>
 								</div>
-
-
 								<div class="col-lg-12" align="center">
-
-
 									<button type="submit" class="btn btn-primary"
 										style="align-content: center; width: 226px; margin-left: 80px;">Submit
 
@@ -179,19 +176,19 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">User List</strong>
+							<strong class="card-title">Work List</strong>
 						</div>
 						<div class="card-body">
 							<table id="bootstrap-data-table"
 								class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th>Sr No</th>
-										<th>User Name</th>
-										<th>Contact No</th>
-										<th>User Email</th>
-										<th>Date of Birth</th>
-										<th>Action</th>
+										<th width="5%">Sr No</th>
+										<th width="25%">User Name</th>
+										<th width="20%">Contact No</th>
+										<th width="25%">User Email</th>
+										<th width="15%">Date of Birth</th>
+										<th width="10%">Action</th>
 									</tr>
 								</thead>
 								<tbody>

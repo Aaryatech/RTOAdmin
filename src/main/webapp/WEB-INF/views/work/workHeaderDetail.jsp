@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Order History</title>
+<title>Work Detail</title>
 <meta name="description" content="Sufee Admin - HTML5 Admin Template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -47,6 +47,7 @@
 
 
 
+
 </head>
 <body>
 	<c:url var="getOrderByDate" value="/getOrderByDate"></c:url>
@@ -60,6 +61,7 @@
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
 	<!-- Header-->
 
+
 	<div class="content mt-3">
 		<div class="animated fadeIn">
 			<div class="row">
@@ -71,7 +73,7 @@
 
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title">Work List</strong>
+							<strong class="card-title">Work Detail</strong>
 						</div>
 						<div class="card-body card-block">
 
