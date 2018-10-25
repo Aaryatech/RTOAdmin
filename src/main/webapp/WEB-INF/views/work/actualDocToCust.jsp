@@ -38,7 +38,7 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/css/lib/datatable/dataTables.bootstrap.min.css">
 
 
@@ -113,18 +113,18 @@
 									class="table table-striped table-bordered">
 									<thead>
 										<tr>
-											<th class="check"><input type="checkbox" name="selAll"
-												id="selAll" /> All</th>
-											<th>Sr No</th>
-											<th>Enq No</th>
-											<th>Date</th>
-											<th>Cust Name</th>
-											<th>Mob No</th>
-											<th>Work Type Name</th>
-											<th>Work Cost</th>
-											<th>Payment Done</th>
-											<th>Remaining Amt</th>
-											<th>Action</th>
+											<th width="2%" class="check"><input type="checkbox"
+												name="selAll" id="selAll" /> All</th>
+											<th width="2%">Sr No</th>
+											<th width="4%">Enq No</th>
+											<th width="5%">Date</th>
+											<th width="15%">Cust Name</th>
+											<th width="10%">Mob No</th>
+											<th width="40%">Work Type Name</th>
+											<th width="10%">Work Cost</th>
+											<th width="10%">Payment Done</th>
+											<th width="10%">Rem Amt</th>
+											<th width="2%">Action</th>
 										</tr>
 									</thead>
 									<tbody>

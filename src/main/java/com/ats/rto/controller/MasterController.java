@@ -412,4 +412,42 @@ public class MasterController {
 		return model;
 	}
 
+	@RequestMapping(value = "/getMobileNoForAdd", method = RequestMethod.GET)
+	public @ResponseBody Info getMobileNoForAdd(HttpServletRequest request, HttpServletResponse response) {
+		Info info = new Info();
+		try {
+
+			String contactNo = request.getParameter("contactNo");
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("userMobile", contactNo);
+			info = rest.postForObject(Constants.url + "/getUserByMobileNo", map, Info.class);
+			System.out.println("info" + info.toString());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return info;
+	}
+
+	@RequestMapping(value = "/getMobileNoForAddCust", method = RequestMethod.GET)
+	public @ResponseBody Info getMobileNoForAddCust(HttpServletRequest request, HttpServletResponse response) {
+		Info info = new Info();
+		try {
+
+			String contactNo = request.getParameter("contactNo");
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("custMobile", contactNo);
+			info = rest.postForObject(Constants.url + "/getCustomerByMobileNo", map, Info.class);
+			System.out.println("info" + info.toString());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return info;
+	}
+
 }

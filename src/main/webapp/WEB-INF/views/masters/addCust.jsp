@@ -58,6 +58,7 @@
 
 <body>
 
+	<c:url var="getMobileNoForAddCust" value="/getMobileNoForAddCust" />
 
 	<!-- Left Panel -->
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
@@ -128,7 +129,7 @@
 
 											<input class="form-control" name="contactNo" id="contactNo"
 												placeholder="Contact No" value="${editUser.custMobile}"
-												required
+												onblur="getMobNoTocheck()" required
 												oninvalid="setCustomValidity('Please enter valid Mobile no ')"
 												onchange="try{setCustomValidity('')}catch(e){}"
 												pattern="[0-9]{10}" autocomplete="off"> <span
@@ -160,7 +161,8 @@
 
 										<input type="text" id="dateOfBirth" name="dateOfBirth"
 											value="${editUser.custDob}" required
-											oninvalid="setCustomValidity('Please Select Date ')" onchange="try{setCustomValidity('')}catch(e){}" />
+											oninvalid="setCustomValidity('Please Select Date ')"
+											onchange="try{setCustomValidity('')}catch(e){}" />
 
 									</div>
 
@@ -184,7 +186,8 @@
 								<div class="col-lg-12" align="center">
 
 
-									<button type="submit" class="btn btn-primary"
+									<button type="submit" class="btn btn-primary" id="submit"
+										name="submit"
 										style="align-content: center; width: 226px; margin-left: 80px;">Submit
 
 									</button>
@@ -205,10 +208,10 @@
 								<thead>
 									<tr>
 										<th width="5%">Sr No</th>
-										<th  width="25%">Customer Name</th>
-										<th  width="20%">Contact No</th>
+										<th width="25%">Customer Name</th>
+										<th width="20%">Contact No</th>
 										<th width="25%">Customer Email</th>
-										<th  width="15%">Date of Birth</th>
+										<th width="15%">Date of Birth</th>
 										<th width="10%">Action</th>
 									</tr>
 								</thead>
@@ -304,7 +307,35 @@
 		});
 	</script>
 
+	<script type="text/javascript">
+		function getMobNoTocheck() {
 
+			var contactNo = $("#contactNo").val();
+
+			$.getJSON('${getMobileNoForAddCust}', {
+
+				contactNo : contactNo,
+
+				ajax : 'true',
+
+			}, function(data) {
+				if (data.error == true) {
+					alert("Mobile No Already Exist");
+
+				     document.getElementById("#contactNo").value = "";
+					setTimeout(function() { document.getElementById("#contactNo").focus(); }, 100); 
+					document.getElementById("submit").disabled = true;
+
+				} else {
+					document.getElementById("submit").disabled = false;
+
+				}
+			}
+
+			);
+
+		}
+	</script>
 
 
 </body>

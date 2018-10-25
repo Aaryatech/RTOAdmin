@@ -59,16 +59,17 @@
 	src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <body>
+	<c:url var="getMobileNoForAdd" value="/getMobileNoForAdd" />
 
 
 	<!-- Left Panel -->
 	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
 	<!-- Left Panel -->
 
- 
+
 	<!-- Header-->
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
-	<!-- Header--> 
+	<!-- Header-->
 
 
 
@@ -130,7 +131,7 @@
 
 											<input class="form-control" name="contactNo" id="contactNo"
 												placeholder="Contact No" value="${editUser.userMobile}"
-												required
+												onblur="getMobNoTocheck()" required
 												oninvalid="setCustomValidity('Please enter valid Mobile no ')"
 												onchange="try{setCustomValidity('')}catch(e){}"
 												pattern="[0-9]{10}" autocomplete="off"> <span
@@ -163,7 +164,8 @@
 									</div>
 								</div>
 								<div class="col-lg-12" align="center">
-									<button type="submit" class="btn btn-primary"
+									<button type="submit" class="btn btn-primary" id="submit"
+										name="submit"
 										style="align-content: center; width: 226px; margin-left: 80px;">Submit
 
 									</button>
@@ -283,6 +285,36 @@
 		});
 	</script>
 
+
+	<script type="text/javascript">
+		function getMobNoTocheck() {
+
+			var contactNo = $("#contactNo").val();
+
+			$.getJSON('${getMobileNoForAdd}', {
+
+				contactNo : contactNo,
+
+				ajax : 'true',
+
+			}, function(data) {
+				if (data.error == true) {
+					alert("Mobile No Already Exist");
+
+				     document.getElementById("#contactNo").value = "";
+					setTimeout(function() { document.getElementById("#contactNo").focus(); }, 100); 
+					document.getElementById("submit").disabled = true;
+
+				} else {
+					document.getElementById("submit").disabled = false;
+
+				}
+			}
+
+			);
+
+		}
+	</script>
 
 
 
