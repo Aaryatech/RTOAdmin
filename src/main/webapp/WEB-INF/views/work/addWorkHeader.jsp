@@ -233,8 +233,8 @@
 
 									<div class="col-md-2">RC Book</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_rc" id='prev_rc' value="${getWork.rcbook}"> <input
-											type='file' id="rc_book" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.rcbook}"  style="align-content: flex-end;">RC Book</a></c:if>
+										<input type="hidden" name="prev_rc" id='prev_rc' value="${getWork.rcbook}"> <input type='file' id="rc_book" name="doc[]" value="" />
+										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.rcbook}"  style="align-content: flex-end;">RC Book</a></c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -312,7 +312,7 @@
 									<div class="col-md-2">Bank NOC</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_bank_noc" id='prev_bank_noc' value="${getWork.bankDocument}">
-										<input type='file' id="bank_noc" name="doc[]" value="" />	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;">Bank NOC</a>
+										<input type='file' id="bank_noc" name="doc[]" value="" /><c:if test="${editWorkType>0}">	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;">Bank NOC</a></c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -330,7 +330,7 @@
 									<div class="col-md-2">Bank Letter</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_bank_letter" id='prev_bank_letter' value="${getWork.bankDocument}">
-										<input type='file' id="bank_letter" name="doc[]" value="" />	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;">Bank Letter</a>
+										<input type='file' id="bank_letter" name="doc[]" value="" /><c:if test="${editWorkType>0}">	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;">Bank Letter</a></c:if>
 									</div>
 									
 									<%-- <c:if test="${editWorkType>0}">
@@ -347,7 +347,7 @@
 									<div class="col-md-2">Form No 17</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_form_no17" id='prev_form_no17' value="${getWork.bankDocument1}">
-										<input type='file' id="form_no17" name="doc[]" value="" /><a href="${docUrl}${getWork.bankDocument1}"  style="align-content: flex-end;">Form No. 17</a>
+										<input type='file' id="form_no17" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.bankDocument1}"  style="align-content: flex-end;">Form No. 17</a></c:if>
 									</div>
 								<%-- 	
 									<c:if test="${editWorkType>0}">
@@ -365,7 +365,7 @@
 									<div class="col-md-2">Original License</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_orig_lic" id='prev_orig_lic' value="${getWork.orignalLicence}">
-										<input type='file' id="orig_lic" name="doc[]" value="" /><a href="${docUrl}${getWork.orignalLicence}"  style="align-content: flex-end;">Original License</a>
+										<input type='file' id="orig_lic" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.orignalLicence}"  style="align-content: flex-end;">Original License</a></c:if>
 									</div>
 									
 									<%-- <c:if test="${editWorkType>0}">
@@ -618,7 +618,8 @@ else if(workType==3){
 
 }
 
-else if(workType==5){
+else if(workType == 5){
+	alert("5")
 	document.getElementById('rc_book_div').style.display = "display:none";
 	document.getElementById('ins1_div').style.display = "display:none";
 	document.getElementById('ins2_div').style.display = "display:none";

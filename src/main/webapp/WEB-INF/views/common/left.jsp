@@ -3,7 +3,7 @@
 	<nav class="navbar navbar-expand-sm navbar-default">
 
 		<div class="navbar-header">
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
+			<button class="navbar-toggler" type="button" data-toggle="collapse"user
 				data-target="#main-menu" aria-controls="main-menu"
 				aria-expanded="false" aria-label="Toggle navigation">
 				<i class="fa fa-bars"></i>
@@ -26,12 +26,12 @@
 						Masters
 				</a>
 					<ul class="sub-menu children dropdown-menu ">
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa fa-plus-square"></i><a
 							href="${pageContext.request.contextPath}/showAddUser">Add
 								User</a></li>
 
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa fa-plus-square"></i><a
 							href="${pageContext.request.contextPath}/showAddCustomer">Add
 								Customer</a></li>
 
@@ -47,11 +47,11 @@
 				</a>
 					<ul class="sub-menu children dropdown-menu ">
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa fa-plus-square"></i><a
 							href="${pageContext.request.contextPath}/showAddWorkHeader">Add
 								Work</a></li>
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa fa-eye"></i><a
 							href="${pageContext.request.contextPath}/showWorkHeadList">
 								View Added Work</a></li>
 
@@ -69,29 +69,29 @@
 					<ul class="sub-menu children dropdown-menu ">
 
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa fa-money"></i><a
 							href="${pageContext.request.contextPath}/showWorkList">Add
 								Work Cost</a></li>
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa  fa-pencil-square-o"></i><a
 							href="${pageContext.request.contextPath}/showUpdatePayment">Update
 								Payment</a></li>
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa fa-users"></i><a
 							href="${pageContext.request.contextPath}/showUserAllocation">User
 								Allocation</a></li>
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa fa-book"></i><a
 							href="${pageContext.request.contextPath}/showDocInOffice">
-								Document Submit to Office</a></li>
+								Doc Submit to Office</a></li>
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa fa-book"></i><a
 							href="${pageContext.request.contextPath}/showDocSubmitAtRto">
-								Document Submit to RTO</a></li>
+								Doc Submit to RTO</a></li>
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa fa-book"></i><a
 							href="${pageContext.request.contextPath}/showActualDocToCust">
-								Document Handover</a></li>
+								Doc Handover</a></li>
 
 
 
@@ -105,16 +105,16 @@
 						Reports
 				</a>
 					<ul class="sub-menu children dropdown-menu ">
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa fa-file-text"></i><a
 							href="${pageContext.request.contextPath}/showReportStatuswise">Enquirywise
 								Report </a></li>
 
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa fa-file-text"></i><a
 							href="${pageContext.request.contextPath}/showReportWorktypewise">Worktypewise
 								Report</a></li>
 
-						<li class="active"><i class="fa fa-puzzle-piece"></i><a
+						<li class="active"><i class="fa fa-file-text"></i><a
 							href="${pageContext.request.contextPath}/showReportUserwise">Userwise
 								Report</a></li>
 					</ul></li>
@@ -122,7 +122,7 @@
 
 				<li class="menu-item-has-children dropdown"><a
 					href="${pageContext.request.contextPath}/editMyProfile/1"> <i
-						class="menu-icon fa fa-table"></i> My Profile
+						class="menu-icon fa fa-user"></i> My Profile
 				</a></li>
 
 

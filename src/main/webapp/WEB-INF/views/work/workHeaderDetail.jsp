@@ -178,6 +178,41 @@
 
 
 						<hr>
+						<div class="form-group"></div>
+						<div class="row">
+							<div class="col-md-1"></div>
+							<div class="col-md-1">
+								<input type="hidden" name="prevImage1" id="prevImage1"
+									value="${getWork.photo}"> Photo1
+
+							</div>
+							<div class="col-md-4">
+
+								<div class="form-group"></div>
+								<img id="image1" name="image1" src="${docUrl}${getWork.photo}"
+									style="height: 70px; width: 70px;" /> <span class="error"
+									aria-live="polite"></span>
+
+							</div>
+
+							<div class="col-md-2">
+								<input type="hidden" name="prevImage2" id="prevImage2"
+									value="${getWork.photo1}"> Photo2
+
+							</div>
+
+							<div class="col-md-4">
+
+								<div class="form-group"></div>
+								<img id="image2" name="image2" src="${docUrl}${getWork.photo1}"
+									style="height: 70px; width: 70px;" /> <span class="error"
+									aria-live="polite"></span>
+
+							</div>
+
+						</div>
+
+
 
 						<c:if test="${getWork.workTypeTd==1}">
 
@@ -185,7 +220,13 @@
 
 							<div class="form-group"></div>
 							<div class="row">
-								<div class="col-md-1"></div>
+								<div class="col-md-2">
+
+
+									<a href="${docUrl}${getWork.adharCard}"
+										style="align-content: flex-end;">Aadhar Card</a>
+
+								</div>
 
 								<div class="col-md-2">
 
@@ -226,7 +267,12 @@
 
 							<div class="form-group"></div>
 							<div class="row">
-								<div class="col-md-1"></div>
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.adharCard}"
+										style="align-content: flex-end;">Aadhar Card</a>
+
+								</div>
 
 
 								<div class="col-md-2">
@@ -268,8 +314,13 @@
 
 							<div class="form-group"></div>
 							<div class="row">
-								<div class="col-md-1"></div>
+								<div class="col-md-2">
 
+
+									<a href="${docUrl}${getWork.adharCard}"
+										style="align-content: flex-end;">Aadhar Card</a>
+
+								</div>
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.rcbook}"
@@ -284,13 +335,13 @@
 
 								</div>
 
-								<div class="col-md-2">
+								<div class="col-md-1">
 
 									<a href="${docUrl}${getWork.insurance1}"
 										style="align-content: flex-end;">Insurance 2</a>
 
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-1">
 
 
 									<a href="${docUrl}${getWork.puc}"
@@ -314,8 +365,13 @@
 
 							<div class="form-group"></div>
 							<div class="row">
-								<div class="col-md-1"></div>
+								<div class="col-md-2">
 
+
+									<a href="${docUrl}${getWork.adharCard}"
+										style="align-content: flex-end;">Aadhar Card</a>
+
+								</div>
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.rcbook}"
@@ -356,7 +412,13 @@
 							<div class="form-group"></div>
 							<div class="row">
 
-								<div class="col-md-2"></div>
+								<div class="col-md-2">
+
+
+									<a href="${docUrl}${getWork.adharCard}"
+										style="align-content: flex-end;">Aadhar Card</a>
+
+								</div>
 								<div class="col-md-2">
 									<a href="${docUrl}${getWork.orignalLicence}"
 										style="align-content: flex-end;">Original License</a>
@@ -375,7 +437,7 @@
 									<tr>
 										<th>Sr No</th>
 										<th>Date</th>
-										<th>Work Id</th>
+
 										<th>Description</th>
 
 									</tr>
@@ -388,7 +450,6 @@
 
 											<td><c:out value="${count.index+1}" /></td>
 											<td><c:out value="${workdetail.date}" /></td>
-											<td><c:out value="${workdetail.workId}" /></td>
 											<td><c:out value="${workdetail.workDesc}" /></td>
 
 										</tr>
