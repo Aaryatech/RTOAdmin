@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Order History</title>
+<title>Update Payment Detail</title>
 <meta name="description" content="Sufee Admin - HTML5 Admin Template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -58,7 +58,7 @@
 	<!-- Left Panel -->
 
 
-		<!-- Header-->
+	<!-- Header-->
 	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
 	<!-- Header-->
 
@@ -87,7 +87,7 @@
 								<div class="form-group"></div>
 								<div class="form-group">
 
-									<div class="col-lg-3">
+									<div class="col-lg-4">
 
 										<div>
 											<div class="input-group" style="align-items: center;">
@@ -99,7 +99,7 @@
 										</div>
 									</div>
 
-									<div class="col-lg-3">
+									<div class="col-lg-4">
 
 										<div>
 											<div class="input-group" style="align-items: center;">
@@ -110,19 +110,8 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-lg-3">
 
-										<div>
-											<div class="input-group" style="align-items: center;">
-												Work Type Name &nbsp; <input class="form-control"
-													id="workCost${workList.workId}"
-													name="workCost${workList.workId}"
-													value="${getWork.workTypeName}" type="text" disabled /> <span
-													class="error" aria-live="polite"></span>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-3">
+									<div class="col-lg-4">
 
 										<div>
 
@@ -135,13 +124,29 @@
 													class="error" aria-live="polite"></span>
 											</div>
 										</div>
-
 									</div>
 
+
 								</div>
-								&nbsp; <input type="hidden" value="${getWork.workId}"
-									name="sendWorkId" id="sendWorkId">
-								<div class="form-group"></div>
+								&nbsp;
+								<div class="form-group">
+
+									<div class="col-lg-12">
+
+										<div>
+											<div class="input-group" style="align-items: center;">
+												Work Type Name &nbsp; <input class="form-control"
+													id="workCost${workList.workId}"
+													name="workCost${workList.workId}"
+													value="${getWork.workTypeName}" type="text" disabled /> <span
+													class="error" aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								&nbsp;
+
 								<div class="form-group">
 
 
@@ -207,9 +212,201 @@
 						</div>
 
 
+
+						<hr>
+
+						<c:if test="${getWork.workTypeTd==1}">
+
+
+
+							<div class="form-group"></div>
+							<div class="row">
+								<div class="col-md-1"></div>
+
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.rcbook}"
+										style="align-content: flex-end;">RC Book</a>
+
+								</div>
+
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.insurance}"
+										style="align-content: flex-end;">Insurance 1</a>
+
+								</div>
+
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.insurance1}"
+										style="align-content: flex-end;">Insurance 2</a>
+
+								</div>
+								<div class="col-md-2">
+
+
+									<a href="${docUrl}${getWork.puc}"
+										style="align-content: flex-end;">PUC</a>
+								</div>
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.addProof}"
+										style="align-content: flex-end;">Address Proof</a>
+								</div>
+							</div>
+
+						</c:if>
+
+						<c:if test="${getWork.workTypeTd==2}">
+
+							<div class="form-group"></div>
+							<div class="row">
+								<div class="col-md-1"></div>
+
+
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.rcbook}"
+										style="align-content: flex-end;">RC Book</a>
+
+								</div>
+
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.insurance}"
+										style="align-content: flex-end;">Insurance 1</a>
+
+								</div>
+
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.insurance1}"
+										style="align-content: flex-end;">Insurance 2</a>
+
+								</div>
+								<div class="col-md-2">
+
+
+									<a href="${docUrl}${getWork.puc}"
+										style="align-content: flex-end;">PUC</a>
+								</div>
+								<div class="col-md-2">
+									<a href="${docUrl}${getWork.bankDocument}"
+										style="align-content: flex-end;">Bank NOC</a>
+								</div>
+							</div>
+
+						</c:if>
+
+
+						<c:if test="${getWork.workTypeTd==3}">
+
+							<div class="form-group"></div>
+							<div class="row">
+								<div class="col-md-1"></div>
+
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.rcbook}"
+										style="align-content: flex-end;">RC Book</a>
+
+								</div>
+
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.insurance}"
+										style="align-content: flex-end;">Insurance 1</a>
+
+								</div>
+
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.insurance1}"
+										style="align-content: flex-end;">Insurance 2</a>
+
+								</div>
+								<div class="col-md-2">
+
+
+									<a href="${docUrl}${getWork.puc}"
+										style="align-content: flex-end;">PUC</a>
+								</div>
+								<div class="col-md-2">
+									<a href="${docUrl}${getWork.bankDocument}"
+										style="align-content: flex-end;">Bank Letter</a>
+								</div>
+
+								<div class="col-md-2">
+									<a href="${docUrl}${getWork.bankDocument1}"
+										style="align-content: flex-end;">Form No. 17</a>
+								</div>
+							</div>
+
+						</c:if>
+
+
+						<c:if test="${getWork.workTypeTd==4}">
+
+							<div class="form-group"></div>
+							<div class="row">
+								<div class="col-md-1"></div>
+
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.rcbook}"
+										style="align-content: flex-end;">RC Book</a>
+
+								</div>
+
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.insurance}"
+										style="align-content: flex-end;">Insurance 1</a>
+
+								</div>
+
+								<div class="col-md-2">
+
+									<a href="${docUrl}${getWork.insurance1}"
+										style="align-content: flex-end;">Insurance 2</a>
+
+								</div>
+								<div class="col-md-2">
+
+
+									<a href="${docUrl}${getWork.puc}"
+										style="align-content: flex-end;">PUC</a>
+								</div>
+
+
+								<div class="col-md-2">
+									<a href="${docUrl}${getWork.addProof}"
+										style="align-content: flex-end;">Address Proof</a>
+								</div>
+							</div>
+
+						</c:if>
+						<c:if test="${getWork.workTypeTd==5}">
+
+							<div class="form-group"></div>
+							<div class="row">
+
+								<div class="col-md-2"></div>
+								<div class="col-md-2">
+									<a href="${docUrl}${getWork.orignalLicence}"
+										style="align-content: flex-end;">Original License</a>
+
+								</div>
+							</div>
+						</c:if>
+
+
+						<hr>
+
+
 						<div class="card-body">
-							<table id="bootstrap-data-table"
-								class="table table-striped table-bordered">
+							<table class="table table-striped table-bordered">
 
 								<thead>
 									<tr>

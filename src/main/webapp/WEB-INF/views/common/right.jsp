@@ -12,7 +12,7 @@
 					class="fa fa fa-tasks"></i></a>
 				<div class="header-left">
 
-
+					<strong class="card-title">RTO Admin Panel</strong>
 
 					<!-- <div class="dropdown for-notification">
 						<button class="btn btn-secondary dropdown-toggle" type="button"
@@ -35,7 +35,7 @@
 						</div>
 					</div> -->
 
-			<%-- 		<div class="dropdown for-message">
+					<%-- 		<div class="dropdown for-message">
 						<button class="btn btn-secondary dropdown-toggle" type="button"
 							id="message" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false">
