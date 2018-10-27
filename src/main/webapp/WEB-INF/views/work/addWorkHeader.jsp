@@ -673,7 +673,7 @@
 
 			}
 
-			else if (workType == 5) {
+			/* else if (workType == 5) {
 
 				document.getElementById('rc_book_div').style.display = "display:none";
 				document.getElementById('ins1_div').style.display = "display:none";
@@ -687,7 +687,24 @@
 				document.getElementById('form_17_div').style = "display:none";
 				document.getElementById('orig_lic_div').style = "flow-root";
 
+			} */
+			else if(workType==5){
+				//alert("workType " +workType)
+				$('#rc_book_div').hide();
+				$('#ins1_div').hide();
+				$('#ins2_div').hide();
+				$('#puc_div').hide();
+				$('#bank_noc_div').hide();
+
+				$('#add_pf_div').hide();
+
+				$('#bank_letter_div').hide();
+				$('#form_17_div').hide();
+				document.getElementById('orig_lic_div').style.display = "flow-root";
+
 			}
+
+
 
 		}
 	</script>
