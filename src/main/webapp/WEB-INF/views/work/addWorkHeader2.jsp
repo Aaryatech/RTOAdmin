@@ -64,6 +64,7 @@
 
 
 	<!-- Header-->
+	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
 	<!-- Header-->
 
 
@@ -88,51 +89,51 @@
 
 									<div class="col-md-2">Select Work Type</div>
 									<div class="col-md-3">
-										<select id="workTypeId" name="workTypeId"  onchange="callSel()"
+										<select id="workTypeId" name="workTypeId" onchange="callSel()"
 											class="standardSelect" tabindex="1" required>
 											<c:if test="${editWorkType>0}">
-											
-											<option disabled value="0">Select Work Type</option>
+
+												<option disabled value="0">Select Work Type</option>
 											</c:if>
-											
+
 											<c:if test="${editWorkType==0}">
-											
-											<option  value="0">Select Work Type</option>
+
+												<option value="0">Select Work Type</option>
 											</c:if>
-											
-											
-											
- 
-									<c:choose>
-									
-									<c:when test="${editWorkType>0}">
 
-										<c:forEach items="${workList}" var="workList">
+
+
+
 											<c:choose>
-											
-													<c:when test="${getWork.workTypeTd==workList.wType}">
-														<option selected value="${workList.wType}">${workList.workTypeName}</option>
-													</c:when>
-											
+
+												<c:when test="${editWorkType>0}">
+
+													<c:forEach items="${workList}" var="workList">
+														<c:choose>
+
+															<c:when test="${getWork.workTypeTd==workList.wType}">
+																<option selected value="${workList.wType}">${workList.workTypeName}</option>
+															</c:when>
+
+															<c:otherwise>
+																<option disabled="disabled" value="${workList.wType}">${workList.workTypeName}</option>
+															</c:otherwise>
+
+														</c:choose>
+
+													</c:forEach>
+												</c:when>
+
 												<c:otherwise>
-													<option disabled="disabled" value="${workList.wType}">${workList.workTypeName}</option>
+
+
+													<c:forEach items="${workList}" var="workList">
+
+														<option value="${workList.wType}">${workList.workTypeName}</option>
+
+													</c:forEach>
 												</c:otherwise>
-											
-											</c:choose>
 
-										</c:forEach>
-									</c:when>
-
-								<c:otherwise>
-
-
-											<c:forEach items="${workList}" var="workList">
-										
-										<option  value="${workList.wType}">${workList.workTypeName}</option>
-										
-											</c:forEach>
-											</c:otherwise>
-											
 											</c:choose>
 										</select>
 
@@ -142,21 +143,21 @@
 									<div class="col-md-3">
 										<select id="cust_id" name="cust_id" class="standardSelect"
 											tabindex="1">
-											
+
 
 											<c:forEach items="${custList}" var="cust">
 												<c:choose>
-												
-												<c:when test="${getWork.custId==cust.custId}">
-													<option selected value="${cust.custId}">${cust.custName}</option>
-												
-												</c:when>
-												<c:otherwise>
-													<option value="${cust.custId}">${cust.custName}</option>
-												
-												</c:otherwise>
+
+													<c:when test="${getWork.custId==cust.custId}">
+														<option selected value="${cust.custId}">${cust.custName}</option>
+
+													</c:when>
+													<c:otherwise>
+														<option value="${cust.custId}">${cust.custName}</option>
+
+													</c:otherwise>
 												</c:choose>
-												
+
 
 											</c:forEach>
 										</select>
@@ -164,14 +165,16 @@
 									</div>
 
 								</div>
-										<input type="hidden" name="workId" id="workId" value="${getWork.workId}">
+								<input type="hidden" name="workId" id="workId"
+									value="${getWork.workId}">
 
 								<div class="form-group"></div>
 								<div class="row">
 
 									<div class="col-md-2">Vehicle No</div>
 									<div class="col-md-1">
-										<input type='text' id="veh_no" name="veh_no" value="${getWork.vehicalNo}" required/>
+										<input type='text' id="veh_no" name="veh_no"
+											value="${getWork.vehicalNo}" required />
 									</div>
 
 								</div>
@@ -179,28 +182,31 @@
 								<div class="form-group"></div>
 								<div class="row">
 									<div class="col-md-2">
-										<input type="hidden" name="prevImage1" id="prevImage1" value="${getWork.photo}">
-										Photo1
+										<input type="hidden" name="prevImage1" id="prevImage1"
+											value="${getWork.photo}"> Photo1
 
 									</div>
 									<div class="col-md-4">
-										<input type='file' id="imgInp" name="imgInp" value="" /><div class="form-group"></div> <img
-											id="image1" name="image1" src="${docUrl}${getWork.photo}" 
+										<input type='file' id="imgInp" name="imgInp" value="" />
+										<div class="form-group"></div>
+										<img id="image1" name="image1" src="${docUrl}${getWork.photo}"
 											style="height: 70px; width: 70px;" /> <span class="error"
 											aria-live="polite"></span>
 
 									</div>
 
 									<div class="col-md-2">
-										<input type="hidden" name="prevImage2" id="prevImage2" value="${getWork.photo1}">
-										Photo2
+										<input type="hidden" name="prevImage2" id="prevImage2"
+											value="${getWork.photo1}"> Photo2
 
 									</div>
 
 									<div class="col-md-4">
-										<input type='file' id="imgInp1" name="imgInp1" value="" /><div class="form-group"></div> <img
-											id="image2" name="image2" src="${docUrl}${getWork.photo1}"
-											style="height: 70px;width: 70px;"/> <span class="error"
+										<input type='file' id="imgInp1" name="imgInp1" value="" />
+										<div class="form-group"></div>
+										<img id="image2" name="image2"
+											src="${docUrl}${getWork.photo1}"
+											style="height: 70px; width: 70px;" /> <span class="error"
 											aria-live="polite"></span>
 
 									</div>
@@ -213,10 +219,15 @@
 
 									<div class="col-md-2">Aadhaar Card</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_ac" id='prev_ac' value="${getWork.adharCard}"> <input
-											type='file' id="ac" name="doc[]" value="" required="required"/> <c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.adharCard}"  style="align-content: flex-end;">Aadhar Card</a></c:if>
+										<input type="hidden" name="prev_ac" id='prev_ac'
+											value="${getWork.adharCard}"> <input type='file'
+											id="ac" name="doc[]" value="" required="required" />
+										<c:if test="${editWorkType>0}">
+											<a href="${docUrl}${getWork.adharCard}"
+												style="align-content: flex-end;">Aadhar Card</a>
+										</c:if>
 									</div>
-									
+
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
@@ -224,7 +235,7 @@
 									</div>
 									</c:if> --%>
 
-								
+
 
 								</div>
 								<div class="form-group"></div>
@@ -232,8 +243,13 @@
 
 									<div class="col-md-2">RC Book</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_rc" id='prev_rc' value="${getWork.rcbook}"> <input
-											type='file' id="rc_book" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.rcbook}"  style="align-content: flex-end;">RC Book</a></c:if>
+										<input type="hidden" name="prev_rc" id='prev_rc'
+											value="${getWork.rcbook}"> <input type='file'
+											id="rc_book" name="doc[]" value="" />
+										<c:if test="${editWorkType>0}">
+											<a href="${docUrl}${getWork.rcbook}"
+												style="align-content: flex-end;">RC Book</a>
+										</c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -246,8 +262,13 @@
 								<div class="row" id="puc_div" style="display: none;">
 									<div class="col-md-2">PUC</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_puc" id=prev_puc value="${getWork.puc}"> <input
-											type='file' id="puc" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.puc}"  style="align-content: flex-end;">PUC</a></c:if>
+										<input type="hidden" name="prev_puc" id=prev_puc
+											value="${getWork.puc}"> <input type='file' id="puc"
+											name="doc[]" value="" />
+										<c:if test="${editWorkType>0}">
+											<a href="${docUrl}${getWork.puc}"
+												style="align-content: flex-end;">PUC</a>
+										</c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -263,8 +284,13 @@
 
 									<div class="col-md-2">Insurance 1</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_ins1" id='prev_ins1' value="${getWork.insurance}"> <input
-											type='file' id="ins1" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.insurance}"  style="align-content: flex-end;">Insurance 1</a></c:if>
+										<input type="hidden" name="prev_ins1" id='prev_ins1'
+											value="${getWork.insurance}"> <input type='file'
+											id="ins1" name="doc[]" value="" />
+										<c:if test="${editWorkType>0}">
+											<a href="${docUrl}${getWork.insurance}"
+												style="align-content: flex-end;">Insurance 1</a>
+										</c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -278,8 +304,13 @@
 
 									<div class="col-md-2">Insurance 2</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_ins2" id=prev_ins2 value="${getWork.insurance1}"> <input
-											type='file' id="ins2" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.insurance1}"  style="align-content: flex-end;">Insurance 2</a></c:if>
+										<input type="hidden" name="prev_ins2" id=prev_ins2
+											value="${getWork.insurance1}"> <input type='file'
+											id="ins2" name="doc[]" value="" />
+										<c:if test="${editWorkType>0}">
+											<a href="${docUrl}${getWork.insurance1}"
+												style="align-content: flex-end;">Insurance 2</a>
+										</c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -294,24 +325,35 @@
 
 									<div class="col-md-2">Address Proof</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_add_proof" id='prev_add_proof' value="${getWork.addProof}">
-										<input type='file' id="add_proof" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.addProof}"  style="align-content: flex-end;">Address Proof</a></c:if>
+										<input type="hidden" name="prev_add_proof" id='prev_add_proof'
+											value="${getWork.addProof}"> <input type='file'
+											id="add_proof" name="doc[]" value="" />
+										<c:if test="${editWorkType>0}">
+											<a href="${docUrl}${getWork.addProof}"
+												style="align-content: flex-end;">Address Proof</a>
+										</c:if>
 									</div>
-								<%-- 	<c:if test="${editWorkType>0}">
+									<%-- 	<c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
 									<a href="${docUrl}${getWork.addProof}"  style="align-content: flex-end;">File</a>
 									</div>
 									</c:if>
-								 --%></div>
+								 --%>
+								</div>
 								<div class="form-group"></div>
 
 								<div class="row" id="bank_noc_div" style="display: none;">
 
 									<div class="col-md-2">Bank NOC</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_bank_noc" id='prev_bank_noc' value="${getWork.bankDocument}">
-										<input type='file' id="bank_noc" name="doc[]" value="" />	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;">Bank NOC</a>
+										<input type="hidden" name="prev_bank_noc" id='prev_bank_noc'
+											value="${getWork.bankDocument}"> <input type='file'
+											id="bank_noc" name="doc[]" value="" />
+										<c:if test="${editWorkType>0}">
+											<a href="${docUrl}${getWork.bankDocument}"
+												style="align-content: flex-end;">Bank NOC</a>
+										</c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -328,27 +370,37 @@
 
 									<div class="col-md-2">Bank Letter</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_bank_letter" id='prev_bank_letter' value="${getWork.bankDocument}">
-										<input type='file' id="bank_letter" name="doc[]" value="" />	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;">Bank Letter</a>
+										<input type="hidden" name="prev_bank_letter"
+											id='prev_bank_letter' value="${getWork.bankDocument}">
+										<input type='file' id="bank_letter" name="doc[]" value="" />
+										<c:if test="${editWorkType>0}">
+											<a href="${docUrl}${getWork.bankDocument}"
+												style="align-content: flex-end;">Bank Letter</a>
+										</c:if>
 									</div>
-									
+
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
 									<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;">File</a>
 									</div>
 									</c:if> --%>
-									
+
 								</div>
 								<div class="form-group"></div>
 								<div class="row" id="form_17_div" style="display: none;">
 
 									<div class="col-md-2">Form No 17</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_form_no17" id='prev_form_no17' value="${getWork.bankDocument1}">
-										<input type='file' id="form_no17" name="doc[]" value="" /><a href="${docUrl}${getWork.bankDocument1}"  style="align-content: flex-end;">Form No. 17</a>
+										<input type="hidden" name="prev_form_no17" id='prev_form_no17'
+											value="${getWork.bankDocument1}"> <input type='file'
+											id="form_no17" name="doc[]" value="" />
+										<c:if test="${editWorkType>0}">
+											<a href="${docUrl}${getWork.bankDocument1}"
+												style="align-content: flex-end;">Form No. 17</a>
+										</c:if>
 									</div>
-								<%-- 	
+									<%-- 	
 									<c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
@@ -363,10 +415,15 @@
 
 									<div class="col-md-2">Original License</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_orig_lic" id='prev_orig_lic' value="${getWork.orignalLicence}">
-										<input type='file' id="orig_lic" name="doc[]" value="" /><a href="${docUrl}${getWork.orignalLicence}"  style="align-content: flex-end;">Original License</a>
+										<input type="hidden" name="prev_orig_lic" id='prev_orig_lic'
+											value="${getWork.orignalLicence}"> <input type='file'
+											id="orig_lic" name="doc[]" value="" />
+										<c:if test="${editWorkType>0}">
+											<a href="${docUrl}${getWork.orignalLicence}"
+												style="align-content: flex-end;">Original License</a>
+										</c:if>
 									</div>
-									
+
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
 									<div class="col-md-1">
@@ -375,7 +432,7 @@
 									</c:if> --%>
 								</div>
 
-																<div class="form-group"></div>
+								<div class="form-group"></div>
 
 
 								<div class="col-lg-12" align="center">
@@ -553,254 +610,274 @@
 		});
 	</script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
+		function callSel() {
+			//alert("Call me");
+			var workType = document.getElementById("workTypeId").value;
+			if (workType == 1) {
+				//alert("In work Type  " +workType);
+				document.getElementById('rc_book_div').style.display = "flow-root";
+				document.getElementById('ins1_div').style.display = "flow-root";
+				document.getElementById('ins2_div').style.display = "flow-root";
+				document.getElementById('puc_div').style.display = "flow-root";
+				document.getElementById('add_pf_div').style.display = "flow-root";
 
-function callSel() {
-	//alert("Call me");
-	var workType = document.getElementById("workTypeId").value;
-	if(workType==1){
-		//alert("In work Type  " +workType);
-		document.getElementById('rc_book_div').style.display = "flow-root";
-		document.getElementById('ins1_div').style.display = "flow-root";
-		document.getElementById('ins2_div').style.display = "flow-root";
-		document.getElementById('puc_div').style.display = "flow-root";
-		document.getElementById('add_pf_div').style.display = "flow-root";
-	
-		document.getElementById('bank_noc_div').style = "display:none";
-		document.getElementById('bank_letter_div').style = "display:none";
-		document.getElementById('form_17_div').style = "display:none";
-		document.getElementById('orig_lic_div').style = "display:none";
+				document.getElementById('bank_noc_div').style = "display:none";
+				document.getElementById('bank_letter_div').style = "display:none";
+				document.getElementById('form_17_div').style = "display:none";
+				document.getElementById('orig_lic_div').style = "display:none";
 
-	}
-	
-	else if(workType==2){
-		//alert("In work Type  " +workType);
-		document.getElementById('rc_book_div').style.display = "flow-root";
-		document.getElementById('ins1_div').style.display = "flow-root";
-		document.getElementById('ins2_div').style.display = "flow-root";
-		document.getElementById('puc_div').style.display = "flow-root";
-		document.getElementById('bank_noc_div').style = "flow_root";
+			}
 
-		document.getElementById('add_pf_div').style.display = "display:none";
-	
-		document.getElementById('bank_letter_div').style = "display:none";
-		document.getElementById('form_17_div').style = "display:none";
-		document.getElementById('orig_lic_div').style = "display:none";
+			else if (workType == 2) {
+				//alert("In work Type  " +workType);
+				document.getElementById('rc_book_div').style.display = "flow-root";
+				document.getElementById('ins1_div').style.display = "flow-root";
+				document.getElementById('ins2_div').style.display = "flow-root";
+				document.getElementById('puc_div').style.display = "flow-root";
+				document.getElementById('bank_noc_div').style = "flow_root";
 
-	}
+				document.getElementById('add_pf_div').style.display = "display:none";
 
-else if(workType==3){
-	//alert("In work Type  " +workType);
-	document.getElementById('rc_book_div').style.display = "flow-root";
-	document.getElementById('ins1_div').style.display = "flow-root";
-	document.getElementById('ins2_div').style.display = "flow-root";
-	document.getElementById('puc_div').style.display = "flow-root";
-	document.getElementById('bank_letter_div').style = "flow_root";
-	document.getElementById('form_17_div').style = "flow_root";
+				document.getElementById('bank_letter_div').style = "display:none";
+				document.getElementById('form_17_div').style = "display:none";
+				document.getElementById('orig_lic_div').style = "display:none";
 
-	document.getElementById('add_pf_div').style.display = "display:none";
-	document.getElementById('orig_lic_div').style = "display:none";
-	document.getElementById('bank_noc_div').style =  "display:none";
+			}
 
-}else if(workType==4){
-	//alert("In work Type  " +workType);
-	document.getElementById('rc_book_div').style.display = "flow-root";
-	document.getElementById('ins1_div').style.display = "flow-root";
-	document.getElementById('ins2_div').style.display = "flow-root";
-	document.getElementById('puc_div').style.display = "flow-root";
-	document.getElementById('add_pf_div').style.display = "flow-root";
+			else if (workType == 3) {
+				//alert("In work Type  " +workType);
+				document.getElementById('rc_book_div').style.display = "flow-root";
+				document.getElementById('ins1_div').style.display = "flow-root";
+				document.getElementById('ins2_div').style.display = "flow-root";
+				document.getElementById('puc_div').style.display = "flow-root";
+				document.getElementById('bank_letter_div').style = "flow_root";
+				document.getElementById('form_17_div').style = "flow_root";
 
-	document.getElementById('bank_noc_div').style = "display:none";
-	document.getElementById('bank_letter_div').style = "display:none";
-	document.getElementById('form_17_div').style = "display:none";
-	document.getElementById('orig_lic_div').style = "display:none";
+				document.getElementById('add_pf_div').style.display = "display:none";
+				document.getElementById('orig_lic_div').style = "display:none";
+				document.getElementById('bank_noc_div').style = "display:none";
 
-}
+			} else if (workType == 4) {
+				//alert("In work Type  " +workType);
+				document.getElementById('rc_book_div').style.display = "flow-root";
+				document.getElementById('ins1_div').style.display = "flow-root";
+				document.getElementById('ins2_div').style.display = "flow-root";
+				document.getElementById('puc_div').style.display = "flow-root";
+				document.getElementById('add_pf_div').style.display = "flow-root";
 
-else if(workType==5){
-	//alert("workType " +workType)
-	$('#rc_book_div').hide();
-	$('#ins1_div').hide();
-	$('#ins2_div').hide();
-	$('#puc_div').hide();
-	$('#bank_noc_div').hide();
+				document.getElementById('bank_noc_div').style = "display:none";
+				document.getElementById('bank_letter_div').style = "display:none";
+				document.getElementById('form_17_div').style = "display:none";
+				document.getElementById('orig_lic_div').style = "display:none";
 
-	$('#add_pf_div').hide();
+			}
 
-	$('#bank_letter_div').hide();
-	$('#form_17_div').hide();
-	document.getElementById('orig_lic_div').style.display = "flow-root";
+			/* else if (workType == 5) {
 
-}
+				document.getElementById('rc_book_div').style.display = "display:none";
+				document.getElementById('ins1_div').style.display = "display:none";
+				document.getElementById('ins2_div').style.display = "display:none";
+				document.getElementById('puc_div').style.display = "display:none";
+				document.getElementById('bank_noc_div').style = "display:none";
 
-}
-</script>
-<script type="text/javascript">
-function onLoadCall() {
-	//alert("onload Call")
-	var workType=${getWork.workTypeTd};
-	//$('#workTypeId').prop('readoly', true);
-	 //document.getElementById("pets").options[2].disabled = true;
-	
-	document.getElementById('workTypeId').disabled = true;
-	document.getElementById('ac').style.color = 'white';
-	
-	document.getElementById('imgInp').style.color = 'white';
-	document.getElementById('imgInp1').style.color = 'white';
-	
-	document.getElementById('rc_book').style.color = 'white';
-	document.getElementById('puc').style.color = 'white';
-	document.getElementById('ins1').style.color = 'white';
-	document.getElementById('ins2').style.color = 'white';
-	document.getElementById('add_proof').style.color = 'white';
-	document.getElementById('bank_noc').style.color = 'white';
-	document.getElementById('bank_letter').style.color = 'white';
-	document.getElementById('form_no17').style.color = 'white';
-	document.getElementById('orig_lic').style.color = 'white';
-	
+				document.getElementById('add_pf_div').style.display = "display:none";
 
-	document.getElementById("ac").required = false;
-	if(workType==1){
-		//alert("In work Type  " +workType);
-		document.getElementById('rc_book_div').style.display = "flow-root";
-		document.getElementById('ins1_div').style.display = "flow-root";
-		document.getElementById('ins2_div').style.display = "flow-root";
-		document.getElementById('puc_div').style.display = "flow-root";
-		document.getElementById('add_pf_div').style.display = "flow-root";
-	
-		document.getElementById('bank_noc_div').style = "display:none";
-		document.getElementById('bank_letter_div').style = "display:none";
-		document.getElementById('form_17_div').style = "display:none";
-		document.getElementById('orig_lic_div').style = "display:none";
+				document.getElementById('bank_letter_div').style = "display:none";
+				document.getElementById('form_17_div').style = "display:none";
+				document.getElementById('orig_lic_div').style = "flow-root";
 
-	}
-	
-	else if(workType==2){
-		//alert("In work Type  " +workType);
-		document.getElementById('rc_book_div').style.display = "flow-root";
-		document.getElementById('ins1_div').style.display = "flow-root";
-		document.getElementById('ins2_div').style.display = "flow-root";
-		document.getElementById('puc_div').style.display = "flow-root";
-		document.getElementById('bank_noc_div').style = "flow_root";
+			} */
+			else if(workType==5){
+				//alert("workType " +workType)
+				$('#rc_book_div').hide();
+				$('#ins1_div').hide();
+				$('#ins2_div').hide();
+				$('#puc_div').hide();
+				$('#bank_noc_div').hide();
 
-		document.getElementById('add_pf_div').style.display = "display:none";
-	
-		document.getElementById('bank_letter_div').style = "display:none";
-		document.getElementById('form_17_div').style = "display:none";
-		document.getElementById('orig_lic_div').style = "display:none";
+				$('#add_pf_div').hide();
 
-	}
+				$('#bank_letter_div').hide();
+				$('#form_17_div').hide();
+				document.getElementById('orig_lic_div').style.display = "flow-root";
 
-else if(workType==3){
-	//alert("In work Type  " +workType);
-	document.getElementById('rc_book_div').style.display = "flow-root";
-	document.getElementById('ins1_div').style.display = "flow-root";
-	document.getElementById('ins2_div').style.display = "flow-root";
-	document.getElementById('puc_div').style.display = "flow-root";
-	document.getElementById('bank_letter_div').style = "flow_root";
-	document.getElementById('form_17_div').style = "flow_root";
+			}
 
-	document.getElementById('add_pf_div').style.display = "display:none";
-	document.getElementById('orig_lic_div').style = "display:none";
-	document.getElementById('bank_noc_div').style =  "display:none";
 
-}else if(workType==4){
-	//alert("In work Type  " +workType);
-	document.getElementById('rc_book_div').style.display = "flow-root";
-	document.getElementById('ins1_div').style.display = "flow-root";
-	document.getElementById('ins2_div').style.display = "flow-root";
-	document.getElementById('puc_div').style.display = "flow-root";
-	document.getElementById('add_pf_div').style.display = "flow-root";
 
-	document.getElementById('bank_noc_div').style = "display:none";
-	document.getElementById('bank_letter_div').style = "display:none";
-	document.getElementById('form_17_div').style = "display:none";
-	document.getElementById('orig_lic_div').style = "display:none";
+		}
+	</script>
+	<script type="text/javascript">
+		function onLoadCall() {
+			//alert("onload Call")
+			var workType = $
+			{
+				getWork.workTypeTd
+			}
+			;
+			//$('#workTypeId').prop('readoly', true);
+			//document.getElementById("pets").options[2].disabled = true;
 
-}
+			document.getElementById('workTypeId').disabled = true;
+			document.getElementById('ac').style.color = 'white';
 
-else if(workType==5){
-	document.getElementById('rc_book_div').style.display = "display:none";
-	document.getElementById('ins1_div').style.display = "display:none";
-	document.getElementById('ins2_div').style.display = "display:none";
-	document.getElementById('puc_div').style.display = "display:none";
-	document.getElementById('bank_noc_div').style = "display:none";
+			document.getElementById('imgInp').style.color = 'white';
+			document.getElementById('imgInp1').style.color = 'white';
 
-	document.getElementById('add_pf_div').style.display = "display:none";
+			document.getElementById('rc_book').style.color = 'white';
+			document.getElementById('puc').style.color = 'white';
+			document.getElementById('ins1').style.color = 'white';
+			document.getElementById('ins2').style.color = 'white';
+			document.getElementById('add_proof').style.color = 'white';
+			document.getElementById('bank_noc').style.color = 'white';
+			document.getElementById('bank_letter').style.color = 'white';
+			document.getElementById('form_no17').style.color = 'white';
+			document.getElementById('orig_lic').style.color = 'white';
 
-	document.getElementById('bank_letter_div').style = "display:none";
-	document.getElementById('form_17_div').style = "display:none";
-	document.getElementById('orig_lic_div').style = "flow-root";
+			document.getElementById("ac").required = false;
+			if (workType == 1) {
+				//alert("In work Type  " +workType);
+				document.getElementById('rc_book_div').style.display = "flow-root";
+				document.getElementById('ins1_div').style.display = "flow-root";
+				document.getElementById('ins2_div').style.display = "flow-root";
+				document.getElementById('puc_div').style.display = "flow-root";
+				document.getElementById('add_pf_div').style.display = "flow-root";
 
-}
+				document.getElementById('bank_noc_div').style = "display:none";
+				document.getElementById('bank_letter_div').style = "display:none";
+				document.getElementById('form_17_div').style = "display:none";
+				document.getElementById('orig_lic_div').style = "display:none";
 
-}
+			}
 
-</script>
+			else if (workType == 2) {
+				//alert("In work Type  " +workType);
+				document.getElementById('rc_book_div').style.display = "flow-root";
+				document.getElementById('ins1_div').style.display = "flow-root";
+				document.getElementById('ins2_div').style.display = "flow-root";
+				document.getElementById('puc_div').style.display = "flow-root";
+				document.getElementById('bank_noc_div').style = "flow_root";
 
-<script type="text/javascript">
-  $(function() {
-   
-    	// document.getElementById('ac').style.color = 'black';
-    	 var workType=${getWork.workTypeTd};
-    	 if(workType!=null){
-    	  $('#ac').change(function(){
-    		  document.getElementById('ac').style.color = 'black';
-    	  });
-    	  
-    	  $('#imgInp').change(function(){
-    		  document.getElementById('imgInp').style.color = 'black';
-    	  });
-    	  
-    	  $('#imgInp1').change(function(){
-    		  document.getElementById('imgInp1').style.color = 'black';
-    	  });
-    	  
-    	  $('#rc_book').change(function(){
-    		  document.getElementById('rc_book').style.color = 'black';
-    	  });
-    	  
-    	  $('#puc').change(function(){
-    		  document.getElementById('puc').style.color = 'black';
-    	  });
-    	  
-    	  $('#ins1').change(function(){
-    		  document.getElementById('ins1').style.color = 'black';
-    	  });
-    	  
-    	  $('#ins2').change(function(){
-    		  document.getElementById('ins2').style.color = 'black';
-    	  });
-    	  
-    	  $('#add_proof').change(function(){
-    		  document.getElementById('add_proof').style.color = 'black';
-    	  });
-    	  
-    	  $('#bank_noc').change(function(){
-    		  document.getElementById('bank_noc').style.color = 'black';
-    	  });
-    	  
-    	  
-    	  $('#bank_letter').change(function(){
-    		  document.getElementById('bank_letter').style.color = 'black';
-    	  });
-    	  
-    	  
-    	  $('#form_no17').change(function(){
-    		  document.getElementById('form_no17').style.color = 'black';
-    	  });
-    	  
-    	  $('#orig_lic').change(function(){
-    		  document.getElementById('orig_lic').style.color = 'black';
-    	  });
-    	  
-    	  
-    	 }//end Of if
-    	 
-     
-  });
-</script>
-<!-- 	<script type="text/javascript">
+				document.getElementById('add_pf_div').style.display = "display:none";
+
+				document.getElementById('bank_letter_div').style = "display:none";
+				document.getElementById('form_17_div').style = "display:none";
+				document.getElementById('orig_lic_div').style = "display:none";
+
+			}
+
+			else if (workType == 3) {
+				//alert("In work Type  " +workType);
+				document.getElementById('rc_book_div').style.display = "flow-root";
+				document.getElementById('ins1_div').style.display = "flow-root";
+				document.getElementById('ins2_div').style.display = "flow-root";
+				document.getElementById('puc_div').style.display = "flow-root";
+				document.getElementById('bank_letter_div').style = "flow_root";
+				document.getElementById('form_17_div').style = "flow_root";
+
+				document.getElementById('add_pf_div').style.display = "display:none";
+				document.getElementById('orig_lic_div').style = "display:none";
+				document.getElementById('bank_noc_div').style = "display:none";
+
+			} else if (workType == 4) {
+				//alert("In work Type  " +workType);
+				document.getElementById('rc_book_div').style.display = "flow-root";
+				document.getElementById('ins1_div').style.display = "flow-root";
+				document.getElementById('ins2_div').style.display = "flow-root";
+				document.getElementById('puc_div').style.display = "flow-root";
+				document.getElementById('add_pf_div').style.display = "flow-root";
+
+				document.getElementById('bank_noc_div').style = "display:none";
+				document.getElementById('bank_letter_div').style = "display:none";
+				document.getElementById('form_17_div').style = "display:none";
+				document.getElementById('orig_lic_div').style = "display:none";
+
+			}
+
+			else if (workType == 5) {
+				document.getElementById('rc_book_div').style.display = "display:none";
+				document.getElementById('ins1_div').style.display = "display:none";
+				document.getElementById('ins2_div').style.display = "display:none";
+				document.getElementById('puc_div').style.display = "display:none";
+				document.getElementById('bank_noc_div').style = "display:none";
+
+				document.getElementById('add_pf_div').style.display = "display:none";
+
+				document.getElementById('bank_letter_div').style = "display:none";
+				document.getElementById('form_17_div').style = "display:none";
+				document.getElementById('orig_lic_div').style = "flow-root";
+
+			}
+
+		}
+	</script>
+
+	<script type="text/javascript">
+		$(function() {
+
+			// document.getElementById('ac').style.color = 'black';
+			var workType = $
+			{
+				getWork.workTypeTd
+			}
+			;
+			if (workType != null) {
+				$('#ac').change(function() {
+					document.getElementById('ac').style.color = 'black';
+				});
+
+				$('#imgInp').change(function() {
+					document.getElementById('imgInp').style.color = 'black';
+				});
+
+				$('#imgInp1').change(function() {
+					document.getElementById('imgInp1').style.color = 'black';
+				});
+
+				$('#rc_book').change(function() {
+					document.getElementById('rc_book').style.color = 'black';
+				});
+
+				$('#puc').change(function() {
+					document.getElementById('puc').style.color = 'black';
+				});
+
+				$('#ins1').change(function() {
+					document.getElementById('ins1').style.color = 'black';
+				});
+
+				$('#ins2').change(function() {
+					document.getElementById('ins2').style.color = 'black';
+				});
+
+				$('#add_proof').change(function() {
+					document.getElementById('add_proof').style.color = 'black';
+				});
+
+				$('#bank_noc').change(function() {
+					document.getElementById('bank_noc').style.color = 'black';
+				});
+
+				$('#bank_letter')
+						.change(
+								function() {
+									document.getElementById('bank_letter').style.color = 'black';
+								});
+
+				$('#form_no17').change(function() {
+					document.getElementById('form_no17').style.color = 'black';
+				});
+
+				$('#orig_lic').change(function() {
+					document.getElementById('orig_lic').style.color = 'black';
+				});
+
+			}//end Of if
+
+		});
+	</script>
+	<!-- 	<script type="text/javascript">
 $(document).ready(function() { 
 	$('#workTypeId').change(
 			function() {
