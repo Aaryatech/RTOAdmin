@@ -26,7 +26,7 @@ import com.ats.rto.model.User;
 public class WorkController {
 
 	RestTemplate rest = new RestTemplate();
-	List<GetWork> workList = null;
+	List<GetWork> workList;
 	List<User> userList = null;
 
 	@RequestMapping(value = "/showWorkList", method = RequestMethod.GET)
@@ -41,6 +41,9 @@ public class WorkController {
 			GetWork[] workListArray = rest.postForObject(Constants.url + "/getWorkHeaderByStatus", map,
 					GetWork[].class);
 			workList = new ArrayList<GetWork>(Arrays.asList(workListArray));
+			System.out.println("workListArray" + workListArray.toString());
+
+			System.out.println("workLIst" + workList.toString());
 			model.addObject("workList", workList);
 
 		} catch (Exception e) {

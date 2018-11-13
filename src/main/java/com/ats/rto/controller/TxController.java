@@ -571,7 +571,7 @@ public class TxController {
 
 						String extension = FilenameUtils.getExtension(docList.get(8).getOriginalFilename());
 
-						form17 = tStamp + "blet" + "." + extension;
+						form17 = tStamp + "f17" + "." + extension;
 						imgUpload.saveUploadedFiles(docList.get(8), Constants.CAT_FILE_TYPE, form17);
 
 						System.err.println("form17 saved ");
