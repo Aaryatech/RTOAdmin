@@ -87,25 +87,21 @@
 
 
 								<div class="form-group"></div>
-								<div class="form-group">
-									<div class="col-md-2">Select User</div>
-									<div class="col-md-4" align="center">
-										<select id="userId" name="userId" class="standardSelect"
-											tabindex="1">
-											<option value="">Select User</option>
+								<div class="row">
 
+									<div class="col-md-2">Select User</div>
+
+									<div class="col-md-4">
+										<select id="userId" name="userId" class="standardSelect"
+											tabindex="1" required>
 											<c:forEach items="${userList}" var="userList">
 
-
-												<option value="${userList.userId}">${userList.userName}
-												</option>
-
-
+												<option value="${userList.userId}">${userList.userName}</option>
 											</c:forEach>
 										</select>
-
 									</div>
 								</div>
+
 							</div>
 							&nbsp;
 
