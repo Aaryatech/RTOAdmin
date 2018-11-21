@@ -108,6 +108,8 @@ public class WorkController {
 			model.addObject("workdetail", getWork.getWorkDetailList());
 			System.out.println("list" + getWork.getWorkDetailList());
 
+			model.addObject("docUrl", Constants.RTO_DOC_URL);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -420,6 +422,7 @@ public class WorkController {
 			model.addObject("getWork", getWork);
 			model.addObject("workdetail", getWork.getWorkDetailList());
 			System.out.println("list" + getWork.getWorkDetailList());
+			model.addObject("docUrl", Constants.RTO_DOC_URL);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -441,6 +444,7 @@ public class WorkController {
 			model.addObject("getWork", getWork);
 			model.addObject("workdetail", getWork.getWorkDetailList());
 			System.out.println("list" + getWork.getWorkDetailList());
+			model.addObject("docUrl", Constants.RTO_DOC_URL);
 
 		} catch (Exception e) {
 			e.printStackTrace();

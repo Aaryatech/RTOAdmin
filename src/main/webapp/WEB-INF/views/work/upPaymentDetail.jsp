@@ -259,40 +259,44 @@
 
 
 									<a href="${docUrl}${getWork.adharCard}"
-										style="align-content: flex-end;">Aadhar Card</a>
+										style="align-content: flex-end;" target="_blank">Aadhar
+										Card</a>
 
 								</div>
 
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.rcbook}"
-										style="align-content: flex-end;">RC Book</a>
+										style="align-content: flex-end;" target="_blank">RC Book</a>
 
 								</div>
 
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.insurance}"
-										style="align-content: flex-end;">Insurance 1</a>
+										style="align-content: flex-end;" target="_blank">Insurance
+										1</a>
 
 								</div>
 
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.insurance1}"
-										style="align-content: flex-end;">Insurance 2</a>
+										style="align-content: flex-end;" target="_blank">Insurance
+										2</a>
 
 								</div>
 								<div class="col-md-2">
 
 
 									<a href="${docUrl}${getWork.puc}"
-										style="align-content: flex-end;">PUC</a>
+										style="align-content: flex-end;" target="_blank">PUC</a>
 								</div>
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.addProof}"
-										style="align-content: flex-end;">Address Proof</a>
+										style="align-content: flex-end;" target="_blank">Address
+										Proof</a>
 								</div>
 							</div>
 
@@ -305,7 +309,8 @@
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.adharCard}"
-										style="align-content: flex-end;">Aadhar Card</a>
+										style="align-content: flex-end;" target="_blank">Aadhar
+										Card</a>
 
 								</div>
 
@@ -313,32 +318,34 @@
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.rcbook}"
-										style="align-content: flex-end;">RC Book</a>
+										style="align-content: flex-end;" target="_blank">RC Book</a>
 
 								</div>
 
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.insurance}"
-										style="align-content: flex-end;">Insurance 1</a>
+										style="align-content: flex-end;" target="_blank">Insurance
+										1</a>
 
 								</div>
 
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.insurance1}"
-										style="align-content: flex-end;">Insurance 2</a>
+										style="align-content: flex-end;" target="_blank">Insurance
+										2</a>
 
 								</div>
 								<div class="col-md-2">
 
 
 									<a href="${docUrl}${getWork.puc}"
-										style="align-content: flex-end;">PUC</a>
+										style="align-content: flex-end;" target="_blank">PUC</a>
 								</div>
 								<div class="col-md-2">
 									<a href="${docUrl}${getWork.bankDocument}"
-										style="align-content: flex-end;">Bank NOC</a>
+										style="align-content: flex-end;" target="_blank">Bank NOC</a>
 								</div>
 							</div>
 
@@ -353,43 +360,48 @@
 
 
 									<a href="${docUrl}${getWork.adharCard}"
-										style="align-content: flex-end;">Aadhar Card</a>
+										style="align-content: flex-end;" target="_blank">Aadhar
+										Card</a>
 
 								</div>
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.rcbook}"
-										style="align-content: flex-end;">RC Book</a>
+										style="align-content: flex-end;" target="_blank">RC Book</a>
 
 								</div>
 
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.insurance}"
-										style="align-content: flex-end;">Insurance 1</a>
+										style="align-content: flex-end;" target="_blank">Insurance
+										1</a>
 
 								</div>
 
 								<div class="col-md-1">
 
 									<a href="${docUrl}${getWork.insurance1}"
-										style="align-content: flex-end;">Insurance 2</a>
+										style="align-content: flex-end;" target="_blank">Insurance
+										2</a>
 
 								</div>
 								<div class="col-md-1">
 
 
 									<a href="${docUrl}${getWork.puc}"
-										style="align-content: flex-end;">PUC</a>
+										style="align-content: flex-end;" target="_blank">PUC</a>
 								</div>
 								<div class="col-md-2">
 									<a href="${docUrl}${getWork.bankDocument}"
-										style="align-content: flex-end;">Bank Letter</a>
+										style="align-content: flex-end;" target="_blank">Bank
+										Letter</a>
 								</div>
 
 								<div class="col-md-2">
 									<a href="${docUrl}${getWork.bankDocument1}"
-										style="align-content: flex-end;">Form No. 17</a>
+										style="align-content: flex-end;" target="_blank">Form No.
+										17</a>
 								</div>
 							</div>
 
@@ -404,40 +416,44 @@
 
 
 									<a href="${docUrl}${getWork.adharCard}"
-										style="align-content: flex-end;">Aadhar Card</a>
+										style="align-content: flex-end;" target="_blank">Aadhar
+										Card</a>
 
 								</div>
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.rcbook}"
-										style="align-content: flex-end;">RC Book</a>
+										style="align-content: flex-end;" target="_blank">RC Book</a>
 
 								</div>
 
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.insurance}"
-										style="align-content: flex-end;">Insurance 1</a>
+										style="align-content: flex-end;" target="_blank">Insurance
+										1</a>
 
 								</div>
 
 								<div class="col-md-2">
 
 									<a href="${docUrl}${getWork.insurance1}"
-										style="align-content: flex-end;">Insurance 2</a>
+										style="align-content: flex-end;" target="_blank">Insurance
+										2</a>
 
 								</div>
 								<div class="col-md-2">
 
 
 									<a href="${docUrl}${getWork.puc}"
-										style="align-content: flex-end;">PUC</a>
+										style="align-content: flex-end;" target="_blank">PUC</a>
 								</div>
 
 
 								<div class="col-md-2">
 									<a href="${docUrl}${getWork.addProof}"
-										style="align-content: flex-end;">Address Proof</a>
+										style="align-content: flex-end;" target="_blank">Address
+										Proof</a>
 								</div>
 							</div>
 
@@ -451,12 +467,14 @@
 
 
 									<a href="${docUrl}${getWork.adharCard}"
-										style="align-content: flex-end;">Aadhar Card</a>
+										style="align-content: flex-end;" target="_blank">Aadhar
+										Card</a>
 
 								</div>
 								<div class="col-md-2">
 									<a href="${docUrl}${getWork.orignalLicence}"
-										style="align-content: flex-end;">Original License</a>
+										style="align-content: flex-end;" target="_blank">Original
+										License</a>
 
 								</div>
 							</div>
