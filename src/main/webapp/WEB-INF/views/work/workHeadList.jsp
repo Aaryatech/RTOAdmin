@@ -120,7 +120,7 @@
 											<th>Cust Name</th>
 											<th>Cust Mobile No</th>
 											<th>Work Type Name</th>
-
+											<th>Work Status</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -139,10 +139,51 @@
 
 												<td><c:out value="${workList.custMobile}" /></td>
 												<td><c:out value="${workList.workTypeName}" /></td>
-
-
 												<td>
-													<div class="fa-hover col-lg-3 col-md-6">
+												<c:choose>
+												<c:when test="${workList.status==1}">
+												Upload Documnents
+
+												</c:when>
+												</c:choose>
+												<c:choose>
+												<c:when test="${workList.status==2}">
+												Update Work Cost
+
+												</c:when>
+												</c:choose>
+												<c:choose>
+												<c:when test="${workList.status==3}">
+												Update Payment Done
+ 
+
+												</c:when>
+												</c:choose>
+												<c:choose>
+												<c:when test="${workList.status==4}">
+												User Allocation
+
+												</c:when>
+												</c:choose>
+												<c:choose>
+												<c:when test="${workList.status==5}">
+												Document In Office
+
+												</c:when>
+												</c:choose>
+												<c:choose>
+												<c:when test="${workList.status==6}">
+												Document Submit top RTO
+												</c:when>
+												</c:choose>
+												<c:choose>
+												<c:when test="${workList.status==7}">
+												Handover To Customer
+
+												</c:when>
+												</c:choose>
+												</td>
+												<td>	<div class="fa-hover col-lg-3 col-md-6">
 														<a
 															href="${pageContext.request.contextPath}/editWorkHead/${workList.workId}"><i
 															class="fa fa-edit"></i> <span class="text-muted"></span></a>

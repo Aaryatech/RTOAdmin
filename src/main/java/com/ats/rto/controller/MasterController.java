@@ -30,6 +30,8 @@ import com.ats.rto.common.Constants;
 import com.ats.rto.common.DateConvertor;
 import com.ats.rto.common.VpsImageUpload;
 import com.ats.rto.model.Cust;
+import com.ats.rto.model.GetCount;
+import com.ats.rto.model.GetWork;
 import com.ats.rto.model.User;
 import com.ats.rto.model.WorkType;
 
@@ -45,6 +47,43 @@ public class MasterController {
 			User[] userListArray = rest.getForObject(Constants.url + "/getAllUserList", User[].class);
 			List<User> userList = new ArrayList<User>(Arrays.asList(userListArray));
 			model.addObject("userList", userList);
+
+		} catch (Exception e) {
+
+			System.err.println("Exception in showing Error Message Page " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return model;
+
+	}
+
+	/*
+	 * @RequestMapping(value = "/showDashbord", method = RequestMethod.GET) public
+	 * ModelAndView showDashbord(HttpServletRequest request, HttpServletResponse
+	 * response) {
+	 * 
+	 * ModelAndView model = new ModelAndView("work/home"); try {
+	 * 
+	 * } catch (Exception e) {
+	 * 
+	 * System.err.println("Exception in showing Error Message Page " +
+	 * e.getMessage()); e.printStackTrace(); }
+	 * 
+	 * return model;
+	 * 
+	 * }
+	 */
+	@RequestMapping(value = "/showDashbord", method = RequestMethod.GET)
+	public ModelAndView showWorkList(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("work/home");
+		try {
+
+			GetCount count = rest.getForObject(Constants.url + "/getCountByStatus", GetCount.class);
+
+			System.out.println("count" + count.toString());
+			model.addObject("dashBoard", count);
 
 		} catch (Exception e) {
 

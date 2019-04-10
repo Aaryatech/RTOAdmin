@@ -69,6 +69,8 @@ public class GetWork {
 	private String custMobile;
 	private String custName;
 	private String workTypeName;
+	
+	
 
 	List<WorkDetail> workDetailList;
 
@@ -381,4 +383,8 @@ public class GetWork {
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
+	
+
+
+	
 }

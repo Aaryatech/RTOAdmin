@@ -15,6 +15,15 @@ public class GetWorkHeader {
 	private String custMobile;
 	private String custName;
 	private String workTypeName;
+	private int status;
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	private String date1;
 
@@ -102,7 +111,9 @@ public class GetWorkHeader {
 	public String toString() {
 		return "GetWorkHeader [workId=" + workId + ", workTypeTd=" + workTypeTd + ", custId=" + custId + ", vehicalNo="
 				+ vehicalNo + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", custMobile=" + custMobile + ", custName="
-				+ custName + ", workTypeName=" + workTypeName + ", date1=" + date1 + "]";
+				+ custName + ", workTypeName=" + workTypeName + ", status=" + status + ", date1=" + date1 + "]";
 	}
+
+	
 
 }

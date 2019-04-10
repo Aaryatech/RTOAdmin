@@ -106,16 +106,16 @@
 				</a>
 					<ul class="sub-menu children dropdown-menu ">
 						<li class="active"><i class="fa fa-file-text"></i><a
-							href="${pageContext.request.contextPath}/showReportStatuswise">Enquirywise
+							href="${pageContext.request.contextPath}/showReportStatuswise">Enquiry Wise
 								Report </a></li>
 
 
 						<li class="active"><i class="fa fa-file-text"></i><a
-							href="${pageContext.request.contextPath}/showReportWorktypewise">Worktypewise
+							href="${pageContext.request.contextPath}/showReportWorktypewise">Worktype Wise
 								Report</a></li>
 
 						<li class="active"><i class="fa fa-file-text"></i><a
-							href="${pageContext.request.contextPath}/showReportUserwise">Userwise
+							href="${pageContext.request.contextPath}/showReportUserwise">User Wise
 								Report</a></li>
 					</ul></li>
 

@@ -230,10 +230,19 @@
 								<div class="form-group"></div>
 								<div class="row" id="rc_book_div" style="display: none;">
 
-									<div class="col-md-2">RC Book</div>
+									<div class="col-md-2" id="vehicle_info">RC Book</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_rc" id='prev_rc' value="${getWork.rcbook}"> <input
-											type='file' id="rc_book" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.rcbook}"  style="align-content: flex-end;" target="_blank">RC Book</a></c:if>
+											type='file' id="rc_book" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.rcbook}"  style="align-content: flex-end;" target="_blank">
+											<c:choose>
+												<c:when test="${editWorkType==6}">
+												Vehicle Info
+												</c:when>
+												 <c:otherwise>
+												RC Book
+												 </c:otherwise>
+												</c:choose>
+											</a></c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -326,10 +335,20 @@
 
 								<div class="row" id="bank_letter_div" style="display: none;">
 
-									<div class="col-md-2">Bank Letter</div>
+									<div class="col-md-2" id="fir_doc">Bank Letter</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_bank_letter" id='prev_bank_letter' value="${getWork.bankDocument}">
-										<input type='file' id="bank_letter" name="doc[]" value="" /><c:if test="${editWorkType>0}">	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;" target="_blank">Bank Letter</a></c:if>
+										<input type='file' id="bank_letter" name="doc[]" value="" /><c:if test="${editWorkType>0}">	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;" target="_blank">
+										<c:choose>
+												<c:when test="${editWorkType==6}">
+												FIR Document
+
+												</c:when>
+												 <c:otherwise>
+												 Bank Letter
+												 </c:otherwise>
+												</c:choose>
+										</a></c:if>
 									</div>
 									
 									<%-- <c:if test="${editWorkType>0}">
@@ -344,7 +363,7 @@
 								<div class="row" id="form_17_div" style="display: none;">
 
 									<div class="col-md-2">Form No 17</div>
-									<div class="col-md-10">
+									<div class="col-md-10" id="">
 										<input type="hidden" name="prev_form_no17" id='prev_form_no17' value="${getWork.bankDocument1}">
 										<input type='file' id="form_no17" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.bankDocument1}"  style="align-content: flex-end;" target="_blank">Form No. 17</a></c:if>
 									</div>
@@ -632,6 +651,27 @@ else if(workType==5){
 	document.getElementById('orig_lic_div').style.display = "flow-root";
 
 }
+	
+else if(workType==6){
+	//alert("workType " +workType)
+	document.getElementById('bank_letter_div').style.display = "flow-root";
+	document.getElementById('rc_book_div').style.display = "flow-root";
+	document.getElementById('ins1_div').style.display = "flow-root";
+	document.getElementById('ins2_div').style.display = "flow-root";
+	document.getElementById('puc_div').style.display = "flow-root";
+	
+	$('#bank_noc_div').hide();
+
+	$('#add_pf_div').hide();
+
+	
+	$('#form_17_div').hide();
+
+		
+	document.getElementById('fir_doc').innerText="FIR Document";
+	document.getElementById('vehicle_info').innerText="Vehicle Info";
+	
+}
 
 }
 </script>
@@ -732,6 +772,25 @@ else if(workType==5){
 	document.getElementById('form_17_div').style = "display:none";
 	document.getElementById('orig_lic_div').style = "flow-root";
 
+}
+
+else if(workType==6){
+	document.getElementById('fir_doc').innerText="FIR Document";
+	document.getElementById('vehicle_info').innerText="Vehicle Info";
+
+	document.getElementById('bank_letter_div').style.display = "flow-root";
+	document.getElementById('rc_book_div').style.display = "flow-root";
+	document.getElementById('ins1_div').style.display = "flow-root";
+	document.getElementById('ins2_div').style.display = "flow-root";
+	document.getElementById('puc_div').style.display = "flow-root";
+	document.getElementById('add_pf_div').style = "display:none";
+
+	document.getElementById('bank_noc_div').style = "display:none";
+
+	document.getElementById('form_17_div').style = "display:none";
+	document.getElementById('orig_lic_div').style = "display:none";
+	
+	
 }
 
 }

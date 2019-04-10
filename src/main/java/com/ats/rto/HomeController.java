@@ -24,6 +24,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ats.rto.common.Constants;
+import com.ats.rto.model.GetCount;
 import com.ats.rto.model.LoginResUser;
 
 /**
@@ -98,7 +99,10 @@ public class HomeController {
 
 		ModelAndView model = new ModelAndView("home");
 		try {
+			GetCount count = rest.getForObject(Constants.url + "/getCountByStatus", GetCount.class);
 
+			System.out.println("count" + count.toString());
+			model.addObject("dashBoard", count);
 		} catch (Exception e) {
 
 			System.err.println("Exce ing etHubDashBoard  " + e.getMessage());

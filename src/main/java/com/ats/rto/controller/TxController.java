@@ -37,6 +37,7 @@ import com.ats.rto.model.WorkType;
 public class TxController {
 	RestTemplate rest = new RestTemplate();
 
+
 	@RequestMapping(value = "/showAddWorkHeader", method = RequestMethod.GET)
 	public ModelAndView showAddWorkHeader(HttpServletRequest request, HttpServletResponse response) {
 
@@ -67,22 +68,20 @@ public class TxController {
 	public ModelAndView showWorkList(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView model = new ModelAndView("work/workHeadList");
-		try {
-
-			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-			map.add("status", 1);
-
-			GetWork[] workListArray = rest.postForObject(Constants.url + "/getWorkHeaderByStatus", map,
-					GetWork[].class);
-			workList = new ArrayList<GetWork>(Arrays.asList(workListArray));
+		GetWork[] workL = rest.getForObject(Constants.url + "/getWorkHeaderByIsUsed",
+				GetWork[].class);
+		
+	//System.out.print("List"+workL.);
+			workList = new ArrayList<GetWork>(Arrays.asList(workL));
+			
 			model.addObject("workList", workList);
 
-		} catch (Exception e) {
+	/*	} catch (Exception e) {
 
 			System.err.println("Exception in showing showWorkHeadList " + e.getMessage());
 			e.printStackTrace();
 		}
-
+*/
 		return model;
 
 	}
@@ -107,7 +106,7 @@ public class TxController {
 			model.addObject("editWorkType", getWork.getWorkTypeTd());
 			// model.addObject("workdetail", getWork.getWorkDetailList());
 
-			 System.out.println("getWorkTypeTd for edit " + getWork.getWorkTypeTd());
+			 System.out.println("getWorkTypeTd for edit New: " + getWork.getWorkTypeTd());
 
 			WorkType[] workListArray = rest.getForObject(Constants.url + "/getAllWorkTypeList", WorkType[].class);
 			List<WorkType> workList = new ArrayList<WorkType>(Arrays.asList(workListArray));
@@ -135,13 +134,14 @@ public class TxController {
 
 		
 		try {
-
+		
 			int custId = Integer.parseInt(request.getParameter("cust_id"));
 			int workType = Integer.parseInt(request.getParameter("workTypeId"));
-			
+			System.out.println("workType: "+workType);
 			int workId=0;
 			try {
 			 workId = Integer.parseInt(request.getParameter("workId"));
+				System.out.println("workId: "+workId);
 			}
 			catch (Exception e) {
 				System.err.println("inside catch Set work id =0");
@@ -688,6 +688,151 @@ public class TxController {
 				work.setOrignalLicence(origLic);
 			} // end of if workType=5
 
+			if (workType == 6) {
+				System.err.println("work type =6");
+
+				String aadharCard = request.getParameter("prev_ac");
+				String ins1 = request.getParameter("prev_ins1");
+				String ins2 = request.getParameter("prev_ins2");
+				String puc = request.getParameter("prev_puc");
+				String bankLetter = request.getParameter("prev_bank_letter");
+			//	String form17 = request.getParameter("prev_form_no17");
+				String rcBook = request.getParameter("prev_rc");
+
+				System.err.println("aadharCard " + aadharCard + "ins1 " + ins1 + "ins2" + ins2 + "puc " + puc
+						+ "bankLetter " + bankLetter );
+
+				// String tStamp = ""+System.currentTimeMillis();
+
+				try {
+
+					VpsImageUpload imgUpload = new VpsImageUpload();
+
+					if (!photo1.get(0).getOriginalFilename().equalsIgnoreCase("")) {
+
+						String tStamp = "" + System.currentTimeMillis();
+
+						String extension = FilenameUtils.getExtension(photo1.get(0).getOriginalFilename());
+
+						// String prevImage1 = new String();
+						pic1 = tStamp + "p1" + "." + extension;
+						imgUpload.saveUploadedFiles(photo1.get(0), Constants.CAT_FILE_TYPE, pic1);
+
+					}
+
+					if (!photo2.get(0).getOriginalFilename().equalsIgnoreCase("")) {
+
+						String tStamp = "" + System.currentTimeMillis();
+
+						String extension = FilenameUtils.getExtension(photo2.get(0).getOriginalFilename());
+
+						// String prevImage1 = new String();
+						pic2 = tStamp + "p2" + "." + extension;
+						imgUpload.saveUploadedFiles(photo2.get(0), Constants.CAT_FILE_TYPE, pic2);
+
+					}
+					// getting doc List
+					// 1 Aadhar
+					if (!docList.get(0).getOriginalFilename().equalsIgnoreCase("")) {
+
+						String tStamp = "" + System.currentTimeMillis();
+
+						String extension = FilenameUtils.getExtension(docList.get(0).getOriginalFilename());
+
+						// String prevImage1 = new String();
+						aadharCard = tStamp + "ac" + "." + extension;
+						imgUpload.saveUploadedFiles(docList.get(0), Constants.CAT_FILE_TYPE, aadharCard);
+
+						System.err.println("aadharCard saved ");
+					}
+
+					// 2 Ins1
+					if (!docList.get(3).getOriginalFilename().equalsIgnoreCase("")) {
+
+						String tStamp = "" + System.currentTimeMillis();
+
+						String extension = FilenameUtils.getExtension(docList.get(3).getOriginalFilename());
+
+						ins1 = tStamp + "ins1" + "." + extension;
+						imgUpload.saveUploadedFiles(docList.get(3), Constants.CAT_FILE_TYPE, ins1);
+						System.err.println("Ins 1 saved ");
+					}
+
+					// 3 Ins2
+					if (!docList.get(4).getOriginalFilename().equalsIgnoreCase("")) {
+
+						String tStamp = "" + System.currentTimeMillis();
+
+						String extension = FilenameUtils.getExtension(docList.get(4).getOriginalFilename());
+
+						ins2 = tStamp + "ins2" + "." + extension;
+						imgUpload.saveUploadedFiles(docList.get(4), Constants.CAT_FILE_TYPE, ins2);
+						System.err.println("Ins 2 saved ");
+					}
+					// 4puc
+
+					if (!docList.get(2).getOriginalFilename().equalsIgnoreCase("")) {
+
+						String tStamp = "" + System.currentTimeMillis();
+
+						String extension = FilenameUtils.getExtension(docList.get(2).getOriginalFilename());
+
+						puc = tStamp + "puc" + "." + extension;
+						imgUpload.saveUploadedFiles(docList.get(2), Constants.CAT_FILE_TYPE, puc);
+						System.err.println("PUC saved ");
+
+					}
+
+					// 5 bankLetter
+
+					if (!docList.get(7).getOriginalFilename().equalsIgnoreCase("")) {
+
+						String tStamp = "" + System.currentTimeMillis();
+
+						String extension = FilenameUtils.getExtension(docList.get(7).getOriginalFilename());
+
+						bankLetter = tStamp + "blet" + "." + extension;
+						imgUpload.saveUploadedFiles(docList.get(7), Constants.CAT_FILE_TYPE, bankLetter);
+
+						System.err.println("bankLetter saved ");
+
+					}
+
+					
+					// 67add rcBook
+
+					if (!docList.get(1).getOriginalFilename().equalsIgnoreCase("")) {
+
+						String tStamp = "" + System.currentTimeMillis();
+
+						String extension = FilenameUtils.getExtension(docList.get(1).getOriginalFilename());
+
+						rcBook = tStamp + "rc" + "." + extension;
+						imgUpload.saveUploadedFiles(docList.get(1), Constants.CAT_FILE_TYPE, rcBook);
+
+						System.err.println("rcBook proof saved ");
+
+					}
+
+				} catch (Exception e) {
+					System.err.println("Exc in uploading work Imag  work type 3 " + e.getMessage());
+					e.printStackTrace();
+
+				}
+
+				System.err.println("aadharCard " + aadharCard + "ins1 " + ins1 + "ins2 " + ins2 + "puc " + puc
+						+ "bankLetter " + bankLetter + "rcBook " + rcBook );
+
+				work.setBankDocument(bankLetter);
+			
+				work.setAdharCard(aadharCard);
+				work.setInsurance(ins1);
+				work.setInsurance1(ins2);
+				work.setPuc(puc);
+				work.setRcbook(rcBook);
+
+			} // end of if workType=6
+			
 			System.out.println("pic1" + pic1);
 			System.out.println("pic2" + pic2);
 

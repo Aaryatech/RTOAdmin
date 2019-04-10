@@ -105,10 +105,10 @@
 								<select id="userId" name="userId" class="standardSelect"
 									tabindex="1">
 
+								<option value="0">All</option>
 
 									<c:forEach items="${userList}" var="userList">
-										<option value="0">All</option>
-
+										
 										<option value="${userList.userId}">${userList.userName}
 										</option>
 
@@ -134,12 +134,12 @@
 
 						<div class="card">
 							<div class="card-header">
-								<strong class="card-title">Userwise Report</strong>
+								<strong class="card-title">User wise Report</strong>
 							</div>
 
 
 							<div class="card-body">
-								<table id="bootstrap-data-table1"
+								<table id="table1"
 									class="table table-striped table-bordered">
 
 									<thead>
@@ -151,7 +151,7 @@
 											<th>Work Type Name</th>
 											<th>Payment Done</th>
 											<th>Remaining Amt</th>
-
+<th>Status</th>
 
 										</tr>
 									</thead>
@@ -243,7 +243,7 @@
 	<script type="text/javascript">
 		function callSearch() {
 
-			alert("ssss");
+		
 
 			var fromDate = $("#fromDate").val();
 			var toDate = $("#toDate").val();
@@ -261,7 +261,7 @@
 			}, function(data) {
 				document.getElementById("expExcel").disabled = false;
 				document.getElementById("PDFButton").disabled = false;
-
+				$('#table1 td').remove();
 				if (data == "") {
 					alert("No records found !!");
 					document.getElementById("expExcel").disabled = true;
@@ -270,11 +270,44 @@
 				}
 				/* alert(data[0].orderQty); */
 
-				var dataTable = $('#bootstrap-data-table1').DataTable();
+				var dataTable = $('#table1').DataTable();
 				$.each(data, function(i, v) {
+					var status;
+					if(v.status==1)
+					{
+					status="Upload Documnents";
+					}
+					else if(v.status==2)
+					{
+					status="Update Work Cost";
+					}
+					else if(v.status==3)
+					{
+					status="Update Payment Done";
+					}
+					else if(v.status==4)
+					{
+					status="User Allocation";
+					}
+					else if(v.status==5)
+					{
+					status="Document In Office";
+					}
+					else if(v.status==6)
+					{
+					status="Document Submit top RTO";
+					}
+					else if(v.status==7)
+					{
+					status="Handover To Customer";
+					}
+					else
+						{
+						status="Work Completed ";
+						}
 					dataTable.row.add(
 							[ i + 1, v.date1, v.custName, v.custMobile,
-									v.workTypeName, v.exInt1, v.exInt2 ])
+									v.workTypeName, v.exInt1, v.exInt2 ,status])
 							.draw();
 				});
 
@@ -329,7 +362,7 @@
 
 	<script type="text/javascript">
 		function genPdf() {
-			alert("hiii");
+		//	alert("hiii");
 			var fromDate = document.getElementById("fromDate").value;
 			var toDate = document.getElementById("toDate").value;
 

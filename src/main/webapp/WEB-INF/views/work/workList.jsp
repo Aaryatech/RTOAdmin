@@ -122,6 +122,7 @@
 											<th width="15%">Cust Name</th>
 											<th width="10%">Mob No</th>
 											<th width="30%">Work Type Name</th>
+										
 											<th width="15%">Work Cost</th>
 											<th width="5%">Action</th>
 										</tr>
@@ -142,6 +143,7 @@
 
 												<td><c:out value="${workList.custMobile}" /></td>
 												<td><c:out value="${workList.workTypeName}" /></td>
+											
 
 												<td align="right"><input class="form-control"
 													id="workCost${workList.workId}" placeholder="Cost"

@@ -79,8 +79,9 @@
 										<div class="input-group-addon">
 											<i class="fa fa-user"></i>
 										</div>
-										<input type="text" id="username" name="username"
+										<input type="text" id="username" name="username" 
 											placeholder="User Name" class="form-control"
+											pattern="[0-9]{10}" maxlength=10
 											autocomplete="off">
 									</div>
 								</div>

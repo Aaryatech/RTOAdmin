@@ -14,6 +14,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,11 +33,62 @@ public class WorkController {
 	@RequestMapping(value = "/showWorkList", method = RequestMethod.GET)
 	public ModelAndView showWorkList(HttpServletRequest request, HttpServletResponse response) {
 
+		
 		ModelAndView model = new ModelAndView("work/workList");
 		try {
 
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 			map.add("status", 1);
+
+			GetWork[] workListArray = rest.postForObject(Constants.url + "/getWorkHeaderByStatus", map,
+					GetWork[].class);
+			workList = new ArrayList<GetWork>(Arrays.asList(workListArray));
+			System.out.println("workListArray" + workListArray.toString());
+
+			System.out.println("workLIst" + workList.toString());
+			model.addObject("workList", workList);
+
+		} catch (Exception e) {
+
+			System.err.println("Exception in showing Error Message Page " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return model;
+
+	}
+	@RequestMapping(value = "/showEnquiryList", method = RequestMethod.GET)
+	public ModelAndView showEnquiryList(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("work/enquiryList");
+		try {
+
+
+			GetWork[] workListArray = rest.getForObject(Constants.url + "/getWorkHeaderList", 
+					GetWork[].class);
+			workList = new ArrayList<GetWork>(Arrays.asList(workListArray));
+			System.out.println("workListArray" + workListArray.toString());
+
+			System.out.println("workLIst" + workList.toString());
+			model.addObject("workList", workList);
+
+		} catch (Exception e) {
+
+			System.err.println("Exception in showing Error Message Page " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return model;
+
+	}
+	@RequestMapping(value = "/showWorkCompleteList", method = RequestMethod.GET)
+	public ModelAndView showWorkCompleteList(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("work/workcompleteList");
+		try {
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("status", 7);
 
 			GetWork[] workListArray = rest.postForObject(Constants.url + "/getWorkHeaderByStatus", map,
 					GetWork[].class);
@@ -224,7 +276,7 @@ public class WorkController {
 
 		return "redirect:/showUpdatePayment";
 	}
-
+	
 	@RequestMapping(value = "/showUserAllocation", method = RequestMethod.GET)
 	public ModelAndView showUserAllocation(HttpServletRequest request, HttpServletResponse response) {
 

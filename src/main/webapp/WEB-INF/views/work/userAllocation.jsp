@@ -84,18 +84,18 @@
 							action="${pageContext.request.contextPath}/updateStatusAndUserId"
 							id="work_form" method="post">
 							<div class="card-body card-block">
-
-
+										
 								<div class="form-group"></div>
 								<div class="row">
 
 									<div class="col-md-2">Select User</div>
 
 									<div class="col-md-4">
-										<select id="userId" name="userId" class="standardSelect"
+										<select id="userId" name="userId" class="standardSelect" placeholder="Select User"
 											tabindex="1" required>
+											
 											<c:forEach items="${userList}" var="userList">
-
+									
 												<option value="${userList.userId}">${userList.userName}</option>
 											</c:forEach>
 										</select>

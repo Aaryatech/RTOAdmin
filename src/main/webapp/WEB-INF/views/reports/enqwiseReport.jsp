@@ -107,9 +107,9 @@
 								<select id="workTypeId" name="workTypeId" class="standardSelect"
 									tabindex="1">
 
-
+	<option value="0">All</option>
 									<c:forEach items="${workList}" var="workList">
-										<option value="0">All</option>
+									
 
 										<option value="${workList.workTypeId}">${workList.workTypeName}
 										</option>
@@ -127,11 +127,11 @@
 
 									<select id="status" name="status" class="standardSelect"
 										tabindex="1">
-
+	<option value="0">All</option>
 
 										<c:forEach items="${taskList}" var="taskList">
 
-											<option value="0">All</option>
+										
 											<option value="${taskList.taskId}">${taskList.taskDesc}
 											</option>
 
@@ -157,7 +157,7 @@
 
 						<div class="card">
 							<div class="card-header">
-								<strong class="card-title">Enqwise Report</strong>
+								<strong class="card-title">Enquiry Wise Report</strong>
 							</div>
 
 
@@ -172,7 +172,7 @@
 											<th>Customer Name</th>
 											<th>Mobile no</th>
 											<th>Work Type Name</th>
-
+											<th>Work Status</th>
 
 										</tr>
 									</thead>
@@ -264,8 +264,7 @@
 	<script type="text/javascript">
 		function callSearch() {
 
-			alert("ssss");
-
+		
 			var fromDate = $("#fromDate").val();
 			var toDate = $("#toDate").val();
 			var workTypeId = $("#workTypeId").val();
@@ -284,7 +283,7 @@
 			}, function(data) {
 				document.getElementById("expExcel").disabled = false;
 				document.getElementById("PDFButton").disabled = false;
-
+				$('#bootstrap-data-table1 td').remove();
 				if (data == "") {
 					alert("No records found !!");
 					document.getElementById("expExcel").disabled = true;
@@ -295,9 +294,42 @@
 
 				var dataTable = $('#bootstrap-data-table1').DataTable();
 				$.each(data, function(i, v) {
+					var status;
+					if(v.status==1)
+					{
+					status="Upload Documnents";
+					}
+					else if(v.status==2)
+					{
+					status="Update Work Cost";
+					}
+					else if(v.status==3)
+					{
+					status="Update Payment Done";
+					}
+					else if(v.status==4)
+					{
+					status="User Allocation";
+					}
+					else if(v.status==5)
+					{
+					status="Document In Office";
+					}
+					else if(v.status==6)
+					{
+					status="Document Submit top RTO";
+					}
+					else if(v.status==7)
+					{
+					status="Handover To Customer";
+					}
+					else
+						{
+						status="Work Completed ";
+						}
 					dataTable.row.add(
 							[ i + 1, v.date1, v.custName, v.custMobile,
-									v.workTypeName ]).draw();
+									v.workTypeName ,status]).draw();
 				});
 
 			});
