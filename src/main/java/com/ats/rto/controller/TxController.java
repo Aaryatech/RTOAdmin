@@ -136,6 +136,7 @@ public class TxController {
 		try {
 		
 			int custId = Integer.parseInt(request.getParameter("cust_id"));
+			System.out.println("Work Type------------"+request.getParameter("workTypeId")+" "+custId); 
 			int workType = Integer.parseInt(request.getParameter("workTypeId"));
 			System.out.println("workType: "+workType);
 			int workId=0;

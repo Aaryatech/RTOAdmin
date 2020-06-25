@@ -6,11 +6,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
 public class VpsImageUpload {
 
 	public static final String CAT_FOLDER = "/home/aaryate1/tomcat.aaryatechindia.in/tomcat-8.0.18/webapps/rtodocupload/";//to upload documents
+	//public static final String CAT_FOLDER = "/home/maddy/ats-12/rto/";
 	
 	public static final String ITEM_FOLDER = "/home/ats-11/item/";
 	//public static final String ITEM_FOLDER = "D:/akshay/image/";
@@ -47,7 +49,7 @@ public class VpsImageUpload {
 
 		/*for (MultipartFile file : files) {
 */
-			
+			try {
 
 			Path path = Paths.get(CAT_FOLDER + imageName);
 
@@ -100,6 +102,11 @@ public class VpsImageUpload {
 			}
 
 			Files.write(path, bytes);
+			}catch (MaxUploadSizeExceededException e) {
+				System.err.println("File too large : "+e.getMessage());
+				System.err.println("Required file size : "+e.getMaxUploadSize());
+				e.printStackTrace();
+			}
 
 		}
 

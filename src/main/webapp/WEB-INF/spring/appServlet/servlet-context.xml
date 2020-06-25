@@ -35,7 +35,7 @@
 	</beans:bean>
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> <!-- setting maximum upload size -->
-		<beans:property name="maxUploadSize" value="100000" />
+		<beans:property name="maxUploadSize" value="1024000" />
 	</beans:bean>
 
 	<!-- Configure bean to convert JSON to POJO and vice versa -->

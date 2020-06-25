@@ -74,14 +74,14 @@
 			<div class="row">
 
 				<div class="col-xs-12 col-sm-12">
-					<div class="card">
+					<div class="card">workTypeId
 						<div class="card-header">
 							<strong> Add Work</strong>
 						</div>
 						<div class="card-body card-block">
-							<form
+							<form class="upload-form"
 								action="${pageContext.request.contextPath}/insertWorkHeader"
-								method="post" enctype="multipart/form-data">
+								method="post" enctype="multipart/form-data" onsubmit="return validImage()">
 
 
 								<div class="row">
@@ -184,8 +184,9 @@
 
 									</div>
 									<div class="col-md-4">
-										<input type='file' id="imgInp" name="imgInp" value="" /><div class="form-group"></div> <img
-											id="image1" name="image1" src="${docUrl}${getWork.photo}" 
+										<input type='file' id="imgInp" name="imgInp" value="" data-max-size="50000" class="upload-file"
+										 accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/><div class="form-group"></div> <img
+											id="image1" name="image1" src="${docUrl}${getWork.photo}"  
 											style="height: 70px; width: 70px;" /> <span class="error"
 											aria-live="polite"></span>
 
@@ -198,7 +199,8 @@
 									</div>
 
 									<div class="col-md-4">
-										<input type='file' id="imgInp1" name="imgInp1" value="" /><div class="form-group"></div> <img
+										<input type='file' id="imgInp1" name="imgInp1" value=""  data-max-size="50000" class="upload-file"
+										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/><div class="form-group"></div> <img
 											id="image2" name="image2" src="${docUrl}${getWork.photo1}"
 											style="height: 70px;width: 70px;"/> <span class="error"
 											aria-live="polite"></span>
@@ -213,8 +215,10 @@
 
 									<div class="col-md-2">Aadhaar Card</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_ac" id='prev_ac' value="${getWork.adharCard}"> <input
-											type='file' id="ac" name="doc[]" value="" required="required"/> <c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.adharCard}"  style="align-content: flex-end;" target="_blank">Aadhar Card</a></c:if>
+										<input type="hidden" name="prev_ac" id='prev_ac' value="${getWork.adharCard}"> <input 
+											type='file' id="ac" name="doc[]" value=""  data-max-size="50000" class="upload-file"
+											accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"
+											required="required"/> <c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.adharCard}"  style="align-content: flex-end;" target="_blank">Aadhar Card</a></c:if>
 									</div>
 									
 									<%-- <c:if test="${editWorkType>0}">
@@ -232,8 +236,11 @@
 
 									<div class="col-md-2" id="vehicle_info">RC Book</div>
 									<div class="col-md-10">
-										<input type="hidden" name="prev_rc" id='prev_rc' value="${getWork.rcbook}"> <input
-											type='file' id="rc_book" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.rcbook}"  style="align-content: flex-end;" target="_blank">
+										<input type="hidden" name="prev_rc" id='prev_rc' value="${getWork.rcbook}"> 
+										<input
+											type='file' id="rc_book" name="doc[]" value="" data-max-size="50000" class="upload-file"
+										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.rcbook}"  style="align-content: flex-end;" target="_blank">
 											<c:choose>
 												<c:when test="${editWorkType==6}">
 												Vehicle Info
@@ -256,7 +263,10 @@
 									<div class="col-md-2">PUC</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_puc" id=prev_puc value="${getWork.puc}"> <input
-											type='file' id="puc" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.puc}"  style="align-content: flex-end;" target="_blank">PUC</a></c:if>
+											type='file' id="puc" name="doc[]" value="" 
+											data-max-size="50000" class="upload-file"
+										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.puc}"  style="align-content: flex-end;" target="_blank">PUC</a></c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -273,7 +283,10 @@
 									<div class="col-md-2">Insurance 1</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_ins1" id='prev_ins1' value="${getWork.insurance}"> <input
-											type='file' id="ins1" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.insurance}"  style="align-content: flex-end;" target="_blank">Insurance 1</a></c:if>
+											type='file' id="ins1" name="doc[]" value="" 
+											data-max-size="50000" class="upload-file"
+										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.insurance}"  style="align-content: flex-end;" target="_blank">Insurance 1</a></c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -288,7 +301,9 @@
 									<div class="col-md-2">Insurance 2</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_ins2" id=prev_ins2 value="${getWork.insurance1}"> <input
-											type='file' id="ins2" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.insurance1}"  style="align-content: flex-end;" target="_blank">Insurance 2</a></c:if>
+											type='file' id="ins2" name="doc[]" value="" data-max-size="50000" class="upload-file"
+										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.insurance1}"  style="align-content: flex-end;" target="_blank">Insurance 2</a></c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -304,7 +319,9 @@
 									<div class="col-md-2">Address Proof</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_add_proof" id='prev_add_proof' value="${getWork.addProof}">
-										<input type='file' id="add_proof" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.addProof}"  style="align-content: flex-end;" target="_blank">Address Proof</a></c:if>
+										<input type='file' id="add_proof" name="doc[]" value="" data-max-size="50000" class="upload-file"
+										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.addProof}"  style="align-content: flex-end;" target="_blank">Address Proof</a></c:if>
 									</div>
 								<%-- 	<c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -320,7 +337,9 @@
 									<div class="col-md-2">Bank NOC</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_bank_noc" id='prev_bank_noc' value="${getWork.bankDocument}">
-										<input type='file' id="bank_noc" name="doc[]" value="" /><c:if test="${editWorkType>0}">	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;" target="_blank">Bank NOC</a></c:if>
+										<input type='file' id="bank_noc" name="doc[]" value="" data-max-size="50000" class="upload-file"
+										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<c:if test="${editWorkType>0}">	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;" target="_blank">Bank NOC</a></c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
 									<div class="col-md-2"></div>
@@ -338,7 +357,9 @@
 									<div class="col-md-2" id="fir_doc">Bank Letter</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_bank_letter" id='prev_bank_letter' value="${getWork.bankDocument}">
-										<input type='file' id="bank_letter" name="doc[]" value="" /><c:if test="${editWorkType>0}">	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;" target="_blank">
+										<input type='file' id="bank_letter" name="doc[]" value="" data-max-size="50000" class="upload-file"
+										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<c:if test="${editWorkType>0}">	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;" target="_blank">
 										<c:choose>
 												<c:when test="${editWorkType==6}">
 												FIR Document
@@ -365,7 +386,9 @@
 									<div class="col-md-2">Form No 17</div>
 									<div class="col-md-10" id="">
 										<input type="hidden" name="prev_form_no17" id='prev_form_no17' value="${getWork.bankDocument1}">
-										<input type='file' id="form_no17" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.bankDocument1}"  style="align-content: flex-end;" target="_blank">Form No. 17</a></c:if>
+										<input type='file' id="form_no17" name="doc[]" value="" data-max-size="50000" class="upload-file"
+										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.bankDocument1}"  style="align-content: flex-end;" target="_blank">Form No. 17</a></c:if>
 									</div>
 								<%-- 	
 									<c:if test="${editWorkType>0}">
@@ -383,7 +406,9 @@
 									<div class="col-md-2">Original License</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_orig_lic" id='prev_orig_lic' value="${getWork.orignalLicence}">
-										<input type='file' id="orig_lic" name="doc[]" value="" /><c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.orignalLicence}"  style="align-content: flex-end;" target="_blank">Original License</a></c:if>
+										<input type='file' id="orig_lic" name="doc[]" value=""  data-max-size="50000" class="upload-file"
+										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.orignalLicence}"  style="align-content: flex-end;" target="_blank">Original License</a></c:if>
 									</div>
 									
 									<%-- <c:if test="${editWorkType>0}">
@@ -405,6 +430,7 @@
 										Submit</button>
 								</div>
 							</form>
+							<p class="desc text-danger fontsize11">Note : Image size should not exceed 50kb.</p>
 						</div>
 					</div>
 				</div>
@@ -464,7 +490,56 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/chosen/chosen.jquery.min.js"></script>
 
+<script>
+/* function validImage(){
+	alert("here")
+	  $('input[type=file][data-max-size]').each(function(){
+          if(typeof this.files[0] !== 'undefined'){
+              var maxSize = parseInt($(this).attr('max-size'),10),
+              size = this.files[0].size;
+              isOk = maxSize > size;
+              return true;
+          }else{
+          	alert("File size exceed.")
+          }
+      });
+} */
+/* $(function(){
+    $('form').submit(function(){
+    	alert("Hii");
+        var isOk = true;
+        $('input[type=file][data-max-size]').each(function(){
+            if(typeof this.files[0] !== 'undefined'){
+                var maxSize = parseInt($(this).attr('max-size'),10),
+                size = this.files[0].size;
+                isOk = maxSize > size;
+                return isOk;
+            }else{
+            	alert("File size exceed.")
+            }
+        });
+        return isOk;
+    });
+}); */
 
+$(function(){
+    var fileInput = $('.upload-file');
+    var maxSize = fileInput.data('max-size');
+    $('.upload-form').submit(function(e){
+        if(fileInput.get(0).files.length){
+            var fileSize = fileInput.get(0).files[0].size; // in bytes
+            if(fileSize>maxSize){
+               // alert('file size is more then' + maxSize + ' bytes');
+               alert('Attachment size exceeds the allowable limit')
+                return false;
+            }else{
+               // alert('file size is correct- '+fileSize+' bytes');
+            }
+        }
+        
+    });
+}); 
+</script>
 	<script>
 		jQuery(document).ready(function() {
 			jQuery(".standardSelect").chosen({
@@ -682,7 +757,7 @@ function onLoadCall() {
 	//$('#workTypeId').prop('readoly', true);
 	 //document.getElementById("pets").options[2].disabled = true;
 	
-	document.getElementById('workTypeId').disabled = true;
+	document.getElementById('workTypeId').disabled = false;
 	document.getElementById('ac').style.color = 'white';
 	
 	document.getElementById('imgInp').style.color = 'white';
