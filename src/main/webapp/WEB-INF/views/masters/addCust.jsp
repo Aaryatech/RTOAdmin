@@ -84,6 +84,8 @@
 						<div class="card-body card-block">
 							<form action="${pageContext.request.contextPath}/insertCust"
 								method="post">
+								<input type="hidden" name="custId" id="custId"
+										value="${editUser.custId}">
 								<div class="row">
 									<div class="col-md-2">Customer Name</div>
 									<div class="col-md-4">
@@ -99,9 +101,6 @@
 
 										</div>
 									</div>
-
-									<input type="hidden" name="custId" id="custId"
-										value="${editUser.custId}">
 
 									<div class="col-md-2">Customer Email</div>
 									<div class="col-md-4">
@@ -129,7 +128,7 @@
 
 											<input class="form-control" name="contactNo" id="contactNo"
 												placeholder="Contact No" value="${editUser.custMobile}"
-												onblur="getMobNoTocheck()" required
+												onblur="getMobNoTocheck()" required maxlength="10"
 												oninvalid="setCustomValidity('Please enter valid Mobile no ')"
 												onchange="try{setCustomValidity('')}catch(e){}"
 												pattern="[0-9]{10}" autocomplete="off"> <span
