@@ -120,7 +120,6 @@
 											<th width="5%">Enq No</th>
 											<th width="10%">Date</th>
 											<th width="15%">Cust Name</th>
-											<th width="10%">Mob No</th>
 											<th width="30%">Work Type Name</th>
 										
 											<th width="15%">Work Cost</th>
@@ -139,9 +138,8 @@
 
 												<td><c:out value="${workList.date1}" /></td>
 
-												<td><c:out value="${workList.custName}" /></td>
+												<td><c:out value="${workList.custName}-${workList.custMobile}" /></td>
 
-												<td><c:out value="${workList.custMobile}" /></td>
 												<td><c:out value="${workList.workTypeName}" /></td>
 											
 
@@ -172,7 +170,7 @@
 
 									<button type="submit" class="btn btn-primary"
 										onclick="valthisform()"
-										style="align-content: center; width: 226px; margin-left: 80px;">
+										style="align-content: center; width: 150px; border-radius: 50px">
 										Submit</button>
 								</div>
 

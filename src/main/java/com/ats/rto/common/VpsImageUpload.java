@@ -11,8 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class VpsImageUpload {
 
-	public static final String CAT_FOLDER = "/home/aaryate1/tomcat.aaryatechindia.in/tomcat-8.0.18/webapps/rtodocupload/";//to upload documents
-	//public static final String CAT_FOLDER = "/home/maddy/ats-12/rto/";
+	//public static final String CAT_FOLDER = "/opt/apache-tomcat-8.5.49/webapps/rto_uploads/rtodocupload/";
+	
+	public static final String CAT_FOLDER = "/home/maddy/ats-12/rto/";
 	
 	public static final String ITEM_FOLDER = "/home/ats-11/item/";
 	//public static final String ITEM_FOLDER = "D:/akshay/image/";

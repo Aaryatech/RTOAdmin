@@ -356,6 +356,7 @@ public class WorkController {
 			GetWork[] workListArray = rest.postForObject(Constants.url + "/getWorkHeaderByStatus", map,
 					GetWork[].class);
 			workList = new ArrayList<GetWork>(Arrays.asList(workListArray));
+			System.out.println("workList-------------"+workList);
 			model.addObject("workList", workList);
 
 		} catch (Exception e) {

@@ -159,7 +159,7 @@
 										<div>
 											<div class="input-group" style="align-items: center;">
 												Work Cost &nbsp; <input class="form-control"
-													value="${getWork.workCost}" id="workCost" name="workCost"
+													value="${getWork.workCost}" id="workCostVal" name="workCost"
 													type="text" readonly /> <span class="error"
 													aria-live="polite"></span>
 											</div>
@@ -173,7 +173,7 @@
 
 
 											<div class="input-group" style="align-items: center;">
-												Payment Done&nbsp; <input class="form-control" id="exInt1"
+												Payment Done&nbsp; <input class="form-control" id="exInt1" onchange="checkWorkPay()"
 													value="${getWork.exInt1}" name="exInt1" type="text" /> <span
 													class="error" aria-live="polite"></span>
 											</div>
@@ -181,7 +181,7 @@
 									</div>
 
 
-									<div class="col-lg-3">
+									<div class="col-lg-4">
 
 										<div>
 
@@ -199,11 +199,11 @@
 
 
 
-									<div class="col-lg-3" align="right">
+									<div class="col-lg-2" align="right">
 
 
-										<button type="submit" class="btn btn-primary"
-											style="align-content: center; width: 113px; margin-left: 40px;">
+										<button type="submit" class="btn btn-primary" id="submtbtn"
+											style="align-content: center; width: 100px; border-radius: 50px">
 											Submit</button>
 									</div>
 								</div>
@@ -216,6 +216,7 @@
 						<div class="form-group"></div>
 						<div class="row">
 							<div class="col-md-1"></div>
+							<c:if test="${not empty getWork.photo}">
 							<div class="col-md-1">
 								<input type="hidden" name="prevImage1" id="prevImage1"
 									value="${getWork.photo}"> Photo1
@@ -229,7 +230,8 @@
 									aria-live="polite"></span>
 
 							</div>
-
+							</c:if>
+<c:if test="${not empty getWork.photo}">
 							<div class="col-md-2">
 								<input type="hidden" name="prevImage2" id="prevImage2"
 									value="${getWork.photo1}"> Photo2
@@ -244,7 +246,7 @@
 									aria-live="polite"></span>
 
 							</div>
-
+</c:if>
 						</div>
 
 
@@ -255,49 +257,63 @@
 
 							<div class="form-group"></div>
 							<div class="row">
-								<div class="col-md-2">
+								<c:if test="${not empty getWork.adharCard}">
+									<div class="col-md-2">
 
 
-									<a href="${docUrl}${getWork.adharCard}"
-										style="align-content: flex-end;" target="_blank">Aadhar
-										Card</a>
+										<a href="${docUrl}${getWork.adharCard}"
+											style="align-content: flex-end;" target="_blank">Aadhar
+											Card</a>
 
-								</div>
+									</div>
+								</c:if>
 
-								<div class="col-md-2">
+								<c:if test="${not empty getWork.rcbook}">
+									<div class="col-md-2">
 
-									<a href="${docUrl}${getWork.rcbook}"
-										style="align-content: flex-end;" target="_blank">RC Book</a>
+										<a href="${docUrl}${getWork.rcbook}"
+											style="align-content: flex-end;" target="_blank">RC Book</a>
 
-								</div>
+									</div>
+								</c:if>
 
-								<div class="col-md-2">
+								<c:if test="${not empty getWork.insurance}">
+									<div class="col-md-2">
 
-									<a href="${docUrl}${getWork.insurance}"
-										style="align-content: flex-end;" target="_blank">Insurance
-										1</a>
+										<a href="${docUrl}${getWork.insurance}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											1</a>
 
-								</div>
+									</div>
+								</c:if>
 
-								<div class="col-md-2">
+								<c:if test="${not empty getWork.insurance1}">
+									<div class="col-md-2">
 
-									<a href="${docUrl}${getWork.insurance1}"
-										style="align-content: flex-end;" target="_blank">Insurance
-										2</a>
+										<a href="${docUrl}${getWork.insurance1}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											2</a>
 
-								</div>
-								<div class="col-md-2">
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.puc}">
+									<div class="col-md-2">
 
 
-									<a href="${docUrl}${getWork.puc}"
-										style="align-content: flex-end;" target="_blank">PUC</a>
-								</div>
-								<div class="col-md-2">
+										<a href="${docUrl}${getWork.puc}"
+											style="align-content: flex-end;" target="_blank">PUC</a>
+									</div>
+								</c:if>
 
-									<a href="${docUrl}${getWork.addProof}"
-										style="align-content: flex-end;" target="_blank">Address
-										Proof</a>
-								</div>
+								<c:if test="${not empty getWork.addProof}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.addProof}"
+											style="align-content: flex-end;" target="_blank">Address
+											Proof</a>
+									</div>
+								</c:if>
 							</div>
 
 						</c:if>
@@ -306,47 +322,62 @@
 
 							<div class="form-group"></div>
 							<div class="row">
-								<div class="col-md-2">
-
-									<a href="${docUrl}${getWork.adharCard}"
-										style="align-content: flex-end;" target="_blank">Aadhar
-										Card</a>
-
-								</div>
+								<c:if test="${not empty getWork.adharCard}">
+									<div class="col-md-2">
 
 
-								<div class="col-md-2">
+										<a href="${docUrl}${getWork.adharCard}"
+											style="align-content: flex-end;" target="_blank">Aadhar
+											Card</a>
 
-									<a href="${docUrl}${getWork.rcbook}"
-										style="align-content: flex-end;" target="_blank">RC Book</a>
+									</div>
+								</c:if>
 
-								</div>
+								<c:if test="${not empty getWork.rcbook}">
+									<div class="col-md-2">
 
-								<div class="col-md-2">
+										<a href="${docUrl}${getWork.rcbook}"
+											style="align-content: flex-end;" target="_blank">RC Book</a>
 
-									<a href="${docUrl}${getWork.insurance}"
-										style="align-content: flex-end;" target="_blank">Insurance
-										1</a>
+									</div>
+								</c:if>
 
-								</div>
+								<c:if test="${not empty getWork.insurance}">
+									<div class="col-md-2">
 
-								<div class="col-md-2">
+										<a href="${docUrl}${getWork.insurance}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											1</a>
 
-									<a href="${docUrl}${getWork.insurance1}"
-										style="align-content: flex-end;" target="_blank">Insurance
-										2</a>
+									</div>
+								</c:if>
 
-								</div>
-								<div class="col-md-2">
+								<c:if test="${not empty getWork.insurance1}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.insurance1}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											2</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.puc}">
+
+									<div class="col-md-2">
 
 
-									<a href="${docUrl}${getWork.puc}"
-										style="align-content: flex-end;" target="_blank">PUC</a>
-								</div>
-								<div class="col-md-2">
-									<a href="${docUrl}${getWork.bankDocument}"
-										style="align-content: flex-end;" target="_blank">Bank NOC</a>
-								</div>
+										<a href="${docUrl}${getWork.puc}"
+											style="align-content: flex-end;" target="_blank">PUC</a>
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.bankDocument}">
+									<div class="col-md-2">
+										<a href="${docUrl}${getWork.bankDocument}"
+											style="align-content: flex-end;" target="_blank">Bank NOC</a>
+									</div>
+								</c:if>
 							</div>
 
 						</c:if>
@@ -356,53 +387,71 @@
 
 							<div class="form-group"></div>
 							<div class="row">
-								<div class="col-md-2">
+								<c:if test="${not empty getWork.adharCard}">
+									<div class="col-md-2">
 
 
-									<a href="${docUrl}${getWork.adharCard}"
-										style="align-content: flex-end;" target="_blank">Aadhar
-										Card</a>
+										<a href="${docUrl}${getWork.adharCard}"
+											style="align-content: flex-end;" target="_blank">Aadhar
+											Card</a>
 
-								</div>
-								<div class="col-md-2">
+									</div>
+								</c:if>
 
-									<a href="${docUrl}${getWork.rcbook}"
-										style="align-content: flex-end;" target="_blank">RC Book</a>
+								<c:if test="${not empty getWork.rcbook}">
+									<div class="col-md-2">
 
-								</div>
+										<a href="${docUrl}${getWork.rcbook}"
+											style="align-content: flex-end;" target="_blank">RC Book</a>
 
-								<div class="col-md-2">
+									</div>
+								</c:if>
 
-									<a href="${docUrl}${getWork.insurance}"
-										style="align-content: flex-end;" target="_blank">Insurance
-										1</a>
+								<c:if test="${not empty getWork.insurance}">
+									<div class="col-md-2">
 
-								</div>
+										<a href="${docUrl}${getWork.insurance}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											1</a>
 
-								<div class="col-md-1">
+									</div>
+								</c:if>
 
-									<a href="${docUrl}${getWork.insurance1}"
-										style="align-content: flex-end;" target="_blank">Insurance
-										2</a>
+								<c:if test="${not empty getWork.insurance1}">
+									<div class="col-md-2">
 
-								</div>
-								<div class="col-md-1">
+										<a href="${docUrl}${getWork.insurance1}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											2</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.puc}">
+
+									<div class="col-md-2">
 
 
-									<a href="${docUrl}${getWork.puc}"
-										style="align-content: flex-end;" target="_blank">PUC</a>
-								</div>
-								<div class="col-md-2">
-									<a href="${docUrl}${getWork.bankDocument}"
-										style="align-content: flex-end;" target="_blank">Bank
-										Letter</a>
-								</div>
+										<a href="${docUrl}${getWork.puc}"
+											style="align-content: flex-end;" target="_blank">PUC</a>
+									</div>
+								</c:if>
 
-								<div class="col-md-2">
-									<a href="${docUrl}${getWork.bankDocument1}"
-										style="align-content: flex-end;" target="_blank">Form No.
-										17</a>
-								</div>
+								<c:if test="${not empty getWork.bankDocument}">
+									<div class="col-md-2">
+										<a href="${docUrl}${getWork.bankDocument}"
+											style="align-content: flex-end;" target="_blank">Bank
+											Letter</a>
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.bankDocument1}">
+									<div class="col-md-2">
+										<a href="${docUrl}${getWork.bankDocument1}"
+											style="align-content: flex-end;" target="_blank">Form No.
+											17</a>
+									</div>
+								</c:if>
 							</div>
 
 						</c:if>
@@ -412,49 +461,63 @@
 
 							<div class="form-group"></div>
 							<div class="row">
-								<div class="col-md-2">
+								<c:if test="${not empty getWork.adharCard}">
+									<div class="col-md-2">
 
 
-									<a href="${docUrl}${getWork.adharCard}"
-										style="align-content: flex-end;" target="_blank">Aadhar
-										Card</a>
+										<a href="${docUrl}${getWork.adharCard}"
+											style="align-content: flex-end;" target="_blank">Aadhar
+											Card</a>
 
-								</div>
-								<div class="col-md-2">
+									</div>
+								</c:if>
 
-									<a href="${docUrl}${getWork.rcbook}"
-										style="align-content: flex-end;" target="_blank">RC Book</a>
+								<c:if test="${not empty getWork.rcbook}">
+									<div class="col-md-2">
 
-								</div>
+										<a href="${docUrl}${getWork.rcbook}"
+											style="align-content: flex-end;" target="_blank">RC Book</a>
 
-								<div class="col-md-2">
+									</div>
+								</c:if>
 
-									<a href="${docUrl}${getWork.insurance}"
-										style="align-content: flex-end;" target="_blank">Insurance
-										1</a>
+								<c:if test="${not empty getWork.insurance}">
+									<div class="col-md-2">
 
-								</div>
+										<a href="${docUrl}${getWork.insurance}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											1</a>
 
-								<div class="col-md-2">
+									</div>
+								</c:if>
 
-									<a href="${docUrl}${getWork.insurance1}"
-										style="align-content: flex-end;" target="_blank">Insurance
-										2</a>
+								<c:if test="${not empty getWork.insurance1}">
+									<div class="col-md-2">
 
-								</div>
-								<div class="col-md-2">
+										<a href="${docUrl}${getWork.insurance1}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											2</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.puc}">
+
+									<div class="col-md-2">
 
 
-									<a href="${docUrl}${getWork.puc}"
-										style="align-content: flex-end;" target="_blank">PUC</a>
-								</div>
+										<a href="${docUrl}${getWork.puc}"
+											style="align-content: flex-end;" target="_blank">PUC</a>
+									</div>
+								</c:if>
 
-
-								<div class="col-md-2">
-									<a href="${docUrl}${getWork.addProof}"
-										style="align-content: flex-end;" target="_blank">Address
-										Proof</a>
-								</div>
+								<c:if test="${not empty getWork.addProof}">
+									<div class="col-md-2">
+										<a href="${docUrl}${getWork.addProof}"
+											style="align-content: flex-end;" target="_blank">Address
+											Proof</a>
+									</div>
+								</c:if>
 							</div>
 
 						</c:if>
@@ -462,21 +525,24 @@
 
 							<div class="form-group"></div>
 							<div class="row">
+								<c:if test="${not empty getWork.adharCard}">
+									<div class="col-md-2">
 
-								<div class="col-md-2">
 
+										<a href="${docUrl}${getWork.adharCard}"
+											style="align-content: flex-end;" target="_blank">Aadhar
+											Card</a>
 
-									<a href="${docUrl}${getWork.adharCard}"
-										style="align-content: flex-end;" target="_blank">Aadhar
-										Card</a>
+									</div>
+								</c:if>
+								<c:if test="${not empty getWork.orignalLicence}">
+									<div class="col-md-2">
+										<a href="${docUrl}${getWork.orignalLicence}"
+											style="align-content: flex-end;" target="_blank">Original
+											License</a>
 
-								</div>
-								<div class="col-md-2">
-									<a href="${docUrl}${getWork.orignalLicence}"
-										style="align-content: flex-end;" target="_blank">Original
-										License</a>
-
-								</div>
+									</div>
+								</c:if>
 							</div>
 						</c:if>
 
@@ -618,6 +684,19 @@
 		}
 	</script> -->
 	<script>
+	function checkWorkPay(){
+		var workCost = $('#workCostVal').val();
+		var paymentCost = $('#exInt1').val(); 
+		
+		if(parseInt(paymentCost) > parseInt(workCost)){
+			document.getElementById("submtbtn").disabled = true;
+			alert("Invalid payment value!");
+		}else{
+			document.getElementById("submtbtn").disabled = false;
+		}
+	}
+	
+	
 		jQuery(document).ready(function() {
 			jQuery(".standardSelect").chosen({
 				disable_search_threshold : 2,

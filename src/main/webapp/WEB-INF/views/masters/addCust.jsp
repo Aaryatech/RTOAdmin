@@ -187,7 +187,7 @@
 
 									<button type="submit" class="btn btn-primary" id="submit"
 										name="submit"
-										style="align-content: center; width: 226px; margin-left: 80px;">Submit
+										style="align-content: center; width: 150px; border-radius: 50px">Submit
 
 									</button>
 								</div>

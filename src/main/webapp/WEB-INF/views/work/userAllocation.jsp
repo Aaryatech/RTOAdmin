@@ -93,12 +93,14 @@
 									<div class="col-md-4">
 										<select id="userId" name="userId" class="standardSelect" placeholder="Select User"
 											tabindex="1" required>
-											
+											<option value="0">Select User</option>
 											<c:forEach items="${userList}" var="userList">
 									
 												<option value="${userList.userId}">${userList.userName}</option>
 											</c:forEach>
 										</select>
+										<span class="validation-invalid-label" id="error_userId"
+													style="display: none; color: red;">This field is required.</span>
 									</div>
 								</div>
 
@@ -109,22 +111,21 @@
 
 
 								<div class="card-body">
-									<table id="bootstrap-data-table"
+									<table id="bootstrap-data-table" style="font-size: 12px;"
 										class="table table-striped table-bordered">
 										<thead>
 											<tr>
-												<th width="2%" class="check"><input type="checkbox"
+												<th width="1%" class="check"><input type="checkbox"
 													name="selAll" id="selAll" /> All</th>
 												<th width="2%">Sr No</th>
-												<th width="4%">Enq No</th>
-												<th width="5%">Date</th>
-												<th width="15%">Cust Name</th>
-												<th width="10%">Mob No</th>
-												<th width="40%">Work Type Name</th>
-												<th width="10%">Work Cost</th>
-												<th width="10%">Payment Done</th>
-												<th width="10%">Rem Amt</th>
-												<th width="2%">Action</th>
+												<th width="2%">Enq No</th>
+												<th width="15%">Date</th>
+												<th width="10%">Cust Name</th>
+												<th width="20%">Work Type Name</th>
+												<th width="15%">Work Cost</th>
+												<th width="15%">Payment Done</th>
+												<th width="15%">Rem Amt</th>
+												<th width="1%">Action</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -139,23 +140,21 @@
 
 													<td><c:out value="${workList.date1}" /></td>
 
-													<td><c:out value="${workList.custName}" /></td>
-
-													<td><c:out value="${workList.custMobile}" /></td>
+													<td><c:out value="${workList.custName}-${workList.custMobile}" /></td>
 													<td><c:out value="${workList.workTypeName}" /></td>
 
 													<td align="right"><input class="form-control"
 														id="workCost${workList.workId}" placeholder="Cost"
 														type="text" name="workCost${workList.workId}"
-														value="${workList.workCost}" readonly /></td>
+														value="${workList.workCost}" readonly style="font-size: 12px;"/></td>
 													<td align="right"><input class="form-control"
 														id="exInt1${workList.workId}" placeholder="Cost"
 														type="text" name="exInt1${workList.workId}"
-														value="${workList.exInt1}" readonly /></td>
+														value="${workList.exInt1}" readonly style="font-size: 12px;"/></td>
 													<td align="right"><input class="form-control"
 														id="exInt2${workList.workId}" placeholder="Cost"
 														type="text" name="exInt2${workList.workId}"
-														value="${workList.exInt2}" readonly /></td>
+														value="${workList.exInt2}" readonly style="font-size: 12px;"/></td>
 
 
 													<td>
@@ -176,13 +175,15 @@
 
 										<button type="submit" class="btn btn-primary"
 											onclick="valthisform()"
-											style="align-content: center; width: 226px; margin-left: 80px;">
+											style="align-content: center; width: 150px; border-radius: 50px">
 											Submit</button>
 									</div>
 								</div>
 							</div>
 
-						</form>
+						</form><p class="desc text-danger fontsize11" id="error_chk" style="display: none;">
+						Please check a checkbox.</p>
+						
 					</div>
 
 				</div>
@@ -263,7 +264,57 @@
 	</script>
 
 	<script type="text/javascript">
-		function valthisform() {
+	$(document)
+	.ready(
+			function($) {
+
+				$("#work_form")
+						.submit(
+								function(e) {
+									var isError = false;
+									var errMsg = "";
+									
+									var checkboxs = document.getElementsByName("sendWorkIds");
+									
+									if (!$("#userId").val()==0) {
+
+										isError = true;
+
+										$("#error_userId").show()
+
+									} else {
+										$("#error_userId").hide()
+									}
+									
+									for (var i = 0, l = checkboxs.length; i < l; i++) {
+										if (checkboxs[i].checked) {
+											isError = false;
+											$("#error_chk").hide()
+											$("#error_userId").hide()
+											break;
+										}else{
+											isError = true;
+											$("#error_chk").show()
+										}
+									}
+			         		     
+									if (!isError) {
+
+										var x = true;
+										if (x == true) {
+
+											document.getElementById("submtbtn").disabled = true;
+											document.getElementById("cnclbtn").disabled = true;
+											
+											return true;
+										}
+										
+									}
+									return false;
+								});
+			});	
+	
+		/* function valthisform() {
 			var checkboxs = document.getElementsByName("sendWorkIds");
 			var okay = false;
 			for (var i = 0, l = checkboxs.length; i < l; i++) {
@@ -272,6 +323,10 @@
 					break;
 				}
 			}
+			if($('#user').val()==0){
+				okay = false;
+				alert("Please check a checkbox");
+			}
 			if (okay) {
 
 				var form = document.getElementById("work_form");
@@ -279,7 +334,7 @@
 				form.submit();
 			} else
 				alert("Please check a checkbox");
-		}
+		} */
 	</script>
 	<script>
 		jQuery(document).ready(function() {

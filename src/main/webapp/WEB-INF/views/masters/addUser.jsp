@@ -131,7 +131,7 @@
 
 											<input class="form-control" name="contactNo" id="contactNo"
 												placeholder="Contact No" value="${editUser.userMobile}"
-												onblur="getMobNoTocheck()" required
+												onblur="getMobNoTocheck()" required maxlength="10"
 												oninvalid="setCustomValidity('Please enter valid Mobile no ')"
 												onchange="try{setCustomValidity('')}catch(e){}"
 												pattern="[0-9]{10}" autocomplete="off"> <span
@@ -166,7 +166,7 @@
 								<div class="col-lg-12" align="center">
 									<button type="submit" class="btn btn-primary" id="submit"
 										name="submit"
-										style="align-content: center; width: 226px; margin-left: 80px;">Submit
+										style="align-content: center; width: 150px; border-radius: 50px">Submit
 
 									</button>
 								</div>
@@ -299,10 +299,12 @@
 
 			}, function(data) {
 				if (data.error == true) {
-					alert("Mobile No Already Exist");
+					 
+						alert("Mobile No Already Exist");
 
 				     document.getElementById("#contactNo").value = "";
-					setTimeout(function() { document.getElementById("#contactNo").focus(); }, 100); 
+					setTimeout(function() { 
+					document.getElementById("#contactNo").focus(); }, 100); 
 					document.getElementById("submit").disabled = true;
 
 				} else {

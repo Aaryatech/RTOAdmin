@@ -114,14 +114,14 @@
 									<thead>
 										<tr>
 
-											<th>Sr No</th>
-											<th>Enq No</th>
-											<th>Date</th>
-											<th>Cust Name</th>
-											<th>Cust Mobile No</th>
-											<th>Work Type Name</th>
-											<th>Work Status</th>
-											<th>Action</th>
+											<th width="5%">Sr No</th>
+											<th width="2%">Enq No</th>
+											<th width="15%">Date</th>
+											<th width="15%">Cust Name</th>
+											<th width="15%">Vehicle No.</th>
+											<th width="15%">Work Type Name</th>
+											<th width="15%">Work Status</th>
+											<th width="5%">Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -135,9 +135,9 @@
 
 												<td><c:out value="${workList.date1}" /></td>
 
-												<td><c:out value="${workList.custName}" /></td>
+												<td><c:out value="${workList.custName}-${workList.custMobile}" /></td>
 
-												<td><c:out value="${workList.custMobile}" /></td>
+												<td><c:out value="${workList.vehicalNo}" /></td>
 												<td><c:out value="${workList.workTypeName}" /></td>
 												<td>
 												<c:choose>
@@ -204,7 +204,7 @@
 
 
 									<button type="submit" class="btn btn-primary"
-										style="align-content: center; width: 226px; margin-left: 80px;">
+										style="align-content: center; width: 150px; border-radius: 50px">
 										Submit</button>
 								</div>
 

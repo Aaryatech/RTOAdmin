@@ -74,12 +74,12 @@
 			<div class="row">
 
 				<div class="col-xs-12 col-sm-12">
-					<div class="card">workTypeId
+					<div class="card">
 						<div class="card-header">
 							<strong> Add Work</strong>
 						</div>
 						<div class="card-body card-block">
-							<form class="upload-form"
+							<form class="upload-form" id="insertAddWork"
 								action="${pageContext.request.contextPath}/insertWorkHeader"
 								method="post" enctype="multipart/form-data" onsubmit="return validImage()">
 
@@ -111,11 +111,11 @@
 											<c:choose>
 											
 													<c:when test="${getWork.workTypeTd==workList.wType}">
-														<option selected value="${workList.wType}">${workList.workTypeName}</option>
+														<option selected value="${workList.wType}">	${workList.workTypeName}</option>
 													</c:when>
 											
 												<c:otherwise>
-													<option disabled="disabled" value="${workList.wType}">${workList.workTypeName}</option>
+													<option disabled="disabled" value="${workList.wType}">${workList.wType} ${workList.workTypeName}</option>
 												</c:otherwise>
 											
 											</c:choose>
@@ -135,14 +135,24 @@
 											
 											</c:choose>
 										</select>
-
+										<span class="validation-invalid-label" id="error_workTypeId"
+													style="display: none; color: red;">Please Select Work Type.</span>
 									</div>
+									
 									&nbsp;
 									<div class="col-md-2">Select Customer</div>
 									<div class="col-md-3">
 										<select id="cust_id" name="cust_id" class="standardSelect"
 											tabindex="1">
+											<c:if test="${editWorkType>0}">
 											
+											<option disabled value="0">Select Customer</option>
+											</c:if>
+											
+											<c:if test="${editWorkType==0}">
+											
+											<option  value="0">Select Customer</option>
+											</c:if>
 
 											<c:forEach items="${custList}" var="cust">
 												<c:choose>
@@ -160,7 +170,8 @@
 
 											</c:forEach>
 										</select>
-
+										<span class="validation-invalid-label" id="error_cust"
+													style="display: none; color: red;">Please Select Customer.</span>
 									</div>
 
 								</div>
@@ -170,8 +181,10 @@
 								<div class="row">
 
 									<div class="col-md-2">Vehicle No</div>
-									<div class="col-md-1">
-										<input type='text' id="veh_no" name="veh_no" value="${getWork.vehicalNo}" required/>
+									<div class="col-md-3">
+										<input type='text' id="veh_no" name="veh_no" value="${getWork.vehicalNo}"/>
+										<span class="validation-invalid-label" id="error_veh_no"
+													style="display: none; color: red;">Please Enter Vehicle No.</span>
 									</div>
 
 								</div>
@@ -185,11 +198,19 @@
 									</div>
 									<div class="col-md-4">
 										<input type='file' id="imgInp" name="imgInp" value="" data-max-size="50000" class="upload-file"
-										 accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/><div class="form-group"></div> <img
-											id="image1" name="image1" src="${docUrl}${getWork.photo}"  
-											style="height: 70px; width: 70px;" /> <span class="error"
+										 accept="image/*" accept=".jpg,.png,.jpeg"/>
+										 
+										  <span class="error"
 											aria-live="polite"></span>
-
+												<span class="validation-invalid-label" id="error_img1"
+													style="display: none; color: red;">Please Select Image.</span>
+												<span class="validation-invalid-label" id="error_imgtype"
+													style="display: none; color: red;">Invalid file, only .jpg, .jpeg, .png type allowed</span>
+													
+										 
+										 <div class="form-group"></div> <img
+											id="image1" name="image1" src="${docUrl}${getWork.photo}"  
+											style="height: 70px; width: 70px; display: none" />
 									</div>
 
 									<div class="col-md-2">
@@ -200,10 +221,13 @@
 
 									<div class="col-md-4">
 										<input type='file' id="imgInp1" name="imgInp1" value=""  data-max-size="50000" class="upload-file"
-										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/><div class="form-group"></div> <img
-											id="image2" name="image2" src="${docUrl}${getWork.photo1}"
-											style="height: 70px;width: 70px;"/> <span class="error"
+										accept="image/*" accept=".jpg,.png,.jpeg"/><div class="form-group"></div>
+										
+										 <img id="image2" name="image2" src="${docUrl}${getWork.photo1}"
+											style="height: 70px;width: 70px; display: none"/> <span class="error"
 											aria-live="polite"></span>
+											<span class="validation-invalid-label" id="error_imgtype2"
+													style="display: none; color: red;">Invalid file, only .jpg, .jpeg, .png type allowed</span>
 
 									</div>
 
@@ -212,13 +236,15 @@
 								<div class="form-group"></div>
 								<div class="form-group"></div>
 								<div class="row">
-
-									<div class="col-md-2">Aadhaar Card</div>
+								<input type="hidden" name="isEdit" id='isEdit' value="${editWorkType}">
+									<div class="col-md-2">Aadhar Card</div>
 									<div class="col-md-10">
 										<input type="hidden" name="prev_ac" id='prev_ac' value="${getWork.adharCard}"> <input 
 											type='file' id="ac" name="doc[]" value=""  data-max-size="50000" class="upload-file"
 											accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"
-											required="required"/> <c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.adharCard}"  style="align-content: flex-end;" target="_blank">Aadhar Card</a></c:if>
+											/> <c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.adharCard}"  style="align-content: flex-end;" target="_blank">Aadhar Card</a></c:if>
+									<span class="validation-invalid-label" id="error_aadhar"
+													style="display: none; color: red;">Please Enter Aadhar Card No.</span>
 									</div>
 									
 									<%-- <c:if test="${editWorkType>0}">
@@ -240,6 +266,8 @@
 										<input
 											type='file' id="rc_book" name="doc[]" value="" data-max-size="50000" class="upload-file"
 										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+											<span class="validation-invalid-label" id="error_rc"
+													style="display: none; color: red;">Please Enter RC Book.</span>
 										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.rcbook}"  style="align-content: flex-end;" target="_blank">
 											<c:choose>
 												<c:when test="${editWorkType==6}">
@@ -266,6 +294,8 @@
 											type='file' id="puc" name="doc[]" value="" 
 											data-max-size="50000" class="upload-file"
 										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<span class="validation-invalid-label" id="error_puc"
+													style="display: none; color: red;">Please Enter PUC.</span>
 										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.puc}"  style="align-content: flex-end;" target="_blank">PUC</a></c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
@@ -286,6 +316,8 @@
 											type='file' id="ins1" name="doc[]" value="" 
 											data-max-size="50000" class="upload-file"
 										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<span class="validation-invalid-label" id="error_insurance"
+													style="display: none; color: red;">Please Enter Insurance.</span>
 										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.insurance}"  style="align-content: flex-end;" target="_blank">Insurance 1</a></c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
@@ -303,6 +335,8 @@
 										<input type="hidden" name="prev_ins2" id=prev_ins2 value="${getWork.insurance1}"> <input
 											type='file' id="ins2" name="doc[]" value="" data-max-size="50000" class="upload-file"
 										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<span class="validation-invalid-label" id="error_insurance2"
+													style="display: none; color: red;">Please Enter Insurance 2.</span>
 										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.insurance1}"  style="align-content: flex-end;" target="_blank">Insurance 2</a></c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
@@ -321,6 +355,8 @@
 										<input type="hidden" name="prev_add_proof" id='prev_add_proof' value="${getWork.addProof}">
 										<input type='file' id="add_proof" name="doc[]" value="" data-max-size="50000" class="upload-file"
 										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<span class="validation-invalid-label" id="error_address_proof"
+													style="display: none; color: red;">Please Enter Address Proof.</span>
 										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.addProof}"  style="align-content: flex-end;" target="_blank">Address Proof</a></c:if>
 									</div>
 								<%-- 	<c:if test="${editWorkType>0}">
@@ -339,6 +375,8 @@
 										<input type="hidden" name="prev_bank_noc" id='prev_bank_noc' value="${getWork.bankDocument}">
 										<input type='file' id="bank_noc" name="doc[]" value="" data-max-size="50000" class="upload-file"
 										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<span class="validation-invalid-label" id="error_bank_noc"
+													style="display: none; color: red;">Please Enter Bank NOC.</span>
 										<c:if test="${editWorkType>0}">	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;" target="_blank">Bank NOC</a></c:if>
 									</div>
 									<%-- <c:if test="${editWorkType>0}">
@@ -359,6 +397,8 @@
 										<input type="hidden" name="prev_bank_letter" id='prev_bank_letter' value="${getWork.bankDocument}">
 										<input type='file' id="bank_letter" name="doc[]" value="" data-max-size="50000" class="upload-file"
 										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<span class="validation-invalid-label" id="error_bank_letter"
+													style="display: none; color: red;">Please Enter Bank Letter.</span>
 										<c:if test="${editWorkType>0}">	<a href="${docUrl}${getWork.bankDocument}"  style="align-content: flex-end;" target="_blank">
 										<c:choose>
 												<c:when test="${editWorkType==6}">
@@ -388,6 +428,8 @@
 										<input type="hidden" name="prev_form_no17" id='prev_form_no17' value="${getWork.bankDocument1}">
 										<input type='file' id="form_no17" name="doc[]" value="" data-max-size="50000" class="upload-file"
 										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<span class="validation-invalid-label" id="error_form17"
+													style="display: none; color: red;">Please Enter Form No. 17.</span>
 										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.bankDocument1}"  style="align-content: flex-end;" target="_blank">Form No. 17</a></c:if>
 									</div>
 								<%-- 	
@@ -408,6 +450,8 @@
 										<input type="hidden" name="prev_orig_lic" id='prev_orig_lic' value="${getWork.orignalLicence}">
 										<input type='file' id="orig_lic" name="doc[]" value=""  data-max-size="50000" class="upload-file"
 										accept="image/*" accept=".jpg,.png,.gif,.doc,.xls,.pdf"/>
+										<span class="validation-invalid-label" id="error_orig_lic"
+													style="display: none; color: red;">Please Enter Original License.</span>
 										<c:if test="${editWorkType>0}"><a href="${docUrl}${getWork.orignalLicence}"  style="align-content: flex-end;" target="_blank">Original License</a></c:if>
 									</div>
 									
@@ -426,7 +470,7 @@
 
 
 									<button type="submit" class="btn btn-primary"
-										style="align-content: center; width: 226px; margin-left: 80px;">
+										style="align-content: center; width: 150px; border-radius: 50px">
 										Submit</button>
 								</div>
 							</form>
@@ -491,36 +535,39 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/lib/chosen/chosen.jquery.min.js"></script>
 
 <script>
-/* function validImage(){
-	alert("here")
-	  $('input[type=file][data-max-size]').each(function(){
-          if(typeof this.files[0] !== 'undefined'){
-              var maxSize = parseInt($(this).attr('max-size'),10),
-              size = this.files[0].size;
-              isOk = maxSize > size;
-              return true;
-          }else{
-          	alert("File size exceed.")
-          }
-      });
-} */
-/* $(function(){
-    $('form').submit(function(){
-    	alert("Hii");
-        var isOk = true;
-        $('input[type=file][data-max-size]').each(function(){
-            if(typeof this.files[0] !== 'undefined'){
-                var maxSize = parseInt($(this).attr('max-size'),10),
-                size = this.files[0].size;
-                isOk = maxSize > size;
-                return isOk;
-            }else{
-            	alert("File size exceed.")
-            }
-        });
-        return isOk;
-    });
-}); */
+$("#imgInp").change(function() {
+
+    var val = $(this).val();
+
+    switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+        case 'jpeg': case 'jpg': case 'png':
+        	$("#error_imgtype").hide()
+            break;
+        default:
+            $(this).val('');
+            // error message here
+            $("#error_img1").hide()
+            $("#error_imgtype").show()
+            break;
+    }
+});
+
+$("#imgInp1").change(function() {
+
+    var val = $(this).val();
+
+    switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+        case 'jpeg': case 'jpg': case 'png':
+        	$("#error_imgtype2").hide()
+            break;
+        default:
+            $(this).val('');
+            // error message here
+            
+            $("#error_imgtype2").show()
+            break;
+    }
+});
 
 $(function(){
     var fileInput = $('.upload-file');
@@ -539,6 +586,333 @@ $(function(){
         
     });
 }); 
+
+$(document)
+.ready(
+		function($) {
+
+			$("#insertAddWork")
+					.submit(
+							function(e) {
+								var isError = false;
+								var errMsg = "";
+								
+								
+								if ($("#workTypeId").val()==0) {
+
+									isError = true;
+
+									$("#error_workTypeId").show()
+
+								} else {
+									$("#error_workTypeId").hide()
+								}
+								
+								if($('#isEdit').val()==0){
+									if (!$("#imgInp").val()) {
+	
+										isError = true;
+	
+										$("#error_img1").show()
+	
+									} else {
+										$("#error_img1").hide()
+									}
+									
+									 if (!$("#ac").val()) {
+
+											isError = true;
+
+											$("#error_aadhar").show()
+
+										} else {
+											$("#error_aadhar").hide()
+										}
+								}
+								
+								if (!$("#veh_no").val()) {
+
+									isError = true;
+
+									$("#error_veh_no").show()
+
+								} else {
+									$("#error_veh_no").hide()
+								}
+								
+								 if ($("#cust_id").val()==0) {
+
+									isError = true;
+
+									$("#error_cust").show()
+
+								} else {
+									$("#error_cust").hide()
+								}
+ 
+								 if($('#isEdit').val()==0 && $("#workTypeId").val()==5){
+									 if ($("#orig_lic").val()==0) {
+
+											isError = true;
+
+											$("#error_orig_lic").show()
+
+										} else {
+											$("#error_orig_lic").hide()
+										}
+								 }
+								 
+								 if($('#isEdit').val()==0 && $("#workTypeId").val()==4){
+									 //alert(4)
+										if (!$("#rc_book").val()) {
+		
+											isError = true;
+		
+											$("#error_rc").show()
+		
+										} else {
+											$("#error_rc").hide()
+										}
+										
+										 if (!$("#puc").val()) {
+
+												isError = true;
+
+												$("#error_puc").show()
+
+											} else {
+												$("#error_puc").hide()
+											}
+
+										 if (!$("#ins1").val()) {
+
+												isError = true;
+
+												$("#error_insurance").show()
+
+											} else {
+												$("#error_insurance").hide()
+											}
+										 
+										 if (!$("#ins2").val()) {
+
+												isError = true;
+
+												$("#error_insurance2").show()
+
+											} else {
+												$("#error_insurance2").hide()
+											}
+										 
+										 if (!$("#add_proof").val()) {
+
+												isError = true;
+
+												$("#error_address_proof").show()
+
+											} else {
+												$("#error_address_proof").hide()
+											}
+									}
+								
+								 if($('#isEdit').val()==0 && $("#workTypeId").val()==3){
+									 //alert(3)
+									 if (!$("#rc_book").val()) {
+		
+											isError = true;
+		
+											$("#error_rc").show()
+		
+										} else {
+											$("#error_rc").hide()
+										}
+									 if (!$("#puc").val()) {
+
+											isError = true;
+
+											$("#error_puc").show()
+
+										} else {
+											$("#error_puc").hide()
+										}
+									 
+									 if (!$("#ins1").val()) {
+
+											isError = true;
+
+											$("#error_insurance").show()
+
+										} else {
+											$("#error_insurance").hide()
+										}
+									 
+									 if (!$("#ins2").val()) {
+
+											isError = true;
+
+											$("#error_insurance2").show()
+
+										} else {
+											$("#error_insurance2").hide()
+										}
+									 
+								
+									 
+									 if (!$("#bank_letter").val()) {
+
+											isError = true;
+
+											$("#error_bank_letter").show()
+
+										} else {
+											$("#error_bank_letter").hide()
+										}
+									 
+									 if (!$("#form_no17").val()) {
+
+											isError = true;
+
+											$("#error_form17").show()
+
+										} else {
+											$("#error_form17").hide()
+										}
+								 }
+								 
+								 
+								 if($('#isEdit').val()==0 && $("#workTypeId").val()==2){
+									// alert(2)
+									 if (!$("#rc_book").val()) {
+		
+											isError = true;
+		
+											$("#error_rc").show()
+		
+										} else {
+											$("#error_rc").hide()
+										}
+										
+										 if (!$("#puc").val()) {
+
+												isError = true;
+
+												$("#error_puc").show()
+
+											} else {
+												$("#error_puc").hide()
+											}
+										 
+									 if (!$("#ins1").val()) {
+
+											isError = true;
+
+											$("#error_insurance").show()
+
+										} else {
+											$("#error_insurance").hide()
+										}
+									 
+									 if (!$("#ins2").val()) {
+
+											isError = true;
+
+											$("#error_insurance2").show()
+
+										} else {
+											$("#error_insurance2").hide()
+										}
+									 
+									/*  if (!$("#add_proof").val()) {
+
+											isError = true;
+
+											$("#error_address_proof").show()
+
+										} else {
+											$("#error_address_proof").hide()
+										} */
+									 if (!$("#bank_noc").val()) {
+
+											isError = true;
+
+											$("#error_bank_noc").show()
+
+										} else {
+											$("#error_bank_noc").hide()
+										} 
+								 }
+								 
+									 if($('#isEdit').val()==0 && $("#workTypeId").val()==1){
+										 //alert(1);
+										 if (!$("#rc_book").val()) {
+												
+												isError = true;
+			
+												$("#error_rc").show()
+			
+											} else {
+												$("#error_rc").hide()
+											}
+										 if (!$("#puc").val()) {
+
+												isError = true;
+
+												$("#error_puc").show()
+
+											} else {
+												$("#error_puc").hide()
+											}
+										 
+										 if (!$("#ins1").val()) {
+
+												isError = true;
+
+												$("#error_insurance").show()
+
+											} else {
+												$("#error_insurance").hide()
+											}
+										 
+										 if (!$("#ins2").val()) {
+
+												isError = true;
+
+												$("#error_insurance2").show()
+
+											} else {
+												$("#error_insurance2").hide()
+											}
+										 
+										 if (!$("#add_proof").val()) {
+
+												isError = true;
+
+												$("#error_address_proof").show()
+
+											} else {
+												$("#error_address_proof").hide()
+											}
+									 }
+										 
+									 
+								 
+								
+								if (!isError) {
+
+									var x = true;
+									if (x == true) {
+
+										document.getElementById("submtbtn").disabled = true;
+										document.getElementById("cnclbtn").disabled = true;
+										
+										return true;
+									}
+									
+								}
+								return false;
+							});
+		});	
+		
 </script>
 	<script>
 		jQuery(document).ready(function() {
@@ -617,6 +991,7 @@ $(function(){
 				var reader = new FileReader();
 
 				reader.onload = function(e) {
+					document.getElementById('image1').style.display = "flow-root";
 					$('#image1').attr('src', e.target.result);
 				}
 
@@ -635,6 +1010,7 @@ $(function(){
 				var reader = new FileReader();
 
 				reader.onload = function(e) {
+					document.getElementById('image2').style.display = "flow-root";
 					$('#image2').attr('src', e.target.result);
 				}
 
@@ -692,7 +1068,8 @@ else if(workType==3){
 	document.getElementById('bank_letter_div').style = "flow_root";
 	document.getElementById('form_17_div').style = "flow_root";
 
-	document.getElementById('add_pf_div').style.display = "display:none";
+	//document.getElementById('add_pf_div').style.display = "display:none";
+	document.getElementById("add_pf_div").style.display = "none";
 	document.getElementById('orig_lic_div').style = "display:none";
 	document.getElementById('bank_noc_div').style =  "display:none";
 

@@ -116,7 +116,7 @@ public class TxController {
 			List<Cust> custList = new ArrayList<Cust>(Arrays.asList(userListArray));
 			model.addObject("custList", custList);
 			model.addObject("docUrl", Constants.RTO_DOC_URL);
-			
+			model.addObject("editWorkType", 1);
 		} catch (Exception e) {
 
 			System.err.println("exce In /editWorkHead/{workId} " + e.getMessage());

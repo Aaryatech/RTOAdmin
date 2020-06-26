@@ -109,21 +109,20 @@
 							<form
 								action="${pageContext.request.contextPath}/updateWorkStatus"
 								id="work_form" method="post">
-								<table id="bootstrap-data-table"
+								<table id="bootstrap-data-table" style="font-size: 12px;"
 									class="table table-striped table-bordered">
 									<thead>
 										<tr>
 											<th width="2%" class="check"><input type="checkbox"
 												name="selAll" id="selAll" /> All</th>
 											<th width="2%">Sr No</th>
-											<th width="4%">Enq No</th>
-											<th width="5%">Date</th>
+											<th width="2%">Enq No</th>
+											<th width="15%">Date</th>
 											<th width="15%">Cust Name</th>
-											<th width="10%">Mob No</th>
-											<th width="40%">Work Type Name</th>
-											<th width="10%">Work Cost</th>
-											<th width="10%">Payment Done</th>
-											<th width="10%">Rem Amt</th>
+											<th width="20%">Work Type Name</th>
+											<th width="15%">Work Cost</th>
+											<th width="15%">Payment Done</th>
+											<th width="15%">Rem Amt</th>
 											<th width="2%">Action</th>
 										</tr>
 									</thead>
@@ -139,10 +138,9 @@
 
 												<td><c:out value="${workList.date1}" /></td>
 
-												<td><c:out value="${workList.custName}" /></td>
+												<td><c:out value="${workList.custName}-${workList.custMobile}" /></td>
 
-												<td><c:out value="${workList.custMobile}" /></td>
-												<td><c:out value="${workList.workTypeName}" /></td>
+												<td><c:out value="${workList.workTypeName}-${workList.vehicalNo}" /></td>
 
 												<td align="right"><input class="form-control"
 													id="workCost${workList.workId}" placeholder="Cost"
@@ -182,7 +180,7 @@
 
 									<button type="submit" class="btn btn-primary"
 										onclick="valthisform()"
-										style="align-content: center; width: 226px; margin-left: 80px;">
+										style="align-content: center; width: 150px; border-radius: 50px">
 										Submit</button>
 								</div>
 

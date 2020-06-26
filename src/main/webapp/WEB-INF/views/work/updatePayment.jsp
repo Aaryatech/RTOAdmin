@@ -115,16 +115,16 @@
 										<tr>
 
 
-											<th width="5%" class="check"><input type="checkbox"
+											<th width="2%" class="check"><input type="checkbox"
 												name="selAll" id="selAll" /> All</th>
-											<th width="5%">Sr No</th>
-											<th width="5%">Enq No</th>
+											<th width="2%">Sr No</th>
+											<th width="2%">Enq No</th>
 											<th width="10%">Date</th>
 											<th width="15%">Cust Name</th>
-											<th width="10%">Mob No</th>
-											<th width="28%">Work Type Name</th>
-											<th width="10%">Work Cost</th>
-											<th width="10%">Payment</th>
+											<!-- <th width="10%">Mob No</th> -->
+											<th width="20%">Work Type Name</th>
+											<th width="15%">Work Cost</th>
+											<th width="15%">Payment</th>
 											<th width="2%">Action</th>
 										</tr>
 									</thead>
@@ -140,17 +140,18 @@
 
 												<td><c:out value="${workList.date1}" /></td>
 
-												<td><c:out value="${workList.custName}" /></td>
+												<td><c:out value="${workList.custName}-${workList.custMobile}" /></td>
 
-												<td><c:out value="${workList.custMobile}" /></td>
-												<td><c:out value="${workList.workTypeName}" /></td>
+											<%-- 	<td><c:out value="" /></td> --%>
+												<td><c:out value="${workList.workTypeName}-${workList.vehicalNo}" /></td>
 
-												<td align="right"><input class="form-control"
+												<td align="right"><input class="form-control work_cost"
 													id="workCost${workList.workId}" placeholder="Cost"
 													type="text" name="workCost${workList.workId}"
 													value="${workList.workCost}" readonly /></td>
 
-												<td align="right"><input class="form-control"
+												<td align="right"><input class="form-control payment_cost"
+												 onchange="checkPayValue()"
 													id="exInt1${workList.workId}" placeholder="Cost"
 													type="text" name="exInt1${workList.workId}" value="0" /></td>
 												<td>
@@ -175,8 +176,8 @@
 
 
 									<button type="submit" class="btn btn-primary"
-										onclick="valthisform()"
-										style="align-content: center; width: 226px; margin-left: 80px;">
+										onclick="valthisform()" id="submtbtn" 
+										style="align-content: center; width: 150px; border-radius: 50px">
 										Submit</button>
 								</div>
 
@@ -231,6 +232,80 @@
 
 
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<script type="text/javascript">
+	 function checkPayValue() {
+		 
+		//alert("payAmt------"+payAmt+" "+workCost)
+		
+		var flag = 0;
+		$('.work_cost').each(
+				function(counter){
+						//alert(counter);
+						var workCost = document.getElementsByClassName('work_cost')[counter].value;
+						var paymentCost = document.getElementsByClassName('payment_cost')[counter].value;
+						//alert(workCost);
+						
+						if(parseInt(paymentCost) > parseInt(workCost)){
+							flag = 1;							
+						}
+				});
+		if(flag==1){
+		
+			document.getElementById("submtbtn").disabled = true;
+			alert("Invalid payment value!");
+		}else{
+			document.getElementById("submtbtn").disabled = false;
+		}
+	} 
+	
+	/* $(document)
+	.ready(
+			function($) {
+
+				$("#insertAddWork")
+						.submit(
+								function(e) {
+									var isError = false;
+									var errMsg = "";
+									
+									
+									if ($("#workTypeId").val()==0) {
+
+										isError = true;
+
+										$("#error_workTypeId").show()
+
+									} else {
+										$("#error_workTypeId").hide()
+									}
+									
+									
+									
+									
+									
+									
+	 
+									 
+									
+									
+									if (!isError) {
+
+										var x = true;
+										if (x == true) {
+
+											document.getElementById("submtbtn").disabled = true;
+											document.getElementById("cnclbtn").disabled = true;
+											
+											return true;
+										}
+										
+									}
+									return false;
+								});
+			});	 */
+	</script>
+	
 	<script>
 		$(function() {
 			$('input[id$=dateOfBirth]').datepicker({
