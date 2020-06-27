@@ -1,0 +1,752 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Work Detail</title>
+<meta name="description" content="Sufee Admin - HTML5 Admin Template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="apple-touch-icon" href="apple-icon.png">
+<link rel="shortcut icon" href="favicon.ico">
+
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/normalize.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/themify-icons.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/flag-icon.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/cs-skin-elastic.css">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/lib/chosen/chosen.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/scss/style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/lib/chosen/chosen.min.css">
+
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/lib/datatable/dataTables.bootstrap.min.css">
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/lib/datatable/dataTables.bootstrap.min.css">
+
+
+
+</head>
+<body>
+	<c:url var="getOrderByDate" value="/getOrderByDate"></c:url>
+
+	<!-- Left Panel -->
+	<jsp:include page="/WEB-INF/views/common/left.jsp"></jsp:include>
+	<!-- Left Panel -->
+
+	<!-- Header-->
+	<jsp:include page="/WEB-INF/views/common/right.jsp"></jsp:include>
+	<!-- Header-->
+
+
+	<div class="content mt-3">
+		<div class="animated fadeIn">
+			<div class="row">
+
+				<div class="col-md-12">
+
+
+
+
+					<div class="card">
+						<div class="card-header">
+							<strong class="card-title">Work Detail</strong>
+						</div>
+						<div class="card-body card-block">
+
+							<form
+								action="${pageContext.request.contextPath}/updatePendingWorkCost"
+								method="post" id="updateRemainingWorkCost">
+								<div class="form-group"></div>
+
+
+								<div class="form-group"></div>
+								<div class="form-group">
+
+									<div class="col-lg-4">
+
+										<div>
+											<div class="input-group" style="align-items: center;">
+												Cust Name &nbsp; <input class="form-control"
+													name="prevPendingCrateBal" id="prevPendingCrateBal"
+													value="${getWork.custName}" type="text" disabled /> <span
+													class="error" aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-lg-4">
+
+										<div>
+											<div class="input-group" style="align-items: center;">
+												Cust Contact No &nbsp; <input class="form-control"
+													name="cratesIssued" id="cratesIssued" type="text"
+													value="${getWork.custMobile}" disabled /> <span
+													class="error" aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-lg-4">
+
+										<div>
+
+
+
+											<div class="input-group" style="align-items: center;">
+												Vehicle No &nbsp; <input class="form-control"
+													name="orderTotal" value="${getWork.vehicalNo}"
+													id="orderTotal" type="text" disabled /> <span
+													class="error" aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+								&nbsp;
+								<div class="form-group">
+
+									<div class="col-lg-12">
+
+										<div>
+											<div class="input-group" style="align-items: center;">
+												Work Type Name &nbsp; <input class="form-control"
+													id="workCost${workList.workId}"
+													name="workCost${workList.workId}"
+													value="${getWork.workTypeName}" type="text" disabled /> <span
+													class="error" aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								&nbsp;
+								<div class="form-group">
+
+									<div class="col-lg-4">
+
+										<div>
+											<div class="input-group" style="align-items: center;">
+												Work Cost &nbsp; <input class="form-control"
+													value="${getWork.workCost}" id="workCost" name="workCost"
+													type="text" readonly /> <span class="error"
+													aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+
+									<input type="hidden" value="${getWork.workId}"
+										name="sendWorkId" id="sendWorkId">
+
+
+
+									<div class="col-lg-4">
+
+										<div>
+
+
+
+											<div class="input-group" style="align-items: center;">
+												Payment Done&nbsp; <input class="form-control"
+													name="paid" value="${getWork.exInt1}" id="paid"
+													type="text" readonly /> <span class="error"
+													aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="col-lg-4">
+
+										<div>
+
+
+
+											<div class="input-group" style="align-items: center;">
+												Remaining Payment &nbsp; <input class="form-control"
+													name="remainAmt" value="${getWork.exInt2}" id="remainAmt"
+													type="text" readonly /> <span class="error"
+													aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								
+								&nbsp;
+								<c:if test="${getWork.exInt2>0}">
+								<div class="form-group">
+
+									<div class="col-lg-4">
+
+										<div>
+											<div class="input-group" style="align-items: center;">
+												Settle Amt&nbsp; <input class="form-control"
+													id="settleAmt" name="settleAmt" type="text" required="required"/>
+														<span class="validation-invalid-label" id="error_settleAmt"
+													style="display: none; color: red">This field is required.</span> <span
+													class="error" aria-live="polite"></span>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4">
+
+											<div>
+									<button type="submit" class="btn btn-primary" id="subbtn"
+										style="align-content: center; width: 150px; border-radius: 50px">
+										Submit</button>
+										</div>
+								</div>
+									
+								</div>
+								</c:if>
+
+								&nbsp;
+							</form>
+						</div>
+
+						<hr>
+						<div class="form-group"></div>
+						<div class="row">
+							<div class="col-md-1"></div>
+							<c:if test="${not empty getWork.photo}">
+							<div class="col-md-1">
+								<input type="hidden" name="prevImage1" id="prevImage1"
+									value="${getWork.photo}"> Photo1
+
+							</div>
+							<div class="col-md-4">
+
+								<div class="form-group"></div>
+								<img id="image1" name="image1" src="${docUrl}${getWork.photo}"
+									style="height: 70px; width: 70px;" /> <span class="error"
+									aria-live="polite"></span>
+
+							</div>
+							</c:if>
+
+<c:if test="${not empty getWork.photo}">
+							<div class="col-md-2">
+								<input type="hidden" name="prevImage2" id="prevImage2"
+									value="${getWork.photo1}"> Photo2
+
+							</div>
+
+							<div class="col-md-4">
+
+								<div class="form-group"></div>
+								<img id="image2" name="image2" src="${docUrl}${getWork.photo1}"
+									style="height: 70px; width: 70px;" /> <span class="error"
+									aria-live="polite"></span>
+
+							</div>
+</c:if>
+						</div>
+
+
+
+						<c:if test="${getWork.workTypeTd==1}">
+
+
+
+							<div class="form-group"></div>
+							<div class="row">
+								<c:if test="${not empty getWork.adharCard}">
+									<div class="col-md-2">
+
+
+										<a href="${docUrl}${getWork.adharCard}"
+											style="align-content: flex-end;" target="_blank">Aadhar
+											Card</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.rcbook}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.rcbook}"
+											style="align-content: flex-end;" target="_blank">RC Book</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.insurance}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.insurance}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											1</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.insurance1}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.insurance1}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											2</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.puc}">
+									<div class="col-md-2">
+
+
+										<a href="${docUrl}${getWork.puc}"
+											style="align-content: flex-end;" target="_blank">PUC</a>
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.addProof}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.addProof}"
+											style="align-content: flex-end;" target="_blank">Address
+											Proof</a>
+									</div>
+								</c:if>
+							</div>
+
+						</c:if>
+
+						<c:if test="${getWork.workTypeTd==2}">
+
+							<div class="form-group"></div>
+							<div class="row">
+								<c:if test="${not empty getWork.adharCard}">
+									<div class="col-md-2">
+
+
+										<a href="${docUrl}${getWork.adharCard}"
+											style="align-content: flex-end;" target="_blank">Aadhar
+											Card</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.rcbook}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.rcbook}"
+											style="align-content: flex-end;" target="_blank">RC Book</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.insurance}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.insurance}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											1</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.insurance1}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.insurance1}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											2</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.puc}">
+									<div class="col-md-2">
+
+
+										<a href="${docUrl}${getWork.puc}"
+											style="align-content: flex-end;" target="_blank">PUC</a>
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.bankDocument}">
+									<div class="col-md-2">
+										<a href="${docUrl}${getWork.bankDocument}"
+											style="align-content: flex-end;" target="_blank">Bank NOC</a>
+									</div>
+								</c:if>
+							</div>
+
+						</c:if>
+
+
+						<c:if test="${getWork.workTypeTd==3}">
+
+							<div class="form-group"></div>
+							<div class="row">
+								<c:if test="${not empty getWork.adharCard}">
+									<div class="col-md-2">
+
+
+										<a href="${docUrl}${getWork.adharCard}"
+											style="align-content: flex-end;" target="_blank">Aadhar
+											Card</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.rcbook}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.rcbook}"
+											style="align-content: flex-end;" target="_blank">RC Book</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.insurance}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.insurance}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											1</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.insurance1}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.insurance1}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											2</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.puc}">
+									<div class="col-md-2">
+
+
+										<a href="${docUrl}${getWork.puc}"
+											style="align-content: flex-end;" target="_blank">PUC</a>
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.bankDocument}">
+									<div class="col-md-2">
+										<a href="${docUrl}${getWork.bankDocument}"
+											style="align-content: flex-end;" target="_blank">Bank
+											Letter</a>
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.bankDocument1}">
+									<div class="col-md-2">
+										<a href="${docUrl}${getWork.bankDocument1}"
+											style="align-content: flex-end;" target="_blank">Form No.
+											17</a>
+									</div>
+								</c:if>
+							</div>
+
+						</c:if>
+
+
+						<c:if test="${getWork.workTypeTd==4}">
+
+							<div class="form-group"></div>
+							<div class="row">
+								<c:if test="${not empty getWork.adharCard}">
+									<div class="col-md-2">
+
+
+										<a href="${docUrl}${getWork.adharCard}"
+											style="align-content: flex-end;" target="_blank">Aadhar
+											Card</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.rcbook}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.rcbook}"
+											style="align-content: flex-end;" target="_blank">RC Book</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.insurance}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.insurance}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											1</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.insurance1}">
+									<div class="col-md-2">
+
+										<a href="${docUrl}${getWork.insurance1}"
+											style="align-content: flex-end;" target="_blank">Insurance
+											2</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.puc}">
+									<div class="col-md-2">
+
+
+										<a href="${docUrl}${getWork.puc}"
+											style="align-content: flex-end;" target="_blank">PUC</a>
+									</div>
+
+
+								</c:if>
+
+								<c:if test="${not empty getWork.addProof}">
+									<div class="col-md-2">
+										<a href="${docUrl}${getWork.addProof}"
+											style="align-content: flex-end;" target="_blank">Address
+											Proof</a>
+									</div>
+								</c:if>
+							</div>
+
+						</c:if>
+						<c:if test="${getWork.workTypeTd==5}">
+
+							<div class="form-group"></div>
+							<div class="row">
+
+								<c:if test="${not empty getWork.adharCard}">
+									<div class="col-md-2">
+
+
+										<a href="${docUrl}${getWork.adharCard}"
+											style="align-content: flex-end;" target="_blank">Aadhar
+											Card</a>
+
+									</div>
+								</c:if>
+
+								<c:if test="${not empty getWork.orignalLicence}">
+									<div class="col-md-2">
+										<a href="${docUrl}${getWork.orignalLicence}"
+											style="align-content: flex-end;" target="_blank">Original
+											License</a>
+
+									</div>
+								</c:if>
+							</div>
+						</c:if>
+
+
+						<hr>
+
+
+
+
+						<div class="card-body">
+							<table class="table table-striped table-bordered">
+
+								<thead>
+									<tr>
+										<th>Sr No</th>
+										<th>Date</th>
+
+										<th>Description</th>
+
+									</tr>
+								</thead>
+								<tbody>
+
+									<c:forEach items="${workdetail}" var="workdetail"
+										varStatus="count">
+										<tr>
+
+											<td><c:out value="${count.index+1}" /></td>
+											<td><c:out value="${workdetail.date}" /></td>
+
+											<td><c:out value="${workdetail.workDesc}" /></td>
+
+										</tr>
+									</c:forEach>
+
+								</tbody>
+
+							</table>
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		<!-- .animated -->
+	</div>
+	<!-- .content -->
+
+
+	<!-- Footer -->
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+	<!-- Footer -->
+
+
+
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-2.1.4.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/popper.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/plugins.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
+
+
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/jszip.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/pdfmake.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/vfs_fonts.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.html5.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.print.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/data-table/datatables-init.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/lib/chosen/chosen.jquery.min.js"></script>
+
+<script type="text/javascript">
+$("#settleAmt").change(function(){
+
+    var pndngAmt = $('#remainAmt').val();
+    var amt = $('#settleAmt').val();
+    var paidAmt = $('#paid').val();
+    
+    if(parseInt(amt)>parseInt(pndngAmt)){
+    	document.getElementById("settleAmt").value = "";
+    	document.getElementById("subbtn").disabled = true;
+    	alert("Invalid Amount!")
+    	
+    }else{
+    	document.getElementById("subbtn").disabled = false;
+    }
+});
+
+</script>
+	<!-- <script type="text/javascript">
+		function callSearch() {
+			alert("cxcgxc");
+			var date = $("#date").val();
+			var distId = $("#distId").val();
+
+			$.getJSON('${getOrderByDate}',
+
+			{
+				date : date,
+				distId : distId,
+
+				ajax : 'true'
+
+			}, function(data) {
+
+				alert(data.getOrderDetailList);
+
+				if (data == "") {
+					alert("No records found !!");
+
+				}
+
+				/* document.getElementById("orderDate").value = data.orderDate;
+
+				document.getElementById("orderTotal").value = data.orderTotal;
+				document.getElementById("prevPendingCrateBal").value = data.prevPendingCrateBal;
+				document.getElementById("cratesIssued").value = data.cratesIssued;
+				document.getElementById("cratesReceived").value = data.cratesReceived;
+				document.getElementById("cratesBalance").value = (data.prevPendingCrateBal
+						+ data.cratesIssued - data.cratesReceived);
+
+				document.getElementById("prevPendingAmt").value = data.prevPendingAmt;
+				document.getElementById("orderTotal1").value = data.orderTotal;
+				document.getElementById("amtReceived").value = data.amtReceived;
+				document.getElementById("amountBalanced").value = (data.prevPendingAmt
+						+ data.orderTotal - data.amtReceived); */
+
+				var dataTable = $('#bootstrap-data-table').DataTable();
+				$.each(data.getOrderDetailList, function(i, v) {
+					dataTable.row.add(
+							[ i + 1, v.itemEngName, v.itemWt, v.uomName,
+									v.orderQty, v.deliverQty, v.itemTotal ])
+							.draw();
+				});
+
+			});
+		}
+	</script> -->
+	<script>
+		jQuery(document).ready(function() {
+			jQuery(".standardSelect").chosen({
+				disable_search_threshold : 2,
+				no_results_text : "Oops, nothing found!",
+				width : "100%"
+			});
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#bootstrap-data-table-export').DataTable();
+		});
+	</script>
+
+
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$(function() {
+			$('input[id$=date]').datepicker({
+				dateFormat : 'dd-mm-yy'
+			});
+		});
+	</script>
+
+</body>
+</html>

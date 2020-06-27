@@ -209,8 +209,8 @@
 													
 										 
 										 <div class="form-group"></div> <img
-											id="image1" name="image1" src="${docUrl}${getWork.photo}"  
-											style="height: 70px; width: 70px; display: none" />
+											id="image1" name="image1" src="${docUrl}${getWork.photo}"   alt="No Image"
+											style="height: 70px; width: 70px;" />
 									</div>
 
 									<div class="col-md-2">
@@ -223,8 +223,8 @@
 										<input type='file' id="imgInp1" name="imgInp1" value=""  data-max-size="50000" class="upload-file"
 										accept="image/*" accept=".jpg,.png,.jpeg"/><div class="form-group"></div>
 										
-										 <img id="image2" name="image2" src="${docUrl}${getWork.photo1}"
-											style="height: 70px;width: 70px; display: none"/> <span class="error"
+										 <img id="image2" name="image2" src="${docUrl}${getWork.photo1}"  alt="No Image"
+											style="height: 70px;width: 70px;"/> <span class="error"
 											aria-live="polite"></span>
 											<span class="validation-invalid-label" id="error_imgtype2"
 													style="display: none; color: red;">Invalid file, only .jpg, .jpeg, .png type allowed</span>
@@ -991,7 +991,6 @@ $(document)
 				var reader = new FileReader();
 
 				reader.onload = function(e) {
-					document.getElementById('image1').style.display = "flow-root";
 					$('#image1').attr('src', e.target.result);
 				}
 
@@ -1010,7 +1009,6 @@ $(document)
 				var reader = new FileReader();
 
 				reader.onload = function(e) {
-					document.getElementById('image2').style.display = "flow-root";
 					$('#image2').attr('src', e.target.result);
 				}
 

@@ -422,8 +422,8 @@ public class WorkController {
 		int status = Integer.parseInt(request.getParameter("status"));
 		try {
 
+			
 			String[] sendWorkIds = request.getParameterValues("sendWorkIds");
-
 			StringBuilder sb = new StringBuilder();
 
 			for (int i = 0; i < sendWorkIds.length; i++) {
@@ -482,6 +482,73 @@ public class WorkController {
 		}
 
 		return model;
+	}
+	
+	@RequestMapping(value = "/editWorkDocSubmit/{workId}", method = RequestMethod.GET)
+	public ModelAndView editWorkDocSubmit(@PathVariable int workId, HttpServletRequest request,
+			HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("work/workPndingAmtPaid");
+		try {
+
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("workId", workId);
+			GetWork getWork = rest.postForObject(Constants.url + "/getWorkHeaderByWorkId", map, GetWork.class);
+			model.addObject("getWork", getWork);
+			model.addObject("workdetail", getWork.getWorkDetailList());
+			System.out.println("list" + getWork.getWorkDetailList());
+			model.addObject("docUrl", Constants.RTO_DOC_URL);
+			model.addObject("amt", 0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+	
+	
+	
+	@RequestMapping(value = "/updatePendingWorkCost", method = RequestMethod.POST)
+	public String updateStatusAndPendingCost(HttpServletRequest request, HttpServletResponse response) {
+
+		try {
+
+			String sendWorkId = request.getParameter("sendWorkId");
+			float workCost = Float.parseFloat(request.getParameter("workCost"));
+			float paidAmt = Float.parseFloat(request.getParameter("paid"));
+			float settAmt = Float.parseFloat(request.getParameter("settleAmt"));
+			float remainingAmt = Float.parseFloat(request.getParameter("remainAmt"));
+			
+			float ttl = settAmt+paidAmt;
+			float pndingAmt = workCost-ttl;
+			
+			System.out.println("Amts-------"+sendWorkId+" "+workCost+" "+paidAmt+" "+settAmt);
+
+			List<UpdateStatus> upList = new ArrayList<UpdateStatus>();
+			UpdateStatus up = new UpdateStatus();
+
+			up.setWorkId(Integer.parseInt(sendWorkId));
+			up.setExInt1((int)ttl); //payment done
+			up.setExInt2((int) pndingAmt);// pending amt
+
+			up.setStatus(3);
+			upList.add(up);
+			System.out.println("up" + up.toString());
+
+		
+		System.out.println("updateList" + upList.toString());
+
+		Info errMsg = rest.postForObject(Constants.url + "updateWorkPayment", upList, Info.class);
+		System.out.println("errMsg" + errMsg);
+
+		} catch (Exception e) {
+			System.err.println("err ord updt " + e.getMessage());
+
+			e.printStackTrace();
+
+		}
+
+		return "redirect:/showUpdatePayment";
 	}
 
 	@RequestMapping(value = "/editWorkPaymentDetail/{workId}", method = RequestMethod.GET)
